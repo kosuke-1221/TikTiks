@@ -1,3 +1,4 @@
+<%@ page contentType="text/html; charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="ja">
 
@@ -98,32 +99,27 @@
         document.getElementById('passwordUpdateForm').addEventListener('submit', function (event) {
             event.preventDefault();
 
-            // フォームの入力値を取得
             const currentPassword = document.getElementById('currentPassword').value;
             const newPassword = document.getElementById('newPassword').value;
             const confirmPassword = document.getElementById('confirmPassword').value;
 
             let errorMessage = '';
 
-            // パスワード未入力チェック
             if (!currentPassword || !newPassword || !confirmPassword) {
                 errorMessage = 'すべての欄を入力してください。';
             } else if (newPassword.length < 8) {
-                errorMessage = '新しいパスワードは8文字以上にしてください。';  // パスワードの長さチェック
+                errorMessage = '新しいパスワードは8文字以上にしてください。';
             } else if (newPassword !== confirmPassword) {
-                errorMessage = '新しいパスワードが一致しません。';  // パスワード一致チェック
+                errorMessage = '新しいパスワードが一致しません。';
             }
 
-            // エラーメッセージの表示
             const errorElement = document.getElementById('errorMessage');
             if (errorMessage) {
                 errorElement.style.display = 'block';
                 errorElement.textContent = errorMessage;
             } else {
                 errorElement.style.display = 'none';
-                // 正常な送信処理（仮）
                 alert('パスワードが更新されました！');
-                // フォームをリセット
                 document.getElementById('passwordUpdateForm').reset();
             }
         });
@@ -132,3 +128,4 @@
 </body>
 
 </html>
+?
