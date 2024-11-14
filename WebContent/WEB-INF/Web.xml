@@ -9,4 +9,4 @@
 <error-page>
         <exception-type>java.lang.Exception</exception-type>
         <location>/user/error.jsp</location>
-    </error-page>
+</error-page>
