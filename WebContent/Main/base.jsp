@@ -21,7 +21,7 @@
         	😊にこにこシフトマジック😊
         </div>
         <div class="header-select">
-            <select id="header-navigation" onchange="navigateToPage()">
+            <select class="headerselect" id="header-navigation" onchange="navigateToPage()">
                 <option value="#user">ユーザー</option>
                 <option value="#password-change">パスワード変更</option>
                 <option value="#logout">ログアウト</option>
@@ -48,8 +48,8 @@
     </div>
 
     <!-- メインコンテンツ -->
-    <div class="main-content">
-        	<!-- ここに必要なコンテンツを追加 -->
+    <div class="content">
+        ${param.content}
     </div>
 
     <!-- フッター -->

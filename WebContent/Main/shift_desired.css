@@ -1,0 +1,117 @@
+/* グローバル設定 */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+}
+
+h1, h2 {
+    color: #4caf50; /* 緑色 */
+}
+
+/* メインコンテンツ */
+section {
+    margin-top: 80px; /* ヘッダーの下に余白を作る */
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* 曜日ごとのスタイル */
+div[class$="Day"] {
+    margin-bottom: 20px;
+}
+
+span {
+    font-size: 1.2em;
+    color: #4caf50;
+}
+
+/* チェックボックスのラベル */
+label {
+    font-size: 1em;
+    margin-left: 10px;
+}
+
+/* セレクトボックスのスタイル */
+select.shiftselect {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 5px;
+    border: 1px solid #4caf50;
+    background-color: #e8f5e9; /* 薄い緑色 */
+    font-size: 1em;
+}
+
+select.shiftselect:disabled {
+    background-color: #d6e8d6; /* 無効化されたセレクトボックスの背景色 */
+}
+
+select.shiftselect:focus {
+    outline: none;
+    border-color: #388e3c; /* フォーカス時のボーダー色 */
+}
+
+/* 自由記入欄 */
+textarea#free-text {
+    width: 100%;
+    padding: 15px;
+    border-radius: 5px;
+    border: 1px solid #4caf50;
+    background-color: #e8f5e9;
+    font-size: 1em;
+    resize: vertical; /* 縦方向のリサイズのみ許可 */
+    min-height: 100px;
+}
+
+textarea#free-text:focus {
+    outline: none;
+    border-color: #388e3c;
+}
+
+/* 送信ボタン */
+button {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1em;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+button:hover {
+    background-color: #388e3c;
+}
+
+/* エラーメッセージ */
+.error-message {
+    color: red;
+    font-size: 1em;
+    margin-top: 10px;
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+    section {
+        padding: 15px;
+    }
+
+    select.shiftselect {
+        font-size: 0.9em;
+    }
+
+    button {
+        font-size: 1em;
+    }
+
+    textarea#free-text {
+        font-size: 0.9em;
+    }
+}
