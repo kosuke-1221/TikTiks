@@ -23,7 +23,7 @@
         <div class="header-select">
             <select class="headerselect" id="header-navigation" onchange="navigateToPage()">
                 <option value="#user">ユーザー</option>
-                <option value="#password-change">パスワード変更</option>
+                <option value="Password_Change.jsp">パスワード変更</option>
                 <option value="#logout">ログアウト</option>
             </select>
         </div>
@@ -33,7 +33,7 @@
     <div class="sidebar">
 
     	<!-- 従業員用 -->
-        <a href="#available-dates">出勤可能日時</a>
+        <a href="shift_desired.jsp">出勤可能日時</a>
         <a href="#vacation-days">休暇希望日</a>
         <a href="#calendar">カレンダー</a>
 
@@ -59,17 +59,24 @@
         </div>
     </footer>
 
-    <script>
-        function navigateToPage() {
-            const select = document.getElementById("header-navigation");
-            const value = select.value;
+	<script>
+	    function navigateToPage() {
+	        const selectedValue = document.getElementById("header-navigation").value;
 
-            // Handle navigation based on selected option
-            if (value) {
-                window.location.hash = value; // Change the URL hash to the selected value
-            }
-        }
-    </script>
+	        if (selectedValue === "#user") {
+	            // ユーザーページに遷移（#userのハッシュリンクでもOK）
+	            window.location.hash = "user";  // ユーザーセクションへスクロール
+	        } else if (selectedValue === "#logout") {
+	            // ログアウト処理
+	            alert("ログアウトします");
+	            // ここにログアウト処理を追加（例えばセッションを切るなど）
+	            window.location.href = "logout.jsp"; // ログアウトページに遷移
+	        } else {
+	            // その他のページに遷移
+	            window.location.href = selectedValue; // パスワード変更ページなど
+	        }
+	    }
+	</script>
 
 </body>
 
