@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>にこにこシフトマジックシステム - ログイン</title>
-    <link rel="stylesheet" href="login.css">
+    <link rel="stylesheet" href="login.css"> <!-- 外部CSSファイルをリンク -->
 </head>
 
 <body>
@@ -19,7 +19,7 @@
 
     <div class="container">
         <h2>😁 ログイン 😁</h2>
-        <form action="login" method="POST">
+        <form action="login_action.jsp" method="POST">
             <label for="userID">ユーザーID</label>
             <input type="text" id="userID" name="userID" required>
 
