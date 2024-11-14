@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="password_change.css" rel="stylesheet" />
-    <title>パスワード更新</title>
+    <title>パスワード更新a</title>
 
 </head>
 
