@@ -1,108 +1,128 @@
-/* CSSスタイル */
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    height: 100vh;
+    margin: 20px;
+    background-color: #f9f9f9;
 }
 
-header {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    background-color: #4caf50;
-    color: white;
-    padding: 15px;
-    font-size: 1.5em;
-    font-weight: bold;
-    position: fixed;
-    width: 100%;
-    top: 0;
-    left: 0;
-    z-index: 20;
-}
-
-.header-title {
-    display: flex;
-    align-items: center;
-}
-
-.header-title span {
-    margin: 0 10px;
+h1 {
+    text-align: center;
 }
 
 .container {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 300px;
-    box-sizing: border-box;
-    margin-top: 80px;
+    display: flex;
 }
 
-h2 {
-    text-align: center;
-    margin-bottom: 20px;
+.sidebar {
+    flex: 1;
+    margin-right: 20px;
 }
 
-label {
-    display: block;
-    margin-bottom: 10px;
-    font-weight: bold;
-}
-
-input[type="text"],
-input[type="password"] {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
+.month {
+    margin: 20px 0;
     border: 1px solid #ccc;
-    border-radius: 5px;
-    box-sizing: border-box;
+    padding: 10px;
+    background-color: #fff;
+    text-align: center;
+}
+
+.calendar {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 10px;
+}
+
+.day {
+    border: 1px solid #ccc;
+    padding: 20px;
+    text-align: center;
+    cursor: pointer;
+    background-color: #fff;
+    transition: background-color 0.3s;
+}
+
+.day:hover {
+    background-color: #e0f7fa;
 }
 
 button {
-    width: 100%;
-    padding: 10px;
-    background-color: #28a745;
+    display: block;
+    margin: 10px auto;
+    padding: 10px 20px;
+    background-color: #007bff;
     color: white;
     border: none;
-    border-radius: 5px;
     cursor: pointer;
 }
 
 button:hover {
-    background-color: #218838;
+    background-color: #0056b3;
 }
 
-.register-link {
+.hidden {
+    display: none;
+}
+
+.message {
     text-align: center;
-    margin-top: 10px;
+    margin: 20px 0;
 }
 
-.register-link a {
-    color: #007bff;
-    text-decoration: none;
+.employee-list {
+    margin: 10px 0;
 }
 
-.register-link a:hover {
-    text-decoration: underline;
+.employee-item {
+    margin: 5px 0;
+    cursor: pointer;
+    padding: 5px;
+    background-color: #e9ecef;
+    transition: background-color 0.3s;
 }
 
-footer {
-    margin-top: auto;
+.employee-item:hover {
+    background-color: #adb5bd;
+}
+
+.selected-date {
+    margin-left: 20px;
     padding: 10px;
-    text-align: center;
-    font-size: 12px;
-    color: #fff;
-    background-color: #4caf50;
+    border: 1px solid #ccc;
+    background-color: #fff;
+}
+
+.selected-info {
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+}
+
+.text-area {
     width: 100%;
-    position: absolute;
-    bottom: 0;
-    left: 0;
+    height: 100px;
+    margin-top: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+}
+
+.month-navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px 0;
+}
+
+.month-navigation button {
+    padding: 5px 10px;
+}
+
+.shift-display {
+    margin-top: 20px;
+}
+
+select {
+    width: 100%;
+    padding: 5px;
+    margin-top: 5px;
 }
