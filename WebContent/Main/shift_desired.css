@@ -38,21 +38,44 @@ label {
 /* セレクトボックスのスタイル */
 select.shiftselect {
     width: 100%;
-    padding: 10px;
-    margin: 5px 0;
-    border-radius: 5px;
+    padding: 8px 12px; /* 縦の余白を減らし、横の余白は適度に残す */
+    margin: 6px 0; /* マージンを縮めて隙間を減らす */
+    border-radius: 4px; /* 角を丸くしすぎないように */
     border: 1px solid #4caf50;
-    background-color: #e8f5e9; /* 薄い緑色 */
+    background-color: #e8f5e9;
     font-size: 1em;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg xmlns%3D%22http%3A//www.w3.org/2000/svg%22 viewBox%3D%220 0 4 5%22%3E%3Cpath fill%3D%22%234CAF50%22 d%3D%22M2 0L0 2h4z%22/%3E%3C/svg%3E');
+    background-repeat: no-repeat;
+    background-position: right 8px center; /* アイコンを少し小さくし、中央寄せ */
+    background-size: 8px; /* アイコンサイズを少し小さく */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-select.shiftselect:disabled {
-    background-color: #d6e8d6; /* 無効化されたセレクトボックスの背景色 */
+/* セレクトボックスのドロップダウン（選択肢部分）にスクロールを追加 */
+select.shiftselect {
+    max-height: 180px; /* 少し高さを減らして、スクロールを少なくする */
+    overflow-y: auto;
+    text-overflow: ellipsis;
 }
 
+/* フォーカス時のスタイル */
 select.shiftselect:focus {
     outline: none;
-    border-color: #388e3c; /* フォーカス時のボーダー色 */
+    border-color: #388e3c;
+    box-shadow: 0 0 8px rgba(56, 142, 60, 0.3);
+}
+
+/* ホバー時のスタイル */
+select.shiftselect:hover {
+    border-color: #66bb6a;
+}
+
+/* 無効化されたセレクトボックス */
+select.shiftselect:disabled {
+    background-color: #d6e8d6;
+    cursor: not-allowed;
+    opacity: 0.6;
 }
 
 /* 自由記入欄 */
