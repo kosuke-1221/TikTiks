@@ -21,7 +21,6 @@
 	    <h2>出勤可能な曜日を選んでください</h2>
 
 	<form id="shiftForm" onsubmit="return validateForm() && checkTimeConflicts();">
-    <div id="error-messages" style="display: none; color: red; padding: 10px; border: 1px solid red; background-color: #f8d7da;"></div>
 	        <div class="Monday">
 	            <span>月曜日</span>
 	            <label for="monday">
@@ -365,6 +364,7 @@
 	        </div>
 	        <span class="error" id="error"></span>
 
+	        <div id="error-messages" style="display: none; color: red;"></div>
 	        <button type="submit" id="sou">送信</button>
 	    </form>
 
@@ -391,11 +391,19 @@
 		    }
 
 		    // フォーム送信時にバリデーション
+
 		    document.getElementById('shiftForm').addEventListener('submit', function(event) {
-		        if (!validateForm()) {
-		            event.preventDefault(); // フォーム送信を防ぐ
-		        }
-		    });
+			    const errorContainer = document.getElementById('error-messages');
+			    if (errorContainer) {
+			        errorContainer.style.display = 'none'; // エラーメッセージをクリア
+			        errorContainer.textContent = '';
+			    }
+
+			    if (!validateForm()) {
+			        event.preventDefault(); // フォーム送信を防ぐ
+			    }
+			});
+
 
 		    function validateForm() {
 		        const days = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday', 'holiday'];
@@ -440,10 +448,14 @@
 
 		    // エラーメッセージをページ上に表示
 		    function displayErrorMessages(messages) {
-		        const errorContainer = document.getElementById('error-messages');
-		        errorContainer.textContent = messages; // メッセージを設定
-		        errorContainer.style.display = 'block'; // エラーメッセージを表示
-		    }
+			    const errorContainer = document.getElementById('error-messages');
+			    if (errorContainer) {
+			        errorContainer.innerHTML = messages.replace(/\n/g, '<br>'); // 改行を <br> に変換
+			        errorContainer.style.display = 'block'; // エラーメッセージを表示
+			    } else {
+			        console.error('Error container not found');
+			    }
+			}
 		</script>
 
 	</section>
