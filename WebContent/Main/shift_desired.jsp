@@ -17,7 +17,7 @@
 	<c:param name="scripts"></c:param>
 	<c:param name="content">
 	<section class="me-4">
-		<h1>😁シフト希望日提出😁</h1>
+		<h1>😊シフト希望日提出😊</h1>
 	    <h2>出勤可能な曜日を選んでください</h2>
 
 	<form id="shiftForm" onsubmit="return validateForm() && checkTimeConflicts();">

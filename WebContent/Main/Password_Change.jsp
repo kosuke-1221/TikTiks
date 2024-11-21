@@ -82,7 +82,7 @@
 	<section class="me-4">
 
     <div class="form-container">
-        <h2>😁パスワード更新😁</h2>
+        <h2>😊パスワード更新😊</h2>
         <form id="passwordUpdateForm">
             <div class="form-group">
                 <label for="currentPassword">現在のパスワード</label>

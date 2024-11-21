@@ -16,7 +16,7 @@
 <c:param name="content">
 <section class="me-4">
     <div class="container">
-        <h1>😁休暇希望日提出😁</h1>
+        <h1>😊休暇希望日提出😊</h1>
 
         <label for="off-date">休暇希望日を選択してください:</label>
         <input type="date" id="off-date" required>
