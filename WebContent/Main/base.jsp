@@ -36,6 +36,7 @@
         <a href="shift_desired.jsp">出勤可能日時</a>
         <a href="#vacation-days">休暇希望日</a>
         <a href="#calendar">カレンダー</a>
+        <a href="news.jsp">お知らせ</a>
 
         <!-- 管理者専用リンク（roleが "admin" の場合に表示） -->
         <c:if test="${sessionScope.role == 'admin'}">
@@ -43,6 +44,7 @@
             <a href="#user-management">ユーザー管理</a>
             <a href="#shift-management">シフト管理</a>
             <a href="#reports">レポート</a>
+            <a href="news.jsp">お知らせ</a>
         </c:if>
 
     </div>
