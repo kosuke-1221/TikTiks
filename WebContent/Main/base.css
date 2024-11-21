@@ -52,6 +52,20 @@ header {
     background-color: #c8e6c9;  /* ホバー時に少し濃い緑色 */
 }
 
+.headerselect {
+    padding: 10px;
+    margin-bottom: 10px;
+    width: 100%;
+    border-radius: 5px;
+    border: 1px solid #388e3c; /* 深緑のボーダー */
+    background-color: #66bb6a;  /* ライトグリーン */
+    color: white;
+}
+
+.headerselect:hover {
+    background-color: #2e7d32;  /* やや暗い緑色 */
+}
+
 /* フッターのスタイル */
 .footer {
     background-color: #4caf50;  /* 緑色 */
