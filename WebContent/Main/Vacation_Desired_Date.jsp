@@ -1,14 +1,20 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@page contentType="text/html; charset=UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>休暇希望日提出</title>
-    <!-- CSSファイルをリンク -->
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>休暇希望日提出</title>
     <link rel="stylesheet" href="Vacation_Desired_Date.css">
 </head>
 <body>
+<c:import url="base.jsp">
+<c:param name="title"></c:param>
+<c:param name="scripts"></c:param>
+<c:param name="content">
+<section class="me-4">
     <div class="container">
         <h1>😁休暇希望日提出😁</h1>
 
@@ -72,6 +78,8 @@
             }
         });
     </script>
+</section>
+</c:param>
+</c:import>
 </body>
 </html>
-6
