@@ -17,7 +17,7 @@
 <c:param name="content">
 <section class="me-4">
     <div class="container">
-        <h2>😁 ログイン 😁</h2>
+        <h2>😊ログイン😊</h2>
         <form action="login_action.jsp" method="POST">
             <label for="userID">ユーザーID</label>
             <input type="text" id="userID" name="userID" required>
