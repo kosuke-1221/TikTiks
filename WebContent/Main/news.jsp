@@ -14,7 +14,6 @@
 <body>
 <c:import url="base.jsp">
 <c:param name="title"></c:param>
-<c:param name="scripts"></c:param>
 <c:param name="content">
 <section class="me-4">
     <div class="notification-container">

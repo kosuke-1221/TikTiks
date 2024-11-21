@@ -1,0 +1,49 @@
+/* ヘッダーのスタイル */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #4caf50;  /* 緑色 */
+    color: white;
+    padding: 15px;
+    font-size: 1.5em;
+    font-weight: bold;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 20;
+}
+
+/* フッターのスタイル */
+.footer {
+    background-color: #4caf50;  /* 緑色 */
+    color: #fff;
+    padding: 1px 0;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    z-index: 10;
+}
+
+/* フッターの内容を中央揃え */
+.footer-content {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+/* その他のスタイル */
+.section-title {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    color: #4caf50;  /* 緑色 */
+}
+
+input {
+    padding: 10px;
+    margin-bottom: 10px;
+    width: 100%;
+    border-radius: 5px;
+    border: 1px solid #4caf50;  /* 緑色 */
+}
