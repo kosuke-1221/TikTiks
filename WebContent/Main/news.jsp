@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>にこにこシフトマジック</title>
+<title>お知らせ</title>
 <link href="news.css" rel="stylesheet" />
 </head>
 
@@ -17,7 +17,7 @@
 <c:param name="content">
 <section class="me-4">
     <div class="notification-container">
-        <h2>お知らせ</h2>
+        <h2>😁お知らせ😁</h2>
 
         <!-- お知らせ追加フォーム（管理者のみ表示） -->
         <div id="adminSection" style="display: none;">

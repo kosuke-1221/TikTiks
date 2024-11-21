@@ -7,7 +7,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>にこにこシフトマジック</title>
+    <title>シフト希望日</title>
     <link href="shift_desired.css" rel="stylesheet" />
 </head>
 
@@ -17,7 +17,7 @@
 	<c:param name="scripts"></c:param>
 	<c:param name="content">
 	<section class="me-4">
-		<h1>シフト希望日</h1>
+		<h1>😁シフト希望日提出😁</h1>
 	    <h2>出勤可能な曜日を選んでください</h2>
 
 	<form id="shiftForm" onsubmit="return validateForm() && checkTimeConflicts();">
