@@ -6,7 +6,12 @@ body {
     background-color: #f5f5f5;
 }
 
-h1, h2 {
+h1 {
+    color: #4caf50; /* 緑色 */
+	font-size: 35px;
+}
+
+h2 {
     color: #4caf50; /* 緑色 */
 }
 
