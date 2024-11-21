@@ -1,0 +1,108 @@
+body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .calendar-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .nico-icon {
+            font-size: 50px;
+            margin: 0 20px;
+        }
+
+        .calendar-wrapper {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        th,
+        td {
+            border: 1px solid #ccc;
+            text-align: center;
+            padding: 10px;
+            cursor: pointer;
+            background-color: #fff;
+        }
+
+        th {
+            background-color: #eaeaea;
+        }
+
+        td:hover {
+            background-color: #f0f8ff;
+            /* マウスオーバー時のハイライト */
+        }
+
+        /* 曜日による色分け */
+        .saturday {
+            background-color: #add8e6;
+            /* 青色 */
+        }
+
+        .sunday {
+            background-color: #ffcccb;
+            /* 赤色 */
+        }
+
+        #workInfo {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #e0f7fa;
+            border: 1px solid #008cba;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        .control-panel {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 20px;
+        }
+
+        .worker-list {
+            text-align: left;
+            line-height: 1.5;
+            /* 行間を調整 */
+        }
+
+        .worker-name {
+             padding: 2px 5px; /* 上下2px、左右5px */
+			    border-radius: 3px; /* 角を少し丸くする */
+			    margin-bottom: 2px; /* 各名前の間隔を狭める */
+			    font-size: 0.8em; /* フォントサイズを小さくする */
+			    color: #fff; /* 文字色はそのまま白 */
+        }
+
+        .month-display {
+            text-align: center;
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+
+        .shift-detail {
+            text-align: left;
+            padding: 10px;
+            border: 1px solid #ccc;
+            background-color: #f7f7f7;
+            border-radius: 5px;
+            margin-top: 20px;
+
+
+        }
