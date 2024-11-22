@@ -82,13 +82,12 @@ body {
             /* 行間を調整 */
         }
 
-        .worker-name {
-             padding: 2px 5px; /* 上下2px、左右5px */
-			    border-radius: 3px; /* 角を少し丸くする */
-			    margin-bottom: 2px; /* 各名前の間隔を狭める */
-			    font-size: 0.8em; /* フォントサイズを小さくする */
-			    color: #fff; /* 文字色はそのまま白 */
-        }
+        ..worker-name {
+    padding: 5px;
+    margin-top: 5px;
+    color: white; /* 文字色を白に設定 */
+    font-size: 12px; /* サイズを調整 */
+}
 
         .month-display {
             text-align: center;
