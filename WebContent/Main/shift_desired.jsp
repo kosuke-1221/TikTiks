@@ -20,7 +20,7 @@
 		<h1>😊シフト希望日提出😊</h1>
 	    <h2>出勤可能な曜日を選んでください</h2>
 
-	<form id="shiftForm" onsubmit="return validateForm() && checkTimeConflicts();">
+	<form action="Shift_desiredServlet" method="post" id="shiftForm" onsubmit="return validateForm() && checkTimeConflicts();">
 	        <div class="Monday">
 	            <span>月曜日</span>
 	            <label for="monday">
