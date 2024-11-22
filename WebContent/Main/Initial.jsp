@@ -16,6 +16,7 @@
 <c:param name="scripts"></c:param>
 <c:param name="content">
 <section class="me-4">
+    <main class="container">
         <div class="box">
             <div class="section">
                 <h2>登録済みの方はこちら</h2>
@@ -28,6 +29,7 @@
                 <button class="button" onclick="location.href='<%= request.getContextPath() %>/Main/signup.jsp'">新規登録</button>
             </div>
         </div>
+    </main>
 </section>
 </c:param>
 </c:import>
