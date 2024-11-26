@@ -47,18 +47,18 @@ body {
 
         td:hover {
             background-color: #f0f8ff;
-            /* ƒ}ƒEƒXƒI[ƒo[‚ÌƒnƒCƒ‰ƒCƒg */
+            /* ï¿½}ï¿½Eï¿½Xï¿½Iï¿½[ï¿½oï¿½[ï¿½ï¿½ï¿½Ìƒnï¿½Cï¿½ï¿½ï¿½Cï¿½g */
         }
 
-        /* —j“ú‚É‚æ‚éF•ª‚¯ */
+        /* ï¿½jï¿½ï¿½ï¿½É‚ï¿½ï¿½Fï¿½ï¿½ï¿½ï¿½ */
         .saturday {
             background-color: #add8e6;
-            /* ÂF */
+            /* ï¿½ÂF */
         }
 
         .sunday {
             background-color: #ffcccb;
-            /* ÔF */
+            /* ï¿½ÔF */
         }
 
         #workInfo {
@@ -79,14 +79,14 @@ body {
         .worker-list {
             text-align: left;
             line-height: 1.5;
-            /* sŠÔ‚ğ’²® */
+            /* ï¿½sï¿½Ô‚ğ’²ï¿½ */
         }
 
         ..worker-name {
     padding: 5px;
     margin-top: 5px;
-    color: white; /* •¶šF‚ğ”’‚Éİ’è */
-    font-size: 12px; /* ƒTƒCƒY‚ğ’²® */
+    color: white; /* ï¿½ï¿½ï¿½ï¿½ï¿½Fï¿½ğ”’‚Éİ’ï¿½ */
+    font-size: 12px; /* ï¿½Tï¿½Cï¿½Yï¿½ğ’²ï¿½ */
 }
 
         .month-display {
