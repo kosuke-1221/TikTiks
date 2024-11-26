@@ -58,6 +58,7 @@ select, input[type="number"] {
     vertical-align: middle;
     font-size: 18px;
     border: 1px solid #e0e0e0;
+
 }
 
 .calendar-table th {
@@ -66,10 +67,12 @@ select, input[type="number"] {
 }
 
 .sunday {
+	background-color: #ffd0d0;
     color: red;
 }
 
 .saturday {
+	background-color: #c4c4ff;
     color: blue;
 }
 
@@ -95,4 +98,15 @@ select, input[type="number"] {
     color: #2c3e50;
     padding: 10px;
     border-top: 1px solid #ddd;
+}
+.name-yamada {
+    color: blue; /* 山田 太郎の名前を青色にする */
+}
+
+.name-suzuki {
+    color: green; /* 鈴木 花子の名前を緑色にする */
+}
+
+.name-tanaka {
+    color: orange; /* 田中 一郎の名前をオレンジ色にする */
 }
