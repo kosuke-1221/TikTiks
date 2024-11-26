@@ -34,7 +34,7 @@
     	<!-- 従業員用 -->
         <a href="shift_desired.jsp">出勤可能日時</a>
         <a href="Vacation_Desired_Date.jsp">休暇希望日</a>
-        <a href="#calendar">カレンダー</a>
+        <a href="shared_calender.jsp">カレンダー</a>
         <a href="news.jsp">お知らせ</a>
 
         <!-- 管理者専用リンク（roleが "admin" の場合に表示） -->
