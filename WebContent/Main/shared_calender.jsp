@@ -17,7 +17,7 @@
 <c:param name="scripts"></c:param>
 <c:param name="content">
 <section class="calendar-section">
-<h1>😁共有カレンダー😁</h1>
+<h1>😊共有カレンダー😊</h1>
 
             <%
                 String selectedMonth = request.getParameter("month");

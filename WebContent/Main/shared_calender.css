@@ -18,7 +18,7 @@ body {
 h1 {
     text-align: center;
     font-size: 36px;
-    color: #f79c42;
+    color: #4caf50;
     margin-bottom: 30px;
 }
 
@@ -61,7 +61,7 @@ select, input[type="number"] {
 }
 
 .calendar-table th {
-    background-color: #f79c42;
+    background-color: #4caf50;
     color: white;
 }
 
