@@ -27,6 +27,5 @@
 </c:param>
 </c:import>
 </body>
-</body>
 
 </html>
