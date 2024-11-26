@@ -28,7 +28,7 @@
             <button type="submit">ログイン</button>
         </form>
         <div class="register-link">
-            <p>新規ですか？ <a href="register.jsp">登録はこちら</a></p>
+            <p>新規ですか？ <a href="signup.jsp">登録はこちら</a></p>
         </div>
     </div>
 </section>
