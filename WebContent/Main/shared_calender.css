@@ -47,18 +47,17 @@ body {
 
         td:hover {
             background-color: #f0f8ff;
-            /* �}�E�X�I�[�o�[���̃n�C���C�g */
+
         }
 
-        /* �j���ɂ��F���� */
         .saturday {
             background-color: #add8e6;
-            /* �F */
+
         }
 
         .sunday {
             background-color: #ffcccb;
-            /* �ԐF */
+
         }
 
         #workInfo {
@@ -79,14 +78,14 @@ body {
         .worker-list {
             text-align: left;
             line-height: 1.5;
-            /* �s�Ԃ𒲐� */
+
         }
 
         ..worker-name {
     padding: 5px;
     margin-top: 5px;
-    color: white; /* �����F�𔒂ɐݒ� */
-    font-size: 12px; /* �T�C�Y�𒲐� */
+    color: white;
+    font-size: 12px;
 }
 
         .month-display {
