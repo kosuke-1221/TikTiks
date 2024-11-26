@@ -1,106 +1,98 @@
 body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-            padding: 0;
-            background-color: #f9f9f9;
-        }
-
-        h1 {
-            text-align: center;
-        }
-
-        .calendar-container {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 20px;
-        }
-
-        .nico-icon {
-            font-size: 50px;
-            margin: 0 20px;
-        }
-
-        .calendar-wrapper {
-            display: flex;
-            justify-content: space-between;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 20px;
-        }
-
-        th,
-        td {
-            border: 1px solid #ccc;
-            text-align: center;
-            padding: 10px;
-            cursor: pointer;
-            background-color: #fff;
-        }
-
-        th {
-            background-color: #eaeaea;
-        }
-
-        td:hover {
-            background-color: #f0f8ff;
-
-        }
-
-        .saturday {
-            background-color: #add8e6;
-
-        }
-
-        .sunday {
-            background-color: #ffcccb;
-
-        }
-
-        #workInfo {
-            margin-top: 20px;
-            padding: 10px;
-            background-color: #e0f7fa;
-            border: 1px solid #008cba;
-            border-radius: 5px;
-            font-weight: bold;
-        }
-
-        .control-panel {
-            display: flex;
-            justify-content: flex-end;
-            margin-bottom: 20px;
-        }
-
-        .worker-list {
-            text-align: left;
-            line-height: 1.5;
-
-        }
-
-        ..worker-name {
-    padding: 5px;
-    margin-top: 5px;
-    color: white;
-    font-size: 12px;
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f5;
+    margin: 0;
+    padding: 0;
 }
 
-        .month-display {
-            text-align: center;
-            font-size: 1.5em;
-            margin-bottom: 10px;
-        }
+.calendar-section {
+    padding: 30px;
+    max-width: 900px;
+    margin: 0 auto;
+    background-color: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ddd;
+}
 
-        .shift-detail {
-            text-align: left;
-            padding: 10px;
-            border: 1px solid #ccc;
-            background-color: #f7f7f7;
-            border-radius: 5px;
-            margin-top: 20px;
+h1 {
+    text-align: center;
+    font-size: 36px;
+    color: #f79c42;
+    margin-bottom: 30px;
+}
 
+h2 {
+    text-align: center;
+    font-size: 24px;
+    color: #2c3e50;
+    margin-bottom: 20px;
+}
 
-        }
+.select-form-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+    padding: 0 20px;
+}
+
+select, input[type="number"] {
+    padding: 8px 12px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    width: 120px;
+    margin: 0 10px;
+}
+
+.calendar-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.calendar-table th, .calendar-table td {
+    width: 14%;
+    height: 80px;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 18px;
+    border: 1px solid #e0e0e0;
+}
+
+.calendar-table th {
+    background-color: #f79c42;
+    color: white;
+}
+
+.sunday {
+    color: red;
+}
+
+.saturday {
+    color: blue;
+}
+
+.today {
+    font-weight: bold;
+    background-color: #ffeb3b;
+    border-radius: 50%;
+}
+
+.calendar-table td {
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.calendar-table td:hover {
+    background-color: #e8e8e8;
+}
+
+#info {
+    margin-top: 20px;
+    font-size: 18px;
+    text-align: center;
+    color: #2c3e50;
+    padding: 10px;
+    border-top: 1px solid #ddd;
+}
