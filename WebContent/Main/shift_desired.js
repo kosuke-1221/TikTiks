@@ -55,29 +55,31 @@ function validateForm() {
     const days = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday', 'holiday'];
 
     const dayNames = {
-            'monday': '月曜',
-            'tuesday': '火曜',
-            'wednesday': '水曜',
-            'thursday': '木曜',
-            'friday': '金曜',
-            'saturday': '土曜',
-            'sunday': '日曜',
-            'holiday': '祝'
-        };
+        'monday': '月曜',
+        'tuesday': '火曜',
+        'wednesday': '水曜',
+        'thursday': '木曜',
+        'friday': '金曜',
+        'saturday': '土曜',
+        'sunday': '日曜',
+        'holiday': '祝'
+    };
+
     let errorMessages = '';
     let hasError = false;
+    let isAnyCheckboxChecked = false; // チェックボックスが選択されているかを確認するフラグ
 
     // 各曜日ごとのチェック
     days.forEach(day => {
         const checkbox = document.getElementById(day);
         const startSelect = document.getElementById(`${day}-start`);
         const endSelect = document.getElementById(`${day}-end`);
-        const freeInput = document.getElementById(`${day}-free`);
         const dayName = dayNames[day]; // 日本語の曜日名を取得
-
 
         // チェックボックスが選択されている場合
         if (checkbox && checkbox.checked) {
+            isAnyCheckboxChecked = true; // チェックボックスが1つでも選択されていればフラグを立てる
+
             // 開始時間と終了時間の入力チェック
             if (!startSelect.value || !endSelect.value) {
                 if (!errorMessages.includes(`${dayName}日の開始時間と終了時間を選択してください。`)) {
@@ -92,16 +94,14 @@ function validateForm() {
                     hasError = true;
                 }
             }
-        } else {
-            // チェックボックスが選択されていない場合、自由入力欄も未入力ならエラー
-            if (!freeInput || !freeInput.value) {
-                if (!errorMessages.includes(`シフト希望日を1つ以上選択してください`)) {
-                    errorMessages += `シフト希望日を1つ以上選択してください\n`;
-                    hasError = true;
-                }
-            }
         }
     });
+
+    // チェックボックスが1つも選択されていない場合にエラーを表示
+    if (!isAnyCheckboxChecked) {
+        errorMessages += 'シフト希望日を1つ以上選択してください\n';
+        hasError = true;
+    }
 
     // エラーメッセージがある場合、表示する
     if (hasError) {
@@ -111,7 +111,6 @@ function validateForm() {
 
     return true; // フォーム送信を許可
 }
-
 
 // エラーメッセージをページ上に表示
 function displayErrorMessages(messages) {
