@@ -53,6 +53,17 @@ document.getElementById('shiftForm').addEventListener('submit', function(event) 
 
 function validateForm() {
     const days = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday', 'holiday'];
+
+    const dayNames = {
+            'monday': '月曜',
+            'tuesday': '火曜',
+            'wednesday': '水曜',
+            'thursday': '木曜',
+            'friday': '金曜',
+            'saturday': '土曜',
+            'sunday': '日曜',
+            'holiday': '祝'
+        };
     let errorMessages = '';
     let hasError = false;
 
@@ -62,28 +73,30 @@ function validateForm() {
         const startSelect = document.getElementById(`${day}-start`);
         const endSelect = document.getElementById(`${day}-end`);
         const freeInput = document.getElementById(`${day}-free`);
+        const dayName = dayNames[day]; // 日本語の曜日名を取得
+
 
         // チェックボックスが選択されている場合
         if (checkbox && checkbox.checked) {
             // 開始時間と終了時間の入力チェック
             if (!startSelect.value || !endSelect.value) {
-                if (!errorMessages.includes(`${day}曜日の開始時間と終了時間を選択してください。`)) {
-                    errorMessages += `${day}曜日の開始時間と終了時間を選択してください。\n`;
+                if (!errorMessages.includes(`${dayName}日の開始時間と終了時間を選択してください。`)) {
+                    errorMessages += `${dayName}日の開始時間と終了時間を選択してください。\n`;
                     hasError = true;
                 }
             }
             // 開始時間が終了時間より遅くないか確認
             if (startSelect.value && endSelect.value && startSelect.value >= endSelect.value) {
-                if (!errorMessages.includes(`${day}曜日の開始時間は終了時間より早くしてください。`)) {
-                    errorMessages += `${day}曜日の開始時間は終了時間より早くしてください。\n`;
+                if (!errorMessages.includes(`${dayName}日の開始時間は終了時間より早くしてください。`)) {
+                    errorMessages += `${dayName}日の開始時間は終了時間より早くしてください。\n`;
                     hasError = true;
                 }
             }
         } else {
             // チェックボックスが選択されていない場合、自由入力欄も未入力ならエラー
             if (!freeInput || !freeInput.value) {
-                if (!errorMessages.includes(`${day}曜日はチェックボックスまたは自由入力欄を入力してください。`)) {
-                    errorMessages += `${day}曜日はチェックボックスまたは自由入力欄を入力してください。\n`;
+                if (!errorMessages.includes(`シフト希望日を1つ以上選択してください`)) {
+                    errorMessages += `シフト希望日を1つ以上選択してください\n`;
                     hasError = true;
                 }
             }
