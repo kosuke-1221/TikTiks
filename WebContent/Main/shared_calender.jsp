@@ -20,20 +20,19 @@
 
         h1 {
             width: 100%;
-            text-align: center; /* 中央揃え */
+            text-align: center;
         }
-        h2{
-        	width: 100%;
-            text-align: center; /* 中央揃え */
+        h2 {
+            width: 100%;
+            text-align: center;
         }
 
-        /* カレンダーのデザイン */
         table {
-            width: 70%; /* カレンダーを60%の幅に */
+            width: 70%;
             border-collapse: collapse;
-            margin: 0 auto 20px auto; /* 中央に配置し、下に20pxの余白 */
-            box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1); /* カレンダーに影を追加 */
-            border-radius: 8px; /* 角を丸める */
+            margin: 0 auto 20px auto;
+            box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
         }
 
         th, td {
@@ -54,9 +53,8 @@
             background-color: #add8e6;
         }
 
-        /* シフト情報のバー */
         #info {
-            width: 15%; /* シフト情報の幅を10%に */
+            width: 15%;
             padding: 15px;
             border: 1px solid #ccc;
             background-color: #f9f9f9;
@@ -68,27 +66,17 @@
             top: 20px;
         }
 
-        /* セレクトボックスの親要素を横並びに */
         .select-form-container {
-            display: flex; /* フォームを横並びにする */
-            justify-content: flex-end; /* 右端に揃える */
-            margin-top: 100px; /* 上部に余白を追加 */
-            margin-right: 20px; /* 右端に余白を追加 */
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
         }
 
-        .select-form-container {
-            position: absolute; /* 親要素を絶対位置で配置 */
-            top: 20px; /* 上から20pxの位置 */
-            right: 20px; /* 右から20pxの位置 */
-            display: flex; /* フォームを横並びにする */
-        }
-
-        /* 月選択フォームと日付選択フォームの間に余白を追加 */
         .select-month, .select-day {
-            margin-right: 10px; /* フォーム間の隙間を調整 */
+            margin-right: 10px;
         }
 
-        /* インプットフィールドのデザイン */
         .select-month input, .select-day input {
             padding: 8px;
             font-size: 1rem;
@@ -97,7 +85,6 @@
             width: 50px;
         }
 
-        /* カレンダー内の日付のデザイン */
         td {
             cursor: pointer;
             transition: background-color 0.3s ease;
@@ -107,7 +94,6 @@
             background-color: #f0f0f0;
         }
 
-        /* モバイル対応 */
         @media (max-width: 768px) {
             body {
                 flex-direction: column;
@@ -161,24 +147,21 @@
         String currentMonth = months[month];
     %>
 
-    <!-- 月選択フォームと日付選択フォームを横並びにする親要素 -->
     <div class="select-form-container">
-        <!-- 月選択フォーム -->
         <form method="get" class="select-month">
             <label for="month">月を選択:</label>
             <input type="number" name="month" min="1" max="12" value="<%= selectedMonth %>" onchange="this.form.submit()">
         </form>
 
-        <!-- 日選択フォーム -->
         <form method="get" class="select-day">
             <label for="day">日を選択:</label>
             <input type="number" name="day" min="1" max="<%= daysInMonth %>" value="<%= selectedDay %>" onchange="this.form.submit()">
+            <input type="hidden" name="month" value="<%= selectedMonth %>">
         </form>
     </div>
 
-    <h2 style="text-align: center;"><%= currentMonth %></h2>
+    <h2><%= currentMonth %></h2>
 
-    <!-- カレンダー -->
     <table>
         <thead>
             <tr>
@@ -232,7 +215,6 @@
         </tbody>
     </table>
 
-    <!-- シフト情報 -->
     <div id="info">日付をクリックするとシフト情報が表示されます。</div>
 
     <script>
@@ -245,6 +227,14 @@
             const infoBox = document.getElementById("info");
             infoBox.innerHTML = date + " のシフト情報: " + (info[date] || "データなし");
         }
+
+        window.onload = function() {
+            const selectedDay = "<%= selectedDay %>";
+            const selectedMonth = "<%= selectedMonth %>";
+            const currentYear = "<%= year %>";
+            const dateKey = currentYear + "-" + selectedMonth + "-" + selectedDay;
+            showInfo(dateKey);
+        };
     </script>
 </body>
 </html>
