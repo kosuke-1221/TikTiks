@@ -69,7 +69,6 @@
 	            window.location.hash = "user";  // ユーザーセクションへスクロール
 	        } else if (selectedValue === "#logout") {
 	            // ログアウト処理
-	            alert("ログアウトします");
 	            // ここにログアウト処理を追加（例えばセッションを切るなど）
 	            window.location.href = "logout.jsp"; // ログアウトページに遷移
 	        } else {

@@ -30,7 +30,7 @@ public class Shift_desired extends HttpServlet {
 
         // データベースに保存
         try (Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS)) {
-            String sql = "INSERT INTO shift_requests (user_id, day_week, start_time, end_time, memo) VALUES (?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO users (user_id, day_week, start_time, end_time, memo) VALUES (?, ?, ?, ?, ?)";
             try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
                 pstmt.setString(1, userId);
                 pstmt.setString(2, dayWeek);
