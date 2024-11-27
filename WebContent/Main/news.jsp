@@ -20,13 +20,15 @@
         <h2>😊お知らせ😊</h2>
 
         <!-- お知らせ追加フォーム（管理者のみ表示） -->
-        <div id="adminSection" style="display: none;">
-            <form id="notificationForm">
-                <input type="text" id="notificationTitle" placeholder="お知らせタイトル" required>
-                <textarea id="notificationMessage" placeholder="お知らせ内容" required></textarea>
-                <button type="submit">お知らせを追加</button>
-            </form>
-        </div>
+        <c:if test="${sessionScope.role == 'admin'}">
+        	<div id="adminSection" style="display: none;">
+            	<form id="notificationForm">
+                	<input type="text" id="notificationTitle" placeholder="お知らせタイトル" required>
+                	<textarea id="notificationMessage" placeholder="お知らせ内容" required></textarea>
+                	<button type="submit">お知らせを追加</button>
+            	</form>
+        	</div>
+        </c:if>
 
         <!-- お知らせリスト -->
         <div id="notificationList"></div>
