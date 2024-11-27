@@ -37,6 +37,14 @@ h1 {
     color: white;
 }
 
+.button1:hover{
+	background: #388e3c;
+}
+
+.button2:hover{
+	background: #e10000;
+}
+
 .button1:hover, .button2:hover {
     transform: translateY(-2px);
 }

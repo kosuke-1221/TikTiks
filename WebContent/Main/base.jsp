@@ -69,6 +69,7 @@
     </footer>
 
 	<script>
+	    // ヘッダー内メニュー
 	    function navigateToPage() {
 	        const selectedValue = document.getElementById("header-navigation").value;
 

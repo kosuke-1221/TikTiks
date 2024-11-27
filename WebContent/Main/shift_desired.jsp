@@ -319,7 +319,7 @@
 	        <div class="Holiday">
 	            <span>祝日</span>
 	            <label for="holiday">
-	                <input type="checkbox" id="holiday" name="day" value="Holifay"
+	                <input type="checkbox" id="holiday" name="day" value="Holiday"
 	                    onchange="toggleSelect('holiday-start', 'holiday-end')">
 	            </label>
 	            <select class="shiftselect" id="holiday-start" name="holiday-start" disabled>
@@ -356,6 +356,14 @@
 	                <option value="23:00">23:00</option>
 	                <option value="24:00">24:00</option>
 	            </select>
+	        </div>
+
+	        <div class="Anytime">
+	            <span>いつでも可</span>
+	            <label for="anytime">
+	                <input type="checkbox" id="anytime" name="day" value="Anytime"
+	                    onchange="toggleSelect('anytime-start', 'anytime-end')">
+	            </label>
 	        </div>
 
 	        <h2>自由記入欄</h2>
