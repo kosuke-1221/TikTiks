@@ -15,6 +15,13 @@ header {
     z-index: 20;
 }
 
+header .header-title img {
+    width: 40px;  /* 幅を指定 */
+    height: auto; /* 高さは自動調整（縦横比を保持） */
+    vertical-align: middle; /* テキストと画像を縦方向で揃える */
+    margin-right: 10px; /* 画像とテキストの間にスペースを追加 */
+}
+
 /* サイドバーのスタイル */
 .sidebar {
     width: 250px;

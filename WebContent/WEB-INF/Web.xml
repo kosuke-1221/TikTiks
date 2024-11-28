@@ -1,12 +1,9 @@
 <servlet>
-    <servlet-name>LoginExecuteAction</servlet-name>
-    <servlet-class>user.LoginExecuteAction</servlet-class>
+    <servlet-name>news</servlet-name>
+    <servlet-class>main.News</servlet-class>
 </servlet>
+
 <servlet-mapping>
-    <servlet-name>LoginExecuteAction</servlet-name>
-    <url-pattern>/user/LoginExecute.action</url-pattern>
+    <servlet-name>news</servlet-name>
+    <url-pattern>/news</url-pattern>
 </servlet-mapping>
-<error-page>
-        <exception-type>java.lang.Exception</exception-type>
-        <location>/user/error.jsp</location>
-</error-page>

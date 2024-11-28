@@ -24,6 +24,7 @@
     <header>
         <div class="header-title">
         	😊にこにこシフトマジック😊
+        	<img src="MAGIC.png" alt="Logo" style="vertical-align: middle; margin-right: 10px;" />
         </div>
         <div class="header-select">
             <select class="headerselect" id="header-navigation" onchange="navigateToPage()">
