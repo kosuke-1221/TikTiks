@@ -1,23 +1,22 @@
-const isAdmin = true; // 管理者かどうかを示すフラグ
+document.addEventListener("DOMContentLoaded", function () {
+    // お知らせ追加フォームのサブミットイベントリスナー
+    const notificationForm = document.getElementById('notificationForm');
 
-window.onload = function () {
-    if (isAdmin) {
-        document.getElementById('adminSection').style.display = 'block';
+    if (notificationForm) {
+        notificationForm.addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            const title = document.getElementById('notificationTitle').value;
+            const message = document.getElementById('notificationMessage').value;
+            const date = new Date().toLocaleString(); // 現在の日付と時刻
+
+            if (title && message) {
+                addNotification(title, message, date);
+                notificationForm.reset();
+            }
+        });
     }
-
-    document.getElementById('notificationForm').addEventListener('submit', function (event) {
-        event.preventDefault();
-
-        const title = document.getElementById('notificationTitle').value;
-        const message = document.getElementById('notificationMessage').value;
-        const date = new Date().toLocaleString(); // 現在の日付と時刻
-
-        if (title && message) {
-            addNotification(title, message, date);
-            document.getElementById('notificationForm').reset();
-        }
-    });
-}
+});
 
 function addNotification(title, message, date) {
     const notificationList = document.getElementById('notificationList');

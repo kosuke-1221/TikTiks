@@ -39,6 +39,7 @@
 
     	<!-- 従業員専用 (roleが "user" の場合に表示） -->
     	<c:if test="${sessionScope.role == 'user'}">
+        <a href="menu.jsp">メニュー</a>
         <a href="shift_desired.jsp">出勤可能日時</a>
         <a href="Vacation_Desired_Date.jsp">休暇希望日</a>
         <a href="shared_calender.jsp">カレンダー</a>

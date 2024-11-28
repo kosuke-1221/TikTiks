@@ -22,7 +22,7 @@
         <p>ログアウトしますか？</p>
         <div class="confirmation">
             <button class="button1" onclick="location.href='<%= request.getContextPath() %>/Main/logoutAction'">はい</button>
-            <button class="button2" onclick="location.href='<%= request.getContextPath() %>/Main/main.jsp'">いいえ</button>
+            <button class="button2" onclick="location.href='<%= request.getContextPath() %>/Main/menu.jsp'">いいえ</button>
         </div>
     </div>
 
