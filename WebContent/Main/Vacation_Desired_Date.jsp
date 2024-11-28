@@ -18,12 +18,16 @@
             <label for="off-date">休暇希望日を選択してください:</label>
             <input type="date" id="off-date" required>
 
+            <label for="reason">理由を記載してください:</label>
+            <textarea id="reason" rows="3" placeholder="休暇の理由を記載してください"></textarea>
+
             <button id="add-off-day">休暇日を追加</button>
 
             <table id="off-day-table">
                 <thead>
                     <tr>
                         <th>休暇希望日</th>
+                        <th>理由</th>
                         <th>削除</th>
                     </tr>
                 </thead>
@@ -40,4 +44,3 @@
     </section>
 </body>
 </html>
-s
