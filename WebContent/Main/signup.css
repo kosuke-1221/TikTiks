@@ -1,0 +1,109 @@
+/* 全体のスタイル */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f7f7f7;
+    display: flex;
+    justify-content: center;
+    align-items: center;  /* 垂直方向に中央配置 */
+    height: 100vh; /* 画面全体の高さを使う */
+    overflow: auto; /* 縦スクロールを許可 */
+    flex-direction: column;
+}
+
+/* フォームコンテナのスタイル */
+.form-container {
+    background: #ffffff;
+    padding: 15px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    width: 100%;
+    min-width: 500px;  /* 最小幅を設定 */
+    max-width: 1000px;  /* 最大幅を1000pxに設定 */
+    box-sizing: border-box;
+    overflow-y: auto;  /* 必要に応じてスクロール */
+    min-height: 300px; /* 最小高さを設定 */
+}
+
+/* フォーム内のヘッダー */
+.form-container h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+
+/* 各入力フィールドのスタイル */
+.form-group {
+    margin-bottom: 10px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 12px;
+    color: #555;
+    margin-bottom: 3px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 6px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+/* エラーメッセージと成功メッセージ */
+.error-message, .success-message {
+    font-size: 12px;
+    color: #d9534f;
+    margin-top: 5px;
+    text-align: center;
+}
+
+.success-message {
+    color: #5cb85c;
+}
+
+/* ボタンスタイル */
+.form-actions {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.submit-btn {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 8px 12px;
+    font-size: 14px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.submit-btn:hover {
+    background-color: #0056b3;
+}
+
+/* レスポンシブデザイン */
+@media (max-height: 500px) {
+    .form-container {
+        max-height: 95%;
+    }
+
+    .form-container h2 {
+        font-size: 16px;
+    }
+
+    .form-group input {
+        padding: 5px;
+        font-size: 12px;
+    }
+
+    .submit-btn {
+        padding: 6px 10px;
+        font-size: 12px;
+    }
+}

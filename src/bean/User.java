@@ -1,30 +1,68 @@
 package bean;
 
 public class User {
-    private String username;
-    private String role; // ユーザーの役割
+    private String userID;
+    private String name;
+    private String furigana;
+    private String email;
+    private String password;
+    private String phoneNumber;
+    private boolean authority;
 
-    // コンストラクタ
-    public User(String username, String role) {
-        this.username = username;
-        this.role = role;
+    // Getters and Setters
+    public String getUserID() {
+        return userID;
     }
 
-    // getterメソッド
-    public String getUsername() {
-        return username;
+    public void setUserID(String userID) {
+        this.userID = userID;
     }
 
-    public String getRole() {
-        return role;
+    public String getName() {
+        return name;
     }
 
-    // setterメソッド（必要に応じて）
-    public void setUsername(String username) {
-        this.username = username;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public void setRole(String role) {
-        this.role = role;
+    public String getFurigana() {
+        return furigana;
+    }
+
+    public void setFurigana(String furigana) {
+        this.furigana = furigana;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public boolean isAuthority() {
+        return authority;
+    }
+
+    public void setAuthority(boolean authority) {
+        this.authority = authority;
     }
 }

@@ -1,3 +1,11 @@
+/* html と body の余白とパディングを完全にリセット */
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+}
+
 /* ヘッダーのスタイル */
 header {
     display: flex;
@@ -18,19 +26,22 @@ header {
 /* フッターのスタイル */
 .footer {
     background-color: #4caf50;  /* 緑色 */
-    color: #fff;
-    padding: 1px 0;
+    color: white;
+    padding: 5px 0;  /* 上下のパディング */
     text-align: center;
     position: fixed;
     bottom: 0;
-    width: 100%;
+    left: 0; /* 左端を合わせる */
+    width: 100%; /* 横幅を100%に設定 */
+    margin: 0;  /* 余分なマージンをリセット */
     z-index: 10;
 }
 
-/* フッターの内容を中央揃え */
+/* フッターの内容 */
 .footer-content {
-    max-width: 1000px;
-    margin: 0 auto;
+    width: 100%;  /* 幅を100%に設定 */
+    padding: 0;   /* パディングをリセット */
+    text-align: center;
 }
 
 /* その他のスタイル */
@@ -46,4 +57,12 @@ input {
     width: 100%;
     border-radius: 5px;
     border: 1px solid #4caf50;  /* 緑色 */
+}
+
+/* body の高さとフッターの位置調整 */
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* 最低でも画面いっぱいになるように */
+    margin-bottom: 50px; /* フッターの高さ分の余白を作成 */
 }

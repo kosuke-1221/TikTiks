@@ -1,0 +1,75 @@
+/* 全体のレイアウト調整 */
+body {
+    background-color: #f4f4f9; /* 背景色 */
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* 画面いっぱい */
+    color: #333;
+}
+
+/* 完了メッセージのコンテナ */
+.success-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* 画面全体に中央配置 */
+}
+
+/* メッセージボックス */
+.message-box {
+    background-color: #fff; /* 背景色を白に */
+    padding: 40px 30px; /* パディングを追加 */
+    border-radius: 15px; /* 丸みをつける */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* 影を付けて浮き上がった感じ */
+    text-align: center;
+    width: 90%; /* 幅を90%に */
+    max-width: 600px; /* 最大幅 */
+}
+
+/* 見出しのスタイル */
+.message-box h2 {
+    font-size: 2.5em;
+    color: #4caf50; /* 色をヘッダーと一致させる */
+    margin-bottom: 20px;
+}
+
+/* 本文のスタイル */
+.message-box p {
+    font-size: 1.2em;
+    color: #333;
+    margin-bottom: 25px;
+}
+
+/* ボタンのスタイル */
+.cta-button {
+    display: inline-block;
+    font-size: 1.2em;
+    color: #fff;
+    background-color: #4caf50;
+    padding: 15px 30px;
+    border-radius: 30px; /* 丸いボタン */
+    text-decoration: none;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.cta-button:hover {
+    background-color: #45a049; /* ホバー時の色変更 */
+    transform: scale(1.05); /* ホバー時にボタンを少し拡大 */
+}
+
+/* レスポンシブデザイン - モバイル向け調整 */
+@media (max-width: 600px) {
+    .message-box {
+        padding: 20px; /* モバイル用にパディングを調整 */
+    }
+    .message-box h2 {
+        font-size: 2em; /* 見出しを少し小さく */
+    }
+    .cta-button {
+        font-size: 1.1em; /* ボタンのフォントを少し小さく */
+    }
+}
