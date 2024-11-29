@@ -24,7 +24,6 @@
     <header>
         <div class="header-title">
         	😊にこにこシフトマジック😊
-        	<img src="MAGIC.png" alt="Logo" style="vertical-align: middle; margin-right: 10px;" />
         </div>
         <div class="header-select">
             <select class="headerselect" id="header-navigation" onchange="navigateToPage()">
@@ -45,6 +44,7 @@
         <a href="Vacation_Desired_Date.jsp">休暇希望日</a>
         <a href="shared_calender.jsp">カレンダー</a>
         <a href="news.jsp">お知らせ</a>
+        <img src="MAGIC3.png" alt="Logo" style="vertical-align: middle; margin-right: 10px;" />
         </c:if>
 
         <!-- 管理者専用（roleが "admin" の場合に表示） -->

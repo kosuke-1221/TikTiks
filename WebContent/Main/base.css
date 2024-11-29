@@ -15,11 +15,12 @@ header {
     z-index: 20;
 }
 
-header .header-title img {
-    width: 40px;  /* 幅を指定 */
-    height: auto; /* 高さは自動調整（縦横比を保持） */
-    vertical-align: middle; /* テキストと画像を縦方向で揃える */
-    margin-right: 10px; /* 画像とテキストの間にスペースを追加 */
+.sidebar img {
+    display: block; /* ブロック要素にして中央配置しやすくする */
+    margin: 20px auto; /* 上下と左右を中央揃え */
+    width: 80%; /* サイドバーの幅の80%を画像の幅に */
+    max-height: 150px; /* 高さの最大値を設定してバランスを保つ */
+    object-fit: contain; /* 画像の縦横比を維持しながらコンテナ内に収める */
 }
 
 /* サイドバーのスタイル */

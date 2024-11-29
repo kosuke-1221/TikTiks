@@ -21,7 +21,7 @@ public class NotificationDAO {
     public static List<Notification> getAllNotifications() {
         List<Notification> notifications = new ArrayList<>();
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD)) {
-            String query = "SELECT * FROM news ORDER BY created_at DESC";
+            String query = "SELECT * FROM NEWS ORDER BY created_at DESC";
             try (Statement statement = connection.createStatement();
                  ResultSet resultSet = statement.executeQuery(query)) {
                 while (resultSet.next()) {
@@ -41,7 +41,7 @@ public class NotificationDAO {
     // お知らせをデータベースに保存
     public static void saveNotification(Notification notification) {
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD)) {
-            String query = "INSERT INTO news (title, message) VALUES (?, ?)";
+            String query = "INSERT INTO NEWS (title, message) VALUES (?, ?)";
             try (PreparedStatement statement = connection.prepareStatement(query)) {
                 statement.setString(1, notification.getTitle());
                 statement.setString(2, notification.getMessage());
