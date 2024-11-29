@@ -1,19 +1,20 @@
 package bean;
+
 import java.sql.Timestamp;
 import java.time.Instant;
 
-public class Notification {
+public class News {
     private String title;
     private String message;
     private Timestamp createdAt;
 
-    public Notification(String title, String message) {
+    public News(String title, String message) {
         this.title = title;
         this.message = message;
         this.createdAt = Timestamp.from(Instant.now()); // 現在時刻を設定
     }
 
-    public Notification(String title, String message, Timestamp createdAt) {
+    public News(String title, String message, Timestamp createdAt) {
         this.title = title;
         this.message = message;
         this.createdAt = createdAt;
@@ -46,7 +47,7 @@ public class Notification {
 
     @Override
     public String toString() {
-        return "Notification{" +
+        return "News{" +
                "title='" + title + '\'' +
                ", message='" + message + '\'' +
                ", createdAt=" + createdAt +

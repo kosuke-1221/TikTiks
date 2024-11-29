@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
     // セッションに管理者のroleを強制的にセット
-    session.setAttribute("role", "admin");
+    session.setAttribute("role", "user");
 %>
 <!DOCTYPE html>
 <html lang="ja">
@@ -25,7 +25,7 @@
                     <!-- お知らせ追加フォーム（管理者のみ表示） -->
                     <c:if test="${sessionScope.role == 'admin'}">
                         <div id="adminSection" style="display: block;">
-                            <form action="news" method="post">
+                            <form action="News.action" method="post">
                                 <input type="text" name="title" placeholder="お知らせタイトル" required>
                                 <textarea name="message" placeholder="お知らせ内容" required></textarea>
                                 <button type="submit">お知らせを追加</button>
@@ -35,14 +35,15 @@
 
                     <!-- お知らせリスト（全ユーザー表示） -->
                     <div id="notificationList">
-                        <c:forEach var="notification" items="${notifications}">
-                            <div class="notification">
-                                <h3>${notification.title}</h3>
-                                <p>${notification.message}</p>
-                                <small>投稿日: ${notification.createdAt}</small>
-                            </div>
-                        </c:forEach>
+					    <c:forEach var="news" items="${notifications}">
+					        <div class="notification">
+					            <h2>${news.title}</h2>
+					            <p>${news.message}</p>
+					            <p><small>投稿日: ${news.createdAt}</small></p>
+					        </div>
+					    </c:forEach>
                     </div>
+
                 </div>
             </section>
         </c:param>
