@@ -3,7 +3,7 @@
 <%@ page session="true" %>
 <%
     // セッションに管理者のroleを強制的にセット
-    session.setAttribute("role", "user");
+    session.setAttribute("role", "admin");
 %>
 
 <!-- サイドバー付きのbase -->
