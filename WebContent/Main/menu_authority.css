@@ -1,0 +1,66 @@
+/* 全体のリセット */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+ /* 背景は完全に白 */
+    color: #333; /* 基本の文字色 */
+}
+
+
+
+/* メインバナー */
+.main-banner {
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #4caf50; /* バナー内の文字も基本文字色 */
+    font-size: 24px;
+    font-weight: bold;
+}
+
+/* コンテンツ全体 */
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px;
+    justify-content: center;
+}
+
+/* カード */
+.card {
+    width: 300px;
+    height: 180px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    text-align: center;
+    background-color: #cde9ce;
+    border: 1px solid #ddd; /* 薄い境界線 */
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* 軽い影を付加 */
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-decoration: none; /* 青い線（下線）を消す */
+    color: inherit;
+}
+
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* ホバー時に拡大と影を強調 */
+}
+
+.card h3 {
+    font-size: 20px;
+    margin: 10px 0;
+    color: #4caf50; /* 基本文字色 */
+}
+
+.card p {
+    font-size: 14px;
+    margin: 0;
+    color: #99d29c; /* 少し控えめな文字色 */
+}
