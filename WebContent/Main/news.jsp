@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
     // セッションに管理者のroleを強制的にセット
-    session.setAttribute("role", "user");
+    session.setAttribute("role", "admin");
 %>
 <!DOCTYPE html>
 <html lang="ja">

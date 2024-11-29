@@ -53,7 +53,7 @@
             <a href="#user-management">ユーザー管理</a>
             <a href="#shift-management">シフト管理</a>
             <a href="#reports">レポート</a>
-            <a href="news.jsp">お知らせ</a>
+            <a href="News.action">お知らせ</a>
         	<img src="MAGIC.png" alt="Logo" style="vertical-align: middle; margin-right: 10px;" />
         </c:if>
 
