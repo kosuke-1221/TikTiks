@@ -17,6 +17,11 @@ header {
     gap: 20px; /* ヘッダー内の要素間にスペースを追加 */
 }
 
+.header-title a {
+    color: white;       /* リンクの文字色を白に設定 */
+    text-decoration: none;  /* 下線を削除 */
+}
+
 /* ヘッダー内のユーザー名用スタイル */
 .header-user {
     font-size: 1em; /* ユーザー名のフォントサイズ */

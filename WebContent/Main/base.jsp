@@ -23,12 +23,15 @@
 
     <header>
         <div class="header-title">
-        	😊にこにこシフトマジック😊
+        	<a href="menu.jsp">😊にこにこシフトマジック😊</a>
         </div>
 
+        <!-- ログインしてるユーザーの名前を表示 -->
+        <!--
         <div class="header-user">
         <%= session.getAttribute("name") %>様
         </div>
+        -->
 
         <div class="header-select">
             <select class="headerselect" id="header-navigation" onchange="navigateToPage()">
