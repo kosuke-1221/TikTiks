@@ -16,7 +16,7 @@ public class Shift_desired extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     // データベース接続情報（必要に応じて修正）
-    private static final String DB_URL = "jdbc:h2:~/NikoNikoShiftMagic";
+    private static final String DB_URL = "jdbc:h2:~/NSM";
     private static final String DB_USER = "sa";
     private static final String DB_PASS = "";
 

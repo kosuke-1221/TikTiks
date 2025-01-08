@@ -53,4 +53,16 @@ public class NewsDao {
 
         return notifications;
     }
+    // 削除機能
+    public boolean delete(int newsId) throws SQLException {
+        String sql = "DELETE FROM news WHERE id = ?";
+        try (Connection connection = Database.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+
+            statement.setInt(1, newsId);
+            int rowsAffected = statement.executeUpdate();
+
+            return rowsAffected > 0; // 削除が成功した場合、1以上が返る
+        }
+    }
 }
