@@ -29,13 +29,6 @@ h2 {
     margin-bottom: 20px;
 }
 
-.select-form-container {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 30px;
-    padding: 0 20px;
-}
-
 select, input[type="number"] {
     padding: 8px 12px;
     font-size: 16px;
@@ -98,5 +91,16 @@ select, input[type="number"] {
     color: #2c3e50;
     padding: 10px;
     border-top: 1px solid #ddd;
+}
+.select-form-container {
+    display: flex; /* フレックスボックスで配置を調整 */
+    justify-content: flex-end; /* 子要素を右揃え */
+    align-items: center; /* 垂直方向に中央揃え（必要に応じて） */
+    gap: 20px; /* 月と日選択フォームの間にスペースを作る */
+}
+
+.select-month,
+.select-day {
+    margin: 0; /* 余分なスペースをリセット */
 }
 
