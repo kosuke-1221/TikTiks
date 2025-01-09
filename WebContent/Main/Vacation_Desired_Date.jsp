@@ -10,6 +10,7 @@
 <link rel="stylesheet" href="Vacation_Desired_Date.css">
 </head>
 <body>
+
 <!-- ヘッダーの共通部分をインクルード -->
 <c:import url="base.jsp">
 <c:param name="title"></c:param>
