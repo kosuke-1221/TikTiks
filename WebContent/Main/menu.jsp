@@ -38,7 +38,7 @@
                 </a>
 
                 <!-- 新しいカード：お知らせ -->
-                <a href="news.jsp" class="card">
+                <a href="News.action" class="card">
                     <h3>お知らせ</h3>
                     <p>急なシフト変更や重要な通知を確認できます。</p>
                 </a>

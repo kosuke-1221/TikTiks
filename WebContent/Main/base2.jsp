@@ -15,7 +15,7 @@
 	<!-- ヘッダー -->
     <header>
         <div class="header-title">
-        	😊にこにこシフトマジック😊
+        	<a href="menu.jsp">😊にこにこシフトマジック😊</a>
         </div>
     </header>
 
