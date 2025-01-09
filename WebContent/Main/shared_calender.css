@@ -99,14 +99,4 @@ select, input[type="number"] {
     padding: 10px;
     border-top: 1px solid #ddd;
 }
-.name-yamada {
-    color: blue; /* 山田 太郎の名前を青色にする */
-}
 
-.name-suzuki {
-    color: green; /* 鈴木 花子の名前を緑色にする */
-}
-
-.name-tanaka {
-    color: orange; /* 田中 一郎の名前をオレンジ色にする */
-}
