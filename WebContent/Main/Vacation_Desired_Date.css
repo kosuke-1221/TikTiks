@@ -5,21 +5,12 @@ body {
     background-color: #f5f5f5;
 }
 
-/* ヘッダーやサイドバーを考慮したコンテナ調整 */
-.container {
-    background-color: white;
-    border-radius: 10px;
-    padding: 20px;
-    max-width: 800px;
-    margin: 80px auto; /* ヘッダー分を考慮して上部に余白を追加 */
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    margin-left: 280px; /* サイドバーの幅を考慮して中央寄せ */
-}
 
 /* セクションやタイトルの基本デザイン */
 h1 {
     text-align: center;
-    color: #333;
+    color: #4CAF50;
+    font-size: 2rem;
 }
 
 label {
