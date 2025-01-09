@@ -29,13 +29,6 @@ h2 {
     margin-bottom: 20px;
 }
 
-.select-form-container {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 30px;
-    padding: 0 20px;
-}
-
 select, input[type="number"] {
     padding: 8px 12px;
     font-size: 16px;
@@ -99,14 +92,15 @@ select, input[type="number"] {
     padding: 10px;
     border-top: 1px solid #ddd;
 }
-.name-yamada {
-    color: blue; /* 山田 太郎の名前を青色にする */
+.select-form-container {
+    display: flex; /* フレックスボックスで配置を調整 */
+    justify-content: flex-end; /* 子要素を右揃え */
+    align-items: center; /* 垂直方向に中央揃え（必要に応じて） */
+    gap: 20px; /* 月と日選択フォームの間にスペースを作る */
 }
 
-.name-suzuki {
-    color: green; /* 鈴木 花子の名前を緑色にする */
+.select-month,
+.select-day {
+    margin: 0; /* 余分なスペースをリセット */
 }
 
-.name-tanaka {
-    color: orange; /* 田中 一郎の名前をオレンジ色にする */
-}
