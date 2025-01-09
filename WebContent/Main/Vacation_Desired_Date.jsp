@@ -10,15 +10,6 @@
 <link rel="stylesheet" href="Vacation_Desired_Date.css">
 </head>
 <body>
-
-<!-- ヘッダーの共通部分をインクルード -->
-<c:import url="base.jsp">
-<c:param name="title"></c:param>
-<c:param name="scripts"></c:param>
-<c:param name="content">
-<section class="me-4">
-<div class="container">
-<h1>😊休暇希望日提出😊</h1>
     <!-- ヘッダーの共通部分をインクルード -->
 	<c:import url="base.jsp">
 	<c:param name="title"></c:param>
@@ -57,9 +48,5 @@
 </section>
 </c:param>
 </c:import>
-        <script src="Vacation_Desired_Date.js"></script>
-    </section>
-    </c:param>
-    </c:import>
 </body>
 </html>
