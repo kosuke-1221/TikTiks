@@ -1,4 +1,6 @@
 <%@page contentType="text/html; charset=UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -9,9 +11,11 @@
 </head>
 <body>
     <!-- ヘッダーの共通部分をインクルード -->
-    <jsp:include page="base.jsp" />
-
-    <section class="me-4">
+	<c:import url="base.jsp">
+	<c:param name="title"></c:param>
+	<c:param name="scripts"></c:param>
+	<c:param name="content">
+	<section class="me-4">
         <div class="container">
             <h1>😊休暇希望日提出😊</h1>
 
@@ -42,5 +46,7 @@
         <!-- JavaScriptファイルを読み込み -->
         <script src="Vacation_Desired_Date.js"></script>
     </section>
+    </c:param>
+    </c:import>
 </body>
 </html>
