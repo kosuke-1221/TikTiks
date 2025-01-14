@@ -16,7 +16,7 @@
         <jsp:param name="scripts" value="" />
         <jsp:param name="content" value="
             <div class='form-container'>
-                <h2>😁 新規登録 😁</h2>
+                <h2>😊新規登録😊</h2>
                 <form action='Register.action' method='POST' class='signup-form'>
                     <div class='form-group'>
                         <label for='userID'>ユーザーID</label>
