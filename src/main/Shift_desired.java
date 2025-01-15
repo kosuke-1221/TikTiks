@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 @WebServlet("/Shift_desiredServlet")
 public class Shift_desired extends HttpServlet {
@@ -22,7 +23,16 @@ public class Shift_desired extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // フォームデータを取得
-        String userId = request.getParameter("user_id"); // 従業員IDはセッションなどから取得
+
+        HttpSession session = request.getSession();
+        String userId = (String) session.getAttribute("userID");  // セッションからユーザーIDを取得
+
+        // ユーザーIDがセッションに存在しない場合、エラーを表示
+        if (userId == null) {
+            response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "ログインしていません。");
+            return;
+        }
+
         String dayWeek = request.getParameter("day_week");
         String startTime = request.getParameter("start_time");
         String endTime = request.getParameter("end_time");
@@ -30,7 +40,7 @@ public class Shift_desired extends HttpServlet {
 
         // データベースに保存
         try (Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS)) {
-            String sql = "INSERT INTO users (user_id, day_week, start_time, end_time, memo) VALUES (?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO shift_requests (user_id, day_week, start_time, end_time, memo) VALUES (?, ?, ?, ?, ?)";
             try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
                 pstmt.setString(1, userId);
                 pstmt.setString(2, dayWeek);
