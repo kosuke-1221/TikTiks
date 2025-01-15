@@ -5,22 +5,23 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>にこにこシフトマジック</title>
-    <link href="shared_calender.css" rel="stylesheet" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>にこにこシフトマジック</title>
+<link href="shared_calender.css" rel="stylesheet" />
 </head>
 <body>
-    <c:import url="base.jsp">
-        <c:param name="title"></c:param>
-        <c:param name="scripts"></c:param>
-        <c:param name="content">
-            <section class="calendar-section">
-                <h1>😊共有カレンダー😊</h1>
+<c:import url="base.jsp">
+<c:param name="title"></c:param>
+<c:param name="scripts"></c:param>
+<c:param name="content">
+<section class="calendar-section">
+<h1>😊共有カレンダー😊</h1>
+
 
                 <%
                     // JDBC接続設定
-                    String jdbcURL = "jdbc:h2:~/NikoNikoShiftMagic";  // H2データベースのURL
+                    String jdbcURL = "jdbc:h2:~/NSM";  // H2データベースのURL
                     String dbUser = "sa";  // H2のデフォルトユーザー名
                     String dbPassword = "";  // H2のデフォルトパスワード（空の場合）
 
@@ -92,34 +93,34 @@
                 %>
 
                 <div class="select-form-container">
-                    <form method="get" class="select-month">
-                        <label for="month">月を選択:</label>
-                        <input type="number" name="month" min="1" max="12" value="<%= selectedMonth %>" onchange="this.form.submit()">
-                    </form>
+<form method="get" class="select-month">
+<label for="month">月を選択:</label>
+<input type="number" name="month" min="1" max="12" value="<%= selectedMonth %>" onchange="this.form.submit()">
+</form>
 
                     <form method="get" class="select-day">
-                        <label for="day">日にちを選択:</label>
-                        <input type="number" name="day" min="1" max="<%= daysInMonth %>" value="<%= selectedDay %>" onchange="this.form.submit()">
-                        <input type="hidden" name="month" value="<%= selectedMonth %>">
-                    </form>
-                </div>
+<label for="day">日にちを選択:</label>
+<input type="number" name="day" min="1" max="<%= daysInMonth %>" value="<%= selectedDay %>" onchange="this.form.submit()">
+<input type="hidden" name="month" value="<%= selectedMonth %>">
+</form>
+</div>
 
                 <h2><%= currentMonth %></h2>
 
                 <table class="calendar-table">
-                    <thead>
-                        <tr>
-                            <th class="sunday">日</th>
-                            <th>月</th>
-                            <th>火</th>
-                            <th>水</th>
-                            <th>木</th>
-                            <th>金</th>
-                            <th class="saturday">土</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <%
+<thead>
+<tr>
+<th class="sunday">日</th>
+<th>月</th>
+<th>火</th>
+<th>水</th>
+<th>木</th>
+<th>金</th>
+<th class="saturday">土</th>
+</tr>
+</thead>
+<tbody>
+<%
                             int day = 1;
                             boolean started = false;
 
@@ -159,8 +160,8 @@
                                 if (day > daysInMonth) break;
                             }
                         %>
-                    </tbody>
-                </table>
+</tbody>
+</table>
 
                 <div id="info">日付をクリックするとシフト情報が表示されます。</div>
 
@@ -186,11 +187,9 @@
                         const dateKey = currentYear + "-" + selectedMonth + "-" + selectedDay;
                         showInfo(dateKey);
                     };
-                </script>
-            </section>
-        </c:param>
-    </c:import>
+</script>
+</section>
+</c:param>
+</c:import>
 </body>
 </html>
-
-
