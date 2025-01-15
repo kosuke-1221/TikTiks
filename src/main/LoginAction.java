@@ -6,9 +6,9 @@ import javax.servlet.http.HttpSession;
 
 import bean.User;
 import dao.UserDao;
-import tool.Action;  // Action クラスをインポート
+import tool.Action;
 
-public class LoginAction extends Action {  // Action クラスを継承
+public class LoginAction extends Action {
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -19,32 +19,47 @@ public class LoginAction extends Action {  // Action クラスを継承
         HttpSession session = request.getSession();
 
         try {
+            // ユーザーIDのバリデーション
+            if (userID == null || userID.length() != 7) {
+                request.setAttribute("errorMessage", "ユーザーIDは7桁で入力してください。");
+                request.getRequestDispatcher("login.jsp").forward(request, response);
+                return null;
+            }
+
             // ユーザー情報を取得
             User user = userDao.getUserByUserID(userID);
 
-            // ユーザーが存在し、パスワードが一致する場合
-            if (user != null && user.getPassword().equals(password)) {
-                // セッションにユーザー情報を保存
-                session.setAttribute("userID", user.getUserID());
-                session.setAttribute("name", user.getName());
-                session.setAttribute("authority", user.isAuthority()); // true: 管理者, false: 従業員
-
-                // ログイン成功後のリダイレクト先を決定
-                if (user.isAuthority()) {
-                    response.sendRedirect("menu2.jsp"); // 管理者用
-                } else {
-                    response.sendRedirect("menu.jsp"); // 従業員用
-                }
-                return null; // リダイレクト処理後、ここで終了
-            } else {
-                // ログイン失敗時の処理
-                request.setAttribute("errorMessage", "ユーザーIDまたはパスワードが正しくありません。");
-                return "login.jsp";  // フォワードするページ
+            if (user == null) {
+                request.setAttribute("errorMessage", "入力されたユーザーIDは存在しません。");
+                request.getRequestDispatcher("login.jsp").forward(request, response);
+                return null;
             }
+
+            // パスワードのチェック
+            if (!user.getPassword().equals(password)) {
+                request.setAttribute("errorMessage", "パスワードが正しくありません。");
+                request.getRequestDispatcher("login.jsp").forward(request, response);
+                return null;
+            }
+
+            // ログイン成功処理
+            session.setAttribute("userID", user.getUserID());
+            session.setAttribute("name", user.getName());
+            session.setAttribute("AUTHORITY", user.isAuthority());
+
+            // 管理者と従業員でリダイレクト先を変更
+            if (user.isAuthority()) {
+                response.sendRedirect("menu2.jsp");
+            } else {
+                response.sendRedirect("menu.jsp");
+            }
+            return null;
+
         } catch (Exception e) {
             e.printStackTrace();
-            request.setAttribute("errorMessage", "ログイン処理中にエラーが発生しました。");
-            return "login.jsp";  // フォワードするページ
+            request.setAttribute("errorMessage", "システムエラーが発生しました。");
+            request.getRequestDispatcher("login.jsp").forward(request, response);
+            return null;
         }
     }
 }
