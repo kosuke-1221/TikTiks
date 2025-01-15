@@ -23,12 +23,6 @@ header {
     z-index: 20;
 }
 
-.header-title a {
-    color: white;       /* リンクの文字色を白に設定 */
-    text-decoration: none;  /* 下線を削除 */
-}
-
-
 /* フッターのスタイル */
 .footer {
     background-color: #4caf50;  /* 緑色 */

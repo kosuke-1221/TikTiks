@@ -23,7 +23,7 @@
                     <h2>😊お知らせ😊</h2>
 
                     <!-- お知らせ追加フォーム（管理者のみ表示） -->
-                    <c:if test="${sessionScope.role == 'admin'}">
+                    <c:if test="${sessionScope.AUTHORITY}">
                         <div id="adminSection" style="display: block;">
                             <form action="News.action" method="post">
                                 <input type="text" name="title" placeholder="お知らせタイトル" required>
