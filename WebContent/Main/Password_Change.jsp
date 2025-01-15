@@ -7,72 +7,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>パスワード更新</title>
-
+    <link href="Password_Change2.css" rel="stylesheet" />
 </head>
-<style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f7f7f7;
-            margin: 0;
-            padding: 20px;
-        }
-
-        .form-container {
-            max-width: 350px;
-            margin: 50px auto;
-            background-color: #fff;
-            padding: 15px 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        h2 {
-            text-align: center;
-            margin-bottom: 15px;
-            font-size: 1.3em;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 5px;
-            font-size: 0.9em;
-        }
-
-        input[type="password"] {
-            width: 100%;
-            padding: 8px;
-            margin-bottom: 12px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            font-size: 0.9em;
-            box-sizing: border-box;
-        }
-
-        .error {
-            color: red;
-            font-size: 0.8em;
-            margin-bottom: 10px;
-            text-align: center;
-        }
-
-        button {
-            width: 100%;
-            padding: 10px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 0.9em;
-        }
-
-        button:hover {
-            background-color: #45a049;
-        }
-</style>
-
 
 <body>
 	<c:import url="base.jsp">
@@ -82,7 +19,7 @@
 	<section class="me-4">
 
     <div class="form-container">
-        <h2>😊パスワード更新😊</h2>
+        <h2>😊パスワード変更😊</h2>
         <form id="passwordUpdateForm">
             <div class="form-group">
                 <label for="currentPassword">現在のパスワード</label>

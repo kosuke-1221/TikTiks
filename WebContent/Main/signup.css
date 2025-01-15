@@ -29,9 +29,9 @@ body {
 /* フォーム内のヘッダー */
 .form-container h2 {
     text-align: center;
-    color: #333;
+    color: #4CAF50;
     margin-bottom: 10px;
-    font-size: 18px;
+    font-size: 26px;
 }
 
 /* 各入力フィールドのスタイル */

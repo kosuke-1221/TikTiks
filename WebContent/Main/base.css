@@ -30,13 +30,16 @@ header {
     white-space: nowrap; /* テキストが折り返されないようにする */
 }
 
+
 .sidebar img {
-    display: block; /* ブロック要素にして中央配置しやすくする */
-    margin: 20px auto; /* 上下と左右を中央揃え */
-    width: 80%; /* サイドバーの幅の80%を画像の幅に */
-    max-height: 150px; /* 高さの最大値を設定してバランスを保つ */
-    object-fit: contain; /* 画像の縦横比を維持しながらコンテナ内に収める */
+    display: block; /* 画像をブロック要素にして中央揃えを可能に */
+    margin: 6px auto; /* 上下20pxの余白と左右中央揃え */
+    width: 100%; /* 画像の幅を80%に設定 */
+    max-width: 300px; /* 幅の最大値を200pxに設定 */
+    height: auto; /* 縦横比を維持する */
+    object-fit: contain; /* 縦横比を保ちながらコンテナに収める */
 }
+
 
 /* サイドバーのスタイル */
 .sidebar {

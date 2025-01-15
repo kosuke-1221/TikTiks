@@ -98,7 +98,7 @@
                     </form>
 
                     <form method="get" class="select-day">
-                        <label for="day">日を選択:</label>
+                        <label for="day">日にちを選択:</label>
                         <input type="number" name="day" min="1" max="<%= daysInMonth %>" value="<%= selectedDay %>" onchange="this.form.submit()">
                         <input type="hidden" name="month" value="<%= selectedMonth %>">
                     </form>
@@ -192,3 +192,5 @@
     </c:import>
 </body>
 </html>
+
+
