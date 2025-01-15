@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-@WebServlet("/Shift_desiredServlet")
+@WebServlet("/Main/Shift_desiredServlet")
 public class Shift_desired extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
@@ -40,7 +40,7 @@ public class Shift_desired extends HttpServlet {
 
         // データベースに保存
         try (Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS)) {
-            String sql = "INSERT INTO shift_requests (user_id, day_week, start_time, end_time, memo) VALUES (?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO SHIFT_REQUESTS (user_id, day_week, start_time, end_time, memo) VALUES (?, ?, ?, ?, ?)";
             try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
                 pstmt.setString(1, userId);
                 pstmt.setString(2, dayWeek);
