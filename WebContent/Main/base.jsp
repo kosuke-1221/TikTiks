@@ -17,7 +17,10 @@
     <!-- ヘッダー -->
     <header>
         <div class="header-title">
-            <a href="menu.jsp">😊にこにこシフトマジック😊</a>
+        	<a href="<c:choose>
+                <c:when test="${!sessionScope.AUTHORITY}">menu.jsp</c:when>
+                <c:otherwise>menu2.jsp</c:otherwise>
+            </c:choose>">😊にこにこシフトマジック😊</a>
         </div>
 
         <div class="header-user">

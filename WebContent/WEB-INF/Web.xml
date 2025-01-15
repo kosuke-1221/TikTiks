@@ -14,4 +14,14 @@
     <url-pattern>/News.action</url-pattern>
 </servlet-mapping>
 
+
+<servlet>
+    <servlet-name>Shift_desired</servlet-name>
+    <servlet-class>main.Shift_desired</servlet-class>
+</servlet>
+<servlet-mapping>
+    <servlet-name>Shift_desired</servlet-name>
+    <url-pattern>/Shift_desiredServlet</url-pattern>
+</servlet-mapping>
+
 </web-app>

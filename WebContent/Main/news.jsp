@@ -1,9 +1,7 @@
 <%@page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%
-    // セッションに管理者のroleを強制的にセット
-    session.setAttribute("role", "admin");
-%>
+<%@ page session="true" %>
+
 <!DOCTYPE html>
 <html lang="ja">
 
@@ -23,7 +21,7 @@
                     <h2>😊お知らせ😊</h2>
 
                     <!-- お知らせ追加フォーム（管理者のみ表示） -->
-                    <c:if test="${sessionScope.role == 'admin'}">
+                    <c:if test="${sessionScope.AUTHORITY}">
                         <div id="adminSection" style="display: block;">
                             <form action="News.action" method="post">
                                 <input type="text" name="title" placeholder="お知らせタイトル" required>
