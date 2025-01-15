@@ -8,6 +8,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>にこにこシフトマジック</title>
     <link href="login.css" rel="stylesheet" />
+    <style>
+        .password-container {
+            position: relative;
+            width: 100%;
+        }
+
+        #password {
+            width: 100%;
+            padding-right: 3rem; /* ボタン分の余白を確保 */
+            box-sizing: border-box; /* フィールド全体の幅を調整 */
+        }
+
+        .toggle-password {
+            position: absolute;
+            right: 0.5rem; /* フィールドの右端から適切な余白 */
+            top: 35%; /* 垂直位置を微調整 */
+            transform: translateY(-50%);
+            cursor: pointer;
+            background: transparent;
+            border: none;
+            font-size: 1rem;
+            color: #333;
+            padding: 0;
+            height: 1.5rem;
+            width: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .error-message {
+            color: red;
+            margin-top: 10px;
+        }
+    </style>
 </head>
 
 <body>
@@ -23,11 +58,14 @@
                 <form action="Login.action" method="POST">
                     <!-- ユーザーID入力 -->
                     <label for="userID">ユーザーID</label>
-                    <input type="text" id="userID" name="userID" required />
+                    <input type="text" id="userID" name="userID" placeholder="例: 0001001" value="${param.userID}" required />
 
                     <!-- パスワード入力 -->
                     <label for="password">パスワード</label>
-                    <input type="password" id="password" name="password" required />
+                    <div class="password-container">
+                        <input type="password" id="password" name="password" placeholder="パスワードを入力" required />
+                        <button type="button" class="toggle-password" onclick="togglePasswordVisibility()">👁</button>
+                    </div>
 
                     <!-- エラーメッセージ表示 -->
                     <c:if test="${not empty errorMessage}">
@@ -46,5 +84,13 @@
         </section>
     </c:param>
 </c:import>
+
+<script>
+    function togglePasswordVisibility() {
+        const passwordInput = document.getElementById("password");
+        const type = passwordInput.type === "password" ? "text" : "password";
+        passwordInput.type = type;
+    }
+</script>
 </body>
 </html>
