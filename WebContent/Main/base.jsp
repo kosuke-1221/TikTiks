@@ -1,12 +1,7 @@
-<%@page contentType="text/html; charset=UTF-8"%>
+<%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page session="true" %>
-<%
-    // セッションに管理者のroleを強制的にセット
-    session.setAttribute("role", "user");
-%>
 
-<!-- サイドバー付きのbase -->
 <!DOCTYPE html>
 <html lang="ja">
 
@@ -19,19 +14,15 @@
 
 <body>
 
-	<!-- ヘッダー -->
-
+    <!-- ヘッダー -->
     <header>
         <div class="header-title">
-        	<a href="menu.jsp">😊にこにこシフトマジック😊</a>
+            <a href="menu.jsp">😊にこにこシフトマジック😊</a>
         </div>
 
-        <!-- ログインしてるユーザーの名前を表示 -->
-        <!--
         <div class="header-user">
-        <%= session.getAttribute("name") %>様
+            ${sessionScope.name} 様
         </div>
-        -->
 
         <div class="header-select">
             <select class="headerselect" id="header-navigation" onchange="navigateToPage()">
@@ -44,27 +35,24 @@
 
     <!-- サイドバー -->
     <div class="sidebar">
-
-    	<!-- 従業員専用 (roleが "user" の場合に表示） -->
-    	<c:if test="${sessionScope.role == 'user'}">
-        <a href="menu.jsp">メニュー</a>
-        <a href="shift_desired.jsp">出勤可能日時</a>
-        <a href="Vacation_Desired_Date.jsp">休暇希望日</a>
-        <a href="shared_calender.jsp">カレンダー</a>
-        <a href="News.action">お知らせ</a>
-        <img src="MAGIC.png" alt="Logo" style="vertical-align: middle; margin-right: 10px;" />
-        </c:if>
-
-        <!-- 管理者専用（roleが "admin" の場合に表示） -->
-        <c:if test="${sessionScope.role == 'admin'}">
-      	    <a href="shift-entry.jsp">シフト登録</a>
-            <a href="#user-management">ユーザー管理</a>
-            <a href="#shift-management">シフト管理</a>
-            <a href="#reports">レポート</a>
+        <!-- 従業員専用 (AUTHORITYがfalseの場合に表示） -->
+        <c:if test="${!sessionScope.AUTHORITY}">
+            <a href="menu.jsp">メニュー</a>
+            <a href="shift_desired.jsp">出勤可能日時</a>
+            <a href="Vacation_Desired_Date.jsp">休暇希望日</a>
+            <a href="shared_calender.jsp">カレンダー</a>
             <a href="News.action">お知らせ</a>
-        	<img src="MAGIC.png" alt="Logo" style="vertical-align: middle; margin-right: 10px;" />
+            <img src="MAGIC.png" alt="Logo" style="vertical-align: middle; margin-right: 10px;" />
         </c:if>
 
+        <!-- 管理者専用 (AUTHORITYがtrueの場合に表示） -->
+        <c:if test="${sessionScope.AUTHORITY}">
+            <a href="menu2.jsp">メニュー</a>
+            <a href="shift-entry.jsp">シフト登録</a>
+            <a href="shared_calender.jsp">カレンダー</a>
+            <a href="News.action">お知らせ</a>
+            <img src="MAGIC.png" alt="Logo" style="vertical-align: middle; margin-right: 10px;" />
+        </c:if>
     </div>
 
     <!-- メインコンテンツ -->
@@ -79,24 +67,19 @@
         </div>
     </footer>
 
-	<script>
-	    // ヘッダー内メニュー
-	    function navigateToPage() {
-	        const selectedValue = document.getElementById("header-navigation").value;
+    <script>
+        function navigateToPage() {
+            const selectedValue = document.getElementById("header-navigation").value;
 
-	        if (selectedValue === "#user") {
-	            // ユーザーページに遷移（#userのハッシュリンクでもOK）
-	            window.location.hash = "user";  // ユーザーセクションへスクロール
-	        } else if (selectedValue === "#logout") {
-	            // ログアウト処理
-	            // ここにログアウト処理を追加（例えばセッションを切るなど）
-	            window.location.href = "logout.jsp"; // ログアウトページに遷移
-	        } else {
-	            // その他のページに遷移
-	            window.location.href = selectedValue; // パスワード変更ページなど
-	        }
-	    }
-	</script>
+            if (selectedValue === "#user") {
+                window.location.hash = "user";
+            } else if (selectedValue === "#logout") {
+                window.location.href = "logout.jsp";
+            } else {
+                window.location.href = selectedValue;
+            }
+        }
+    </script>
 
 </body>
 

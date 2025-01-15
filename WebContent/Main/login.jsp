@@ -12,22 +12,33 @@
 
 <body>
 <c:import url="base2.jsp">
-    <c:param name="title"></c:param>
+    <c:param name="title">ログイン</c:param>
     <c:param name="scripts"></c:param>
     <c:param name="content">
-        <section class="me-4">
+        <section>
             <div class="container">
-                <h2>😊ログイン😊</h2>
-                <!-- ボタンを押したら shift_desired.jsp に遷移 -->
-                <form action="shift_desired.jsp" method="GET">
+                <h2>😊 ログイン 😊</h2>
+
+                <!-- ログインフォーム -->
+                <form action="Login.action" method="POST">
+                    <!-- ユーザーID入力 -->
                     <label for="userID">ユーザーID</label>
-                    <input type="text" id="userID" name="userID" required>
+                    <input type="text" id="userID" name="userID" required />
 
+                    <!-- パスワード入力 -->
                     <label for="password">パスワード</label>
-                    <input type="password" id="password" name="password" required>
+                    <input type="password" id="password" name="password" required />
 
+                    <!-- エラーメッセージ表示 -->
+                    <c:if test="${not empty errorMessage}">
+                        <p class="error-message">${errorMessage}</p>
+                    </c:if>
+
+                    <!-- ログインボタン -->
                     <button type="submit">ログイン</button>
                 </form>
+
+                <!-- 新規登録リンク -->
                 <div class="register-link">
                     <p>新規ですか？ <a href="signup.jsp">登録はこちら</a></p>
                 </div>
@@ -36,5 +47,4 @@
     </c:param>
 </c:import>
 </body>
-
 </html>
