@@ -29,7 +29,7 @@
 
         <div class="header-select">
             <select class="headerselect" id="header-navigation" onchange="navigateToPage()">
-                <option value="#user">ユーザー</option>
+                <option value="#user" selected>ユーザー</option>
                 <option value="Password_Change.jsp">パスワード変更</option>
                 <option value="#logout">ログアウト</option>
             </select>
@@ -70,19 +70,40 @@
         </div>
     </footer>
 
-    <script>
-        function navigateToPage() {
-            const selectedValue = document.getElementById("header-navigation").value;
+<script>
+    // ページロード時に現在のページに応じて選択を設定
+    function setInitialMenuSelection() {
+        const currentUrl = window.location.href; // 現在のURL
+        const menu = document.getElementById("header-navigation");
 
-            if (selectedValue === "#user") {
-                window.location.hash = "user";
-            } else if (selectedValue === "#logout") {
-                window.location.href = "logout.jsp";
-            } else {
-                window.location.href = selectedValue;
-            }
+        // URLに応じて選択肢を設定
+        if (currentUrl.includes("#user")) {
+            menu.value = "#user";
+        } else if (currentUrl.includes("logout.jsp")) {
+            menu.value = "#logout";
+        } else if (currentUrl.includes("Password_Change.jsp")) {
+            menu.value = "Password_Change.jsp";
+        } else {
+            menu.value = "#user"; // デフォルト値
         }
-    </script>
+    }
+
+    // ページ読み込み時に初期選択を設定
+    window.onload = setInitialMenuSelection;
+
+    // ヘッダー内メニュー処理
+    function navigateToPage() {
+        const selectedValue = document.getElementById("header-navigation").value;
+
+        if (selectedValue === "#user") {
+            window.location.hash = "user"; // ユーザーセクションへスクロール
+        } else if (selectedValue === "#logout") {
+            window.location.href = "logout.jsp"; // ログアウトページに遷移
+        } else {
+            window.location.href = selectedValue; // その他のページ
+        }
+    }
+</script>
 
 </body>
 
