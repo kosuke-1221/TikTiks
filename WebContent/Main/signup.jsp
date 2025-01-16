@@ -8,6 +8,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>新規登録 - にこにこシフトマジック</title>
     <link rel="stylesheet" href="signup.css">
+    <style>
+        /* スクロール可能な領域 */
+        .form-container {
+            max-height: 80vh;
+            overflow-y: auto;
+            padding: 20px;
+        }
+    </style>
 </head>
 
 <body>
@@ -20,27 +28,27 @@
                 <form action='Register.action' method='POST' class='signup-form'>
                     <div class='form-group'>
                         <label for='userID'>ユーザーID</label>
-                        <input type='text' id='userID' name='userID' placeholder='例: 101010' required>
+                        <input type='text' id='userID' name='userID' placeholder='例: 1010101' value='${param.userID}' required>
                     </div>
                     <div class='form-group'>
                         <label for='name'>名前</label>
-                        <input type='text' id='name' name='name' placeholder='例: 山田 太郎' required>
+                        <input type='text' id='name' name='name' placeholder='例: 山田 太郎' value='${param.name}' required>
                     </div>
                     <div class='form-group'>
                         <label for='furigana'>フリガナ</label>
-                        <input type='text' id='furigana' name='furigana' placeholder='例: ヤマダ タロウ' required>
+                        <input type='text' id='furigana' name='furigana' placeholder='例: ヤマダ タロウ' value='${param.furigana}' required>
                     </div>
                     <div class='form-group'>
                         <label for='email'>メールアドレス</label>
-                        <input type='email' id='email' name='email' placeholder='例: example@example.com' required>
+                        <input type='email' id='email' name='email' placeholder='例: example@example.com' value='${param.email}' required>
                     </div>
                     <div class='form-group'>
                         <label for='password'>パスワード</label>
-                        <input type='password' id='password' name='password' placeholder='パスワードを入力' required>
+                        <input type='password' id='password' name='password' placeholder='パスワードは8文字以上で、大文字、小文字、数字を含めてください。' value='${param.password}' required>
                     </div>
                     <div class='form-group'>
                         <label for='phone'>電話番号</label>
-                        <input type='tel' id='phone' name='phone' placeholder='例: 090-1234-5678' pattern='\\d{3}-\\d{4}-\\d{4}' required>
+                        <input type='tel' id='phone' name='phone' placeholder='例: 090-1234-5678' pattern='\\d{3}-\\d{4}-\\d{4}' value='${param.phone}' required>
                     </div>
                     <c:if test='${not empty errorMessage}'>
                         <div class='error-message'>
