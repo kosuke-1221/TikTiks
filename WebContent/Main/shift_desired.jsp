@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page session="true" %>
 
 <!DOCTYPE html>
 <html lang="ja">
@@ -25,7 +24,7 @@
 	        <div class="Monday">
 	            <span>月曜日</span>
 	            <label for="monday">
-	                <input type="checkbox" id="monday" name="day" value="Monday"
+	                <input type="checkbox" id="monday" name="monday" value="Monday"
 	                    onchange="toggleSelect('monday-start', 'monday-end')">
 	            </label>
 	            <select class="shiftselect" id="monday-start" name="monday-start" disabled>
@@ -68,7 +67,7 @@
 	        <div class="Tuesday">
 	            <span>火曜日</span>
 	            <label for="tuesday">
-	                <input type="checkbox" id="tuesday" name="day" value="Tuesday"
+	                <input type="checkbox" id="tuesday" name="tuesday" value="Tuesday"
 	                    onchange="toggleSelect('tuesday-start', 'tuesday-end')">
 	            </label>
 	            <select class="shiftselect" id="tuesday-start" name="tuesday-start" disabled>
@@ -110,7 +109,7 @@
 	        <div class="Wednesday">
 	            <span>水曜日</span>
 	            <label for="wednesday">
-	                <input type="checkbox" id="wednesday" name="day" value="Wednesday"
+	                <input type="checkbox" id="wednesday" name="wednesday" value="Wednesday"
 	                    onchange="toggleSelect('wednesday-start', 'wednesday-end')">
 	            </label>
 	            <select class="shiftselect" id="wednesday-start" name="wednesday-start" disabled>
@@ -152,7 +151,7 @@
 	        <div class="Thursday">
 	            <span>木曜日</span>
 	            <label for="thursday">
-	                <input type="checkbox" id="thursday" name="day" value="Thursday"
+	                <input type="checkbox" id="thursday" name="thursday" value="Thursday"
 	                    onchange="toggleSelect('thursday-start', 'thursday-end')">
 	            </label>
 	            <select class="shiftselect" id="thursday-start" name="thursday-start" disabled>
@@ -194,7 +193,7 @@
 	        <div class="Friday">
 	            <span>金曜日</span>
 	            <label for="friday">
-	                <input type="checkbox" id="friday" name="day" value="Friday"
+	                <input type="checkbox" id="friday" name="friday" value="Friday"
 	                    onchange="toggleSelect('friday-start', 'friday-end')">
 	            </label>
 	            <select class="shiftselect" id="friday-start" name="friday-start" disabled>
@@ -236,7 +235,7 @@
 	        <div class="Saturday">
 	            <span>土曜日</span>
 	            <label for="saturday">
-	                <input type="checkbox" id="saturday" name="day" value="Saturday"
+	                <input type="checkbox" id="saturday" name="saturday" value="Saturday"
 	                    onchange="toggleSelect('saturday-start', 'saturday-end')">
 	            </label>
 	            <select class="shiftselect" id="saturday-start" name="saturday-start" disabled>
@@ -278,7 +277,7 @@
 	        <div class="Sunday">
 	            <span>日曜日</span>
 	            <label for="sunday">
-	                <input type="checkbox" id="sunday" name="day" value="Sunday"
+	                <input type="checkbox" id="sunday" name="sunday" value="Sunday"
 	                    onchange="toggleSelect('sunday-start', 'sunday-end')">
 	            </label>
 	            <select class="shiftselect" id="sunday-start" name="sunday-start" disabled>
@@ -320,7 +319,7 @@
 	        <div class="Holiday">
 	            <span>祝日</span>
 	            <label for="holiday">
-	                <input type="checkbox" id="holiday" name="day" value="Holiday"
+	                <input type="checkbox" id="holiday" name="holiday" value="Holiday"
 	                    onchange="toggleSelect('holiday-start', 'holiday-end')">
 	            </label>
 	            <select class="shiftselect" id="holiday-start" name="holiday-start" disabled>
@@ -361,9 +360,9 @@
 
 	        <div class="Anytime">
 	            <span>いつでも可</span>
-	            <label for="anytime">
-	                <input type="checkbox" id="anytime" name="day" value="Anytime"
-	                    onchange="toggleSelect('anytime-start', 'anytime-end')">
+	            <label for="always-available">
+	                <input type="checkbox" id="always-available" name="always-available" value="Always-available"
+	                    onchange="toggleSelect('always-available-start', 'always-available-end')">
 	            </label>
 	        </div>
 

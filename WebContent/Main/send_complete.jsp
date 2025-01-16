@@ -19,7 +19,7 @@
 
     <div class="container">
         <h1>😊送信が完了しました😊</h1>
-        <button onclick="window.location.href='main.jsp'">メインメニューに戻る</button>
+        <button class="button" onclick="location.href='<%= request.getContextPath() %>/Main/menu.jsp'">メインメニューに戻る</button>
         <br>
     </div>
 
