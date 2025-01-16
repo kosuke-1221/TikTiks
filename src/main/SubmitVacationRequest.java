@@ -36,7 +36,7 @@ public class SubmitVacationRequest extends HttpServlet {
 
         try {
             // データベース接続情報
-            String url = "jdbc:h2:~/NSM://localhost:3306/your_database";
+            String url = "jdbc:h2:~/NSM";
             String user = "sa";
             String password = "";
 
