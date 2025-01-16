@@ -11,7 +11,7 @@
 </head>
 
 <body>
-<c:import url="base2.jsp">
+<c:import url="base.jsp">
     <c:param name="title" value="ログアウト確認"></c:param>
     <c:param name="scripts"></c:param>
     <c:param name="content">
