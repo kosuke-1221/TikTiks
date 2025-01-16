@@ -22,7 +22,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>Shift_desired</servlet-name>
-        <url-pattern>/Shift_desiredServlet</url-pattern>
+        <url-pattern>/Main/Shift_desiredServlet</url-pattern>
     </servlet-mapping>
 
     <!-- UserListServlet -->
