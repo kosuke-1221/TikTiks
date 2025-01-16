@@ -11,24 +11,23 @@
 </head>
 
 <body>
-<c:import url="base2.jsp">
-<c:param name="title"></c:param>
-<c:param name="scripts"></c:param>
-<c:param name="content">
-<section class="me-4">
-
-    <div class="logout-container">
-        <h1>😊にこにこシフトマジック😊</h1>
-        <p>ログアウトしますか？</p>
-        <div class="confirmation">
-            <button class="button1" onclick="location.href='<%= request.getContextPath() %>/Main/logoutAction'">はい</button>
-            <button class="button2" onclick="location.href='<%= request.getContextPath() %>/Main/menu.jsp'">いいえ</button>
-        </div>
-    </div>
-
-</section>
-</c:param>
+<c:import url="base.jsp">
+    <c:param name="title" value="ログアウト確認"></c:param>
+    <c:param name="scripts"></c:param>
+    <c:param name="content">
+        <section class="me-4">
+            <div class="logout-container">
+                <h1>😊にこにこシフトマジック😊</h1>
+                <p>ログアウトしますか？</p>
+                <div class="confirmation">
+                    <!-- ログアウトボタン -->
+					<button class="button1" onclick="location.href='<%= request.getContextPath() %>/main/Logout.action'">はい</button>
+                    <!-- 元の画面に戻るボタン -->
+                    <button class="button2" onclick="location.href='<%= request.getHeader("referer") %>'">いいえ</button>
+                </div>
+            </div>
+        </section>
+    </c:param>
 </c:import>
 </body>
-
 </html>

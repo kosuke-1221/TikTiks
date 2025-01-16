@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(urlPatterns = {"*.action", "/main/*"})
+@WebServlet("*.action") // "*.action" のみに限定
 public class FrontController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
@@ -20,11 +20,12 @@ public class FrontController extends HttpServlet {
             name += "Action"; // "main.RegisterAction"
 
             System.out.println("★ servlet path -> " + request.getServletPath());
-            System.out.println("★ class name ->" + name);
+            System.out.println("★ class name -> " + name);
             Action action = (Action) Class.forName(name).getDeclaredConstructor().newInstance();
             action.execute(request, response);
         } catch (Exception e) {
             e.printStackTrace();
+            request.setAttribute("errorMessage", "予期しないエラーが発生しました。");
             request.getRequestDispatcher("/Main/error.jsp").forward(request, response);
         }
     }

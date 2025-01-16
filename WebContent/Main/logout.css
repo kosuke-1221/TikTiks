@@ -1,17 +1,18 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    text-align: center;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
 }
 
 .logout-container {
-	text-align: center;
-    background-color: white;
-    padding: 20px;
+	max-width: 350px;
+    margin: 50px auto;
+    background-color: #fff;
+    padding: 15px 20px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    display: inline-block;
-    margin-top: 80px; /* ヘッダーと重ならないように余白を追加 */
+    text-align: center;
 }
 
 h1 {
