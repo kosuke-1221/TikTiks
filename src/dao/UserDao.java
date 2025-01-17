@@ -104,6 +104,10 @@ public class UserDao {
             e.printStackTrace();
         }
 
-        return false; // 重複なし
+        return false; // 重複なしh
+
+
+
+
     }
 }
