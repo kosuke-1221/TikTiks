@@ -208,9 +208,15 @@ input {
     }
 
     .sidebar a {
-        font-size: 0.9em; /* サイドバーのリンクの文字サイズ */
+        font-size: 1em; /* サイドバーのリンクの文字サイズ */
         padding: 8px; /* 上下余白を調整 */
     }
+
+    .sidebar img {
+    display: block; /* 画像をブロック要素にして中央揃えを可能に */
+	margin-left: 50px;
+
+}
 
     /* メインコンテンツ */
     .content {
