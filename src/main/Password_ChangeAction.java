@@ -1,4 +1,4 @@
-package action;
+package main;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -10,7 +10,7 @@ import javax.servlet.http.HttpSession;
 import bean.User;
 import dao.UserDao;
 
-public class PasswordUpdateAction {
+public class Password_ChangeAction {
 
     public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
         // セッションからユーザー情報を取得
