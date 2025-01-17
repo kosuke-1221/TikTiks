@@ -36,7 +36,7 @@ textarea {
     resize: vertical;
 }
 
-button {
+#add-off-day,#submit-off-days {
     width: 100%;
     padding: 10px;
     background-color: #28a745;
@@ -47,7 +47,7 @@ button {
     font-size: 16px;
 }
 
-button:hover {
+#add-off-day,#submit-off-days:hover {
     background-color: #218838;
 }
 
