@@ -1,4 +1,4 @@
-package action;
+package main;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -10,50 +10,50 @@ import javax.servlet.http.HttpSession;
 import bean.User;
 import dao.UserDao;
 
-public class PasswordUpdateAction {
+public class Password_ChangeAction {
 
     public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        // ƒZƒbƒVƒ‡ƒ“‚©‚çƒ†[ƒU[î•ñ‚ğæ“¾
+        // ã‚»ãƒƒã‚·ãƒ§ãƒ³ã‹ã‚‰ãƒ¦ãƒ¼ã‚¶ãƒ¼æƒ…å ±ã‚’å–å¾—
         HttpSession session = request.getSession();
         User currentUser = (User) session.getAttribute("user");
 
         if (currentUser == null) {
-            response.sendRedirect("login.jsp"); // ƒƒOƒCƒ“‚µ‚Ä‚¢‚È‚¢ê‡‚ÍƒƒOƒCƒ“ƒy[ƒW‚ÖƒŠƒ_ƒCƒŒƒNƒg
+            response.sendRedirect("login.jsp"); // ãƒ­ã‚°ã‚¤ãƒ³ã—ã¦ã„ãªã„å ´åˆã¯ãƒ­ã‚°ã‚¤ãƒ³ãƒšãƒ¼ã‚¸ã¸ãƒªãƒ€ã‚¤ãƒ¬ã‚¯ãƒˆ
             return;
         }
 
-        // ƒtƒH[ƒ€‚©‚çƒf[ƒ^‚ğæ“¾
+        // ãƒ•ã‚©ãƒ¼ãƒ ã‹ã‚‰ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—
         String currentPassword = request.getParameter("currentPassword");
         String newPassword = request.getParameter("newPassword");
 
-        // ƒGƒ‰[ƒ`ƒFƒbƒN
+        // ã‚¨ãƒ©ãƒ¼ãƒã‚§ãƒƒã‚¯
         if (currentPassword == null || newPassword == null || currentPassword.isEmpty() || newPassword.isEmpty()) {
-            response.getWriter().write("‚·‚×‚Ä‚Ì—“‚ğ“ü—Í‚µ‚Ä‚­‚¾‚³‚¢B");
+            response.getWriter().write("ã™ã¹ã¦ã®æ¬„ã‚’å…¥åŠ›ã—ã¦ãã ã•ã„ã€‚");
             return;
         }
 
-        // ƒpƒXƒ[ƒh•ÏXˆ—
+        // ãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰å¤‰æ›´å‡¦ç†
         UserDao userDao = new UserDao();
 
         try {
-            // Œ»İ‚ÌƒpƒXƒ[ƒh‚ªˆê’v‚·‚é‚©Šm”F
+            // ç¾åœ¨ã®ãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰ãŒä¸€è‡´ã™ã‚‹ã‹ç¢ºèª
             User user = userDao.getUserByUserID(currentUser.getUserID());
             if (user != null && user.getPassword().equals(currentPassword)) {
-                // ƒpƒXƒ[ƒh‚ğXV
+                // ãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰ã‚’æ›´æ–°
                 user.setPassword(newPassword);
                 boolean success = userDao.update(user);
 
                 if (success) {
-                    response.getWriter().write("ƒpƒXƒ[ƒh‚ªXV‚³‚ê‚Ü‚µ‚½I");
+                    response.getWriter().write("ãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰ãŒæ›´æ–°ã•ã‚Œã¾ã—ãŸï¼");
                 } else {
-                    response.getWriter().write("ƒpƒXƒ[ƒh‚ÌXV‚É¸”s‚µ‚Ü‚µ‚½B");
+                    response.getWriter().write("ãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰ã®æ›´æ–°ã«å¤±æ•—ã—ã¾ã—ãŸã€‚");
                 }
             } else {
-                response.getWriter().write("Œ»İ‚ÌƒpƒXƒ[ƒh‚ªŠÔˆá‚Á‚Ä‚¢‚Ü‚·B");
+                response.getWriter().write("ç¾åœ¨ã®ãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰ãŒé–“é•ã£ã¦ã„ã¾ã™ã€‚");
             }
         } catch (SQLException e) {
             e.printStackTrace();
-            response.getWriter().write("ƒGƒ‰[‚ª”­¶‚µ‚Ü‚µ‚½B");
+            response.getWriter().write("ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¾ã—ãŸã€‚");
         }
     }
 }
