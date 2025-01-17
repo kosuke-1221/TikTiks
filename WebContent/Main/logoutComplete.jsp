@@ -30,7 +30,7 @@
 
         .message-container h1 {
             font-size: 24px;
-            color: #333;
+            color: #4caf50;
             margin-bottom: 20px;
         }
 
@@ -51,7 +51,7 @@
         <c:param name="title" value="ログアウト完了"></c:param>
         <c:param name="content">
             <section class="message-container">
-                <h1>ログアウトが完了しました。</h1>
+                <h1>😊ログアウトが完了しました。😊</h1>
                 <p>3秒後にログイン画面に戻ります。</p>
                 <p class="redirect-message">自動的にログイン画面に戻ります。</p>
                 <meta http-equiv="refresh" content="3;url=login.jsp">
