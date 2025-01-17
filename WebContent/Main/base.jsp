@@ -16,6 +16,7 @@
 
     <!-- ヘッダー -->
     <header>
+    	<button class="sidebar-toggle" id="sidebarToggle">☰</button>
         <div class="header-title">
         	<a href="<c:choose>
                 <c:when test="${!sessionScope.AUTHORITY}">menu.jsp</c:when>
@@ -37,7 +38,7 @@
     </header>
 
     <!-- サイドバー -->
-    <div class="sidebar">
+    <div class="sidebar" id="sidebar">
         <!-- 従業員専用 (AUTHORITYがfalseの場合に表示） -->
         <c:if test="${!sessionScope.AUTHORITY}">
             <a href="menu.jsp">メニュー</a>
@@ -56,7 +57,10 @@
             <a href="News.action">お知らせ</a>
             <img src="MAGIC.png" alt="Logo" style="vertical-align: middle; margin-right: 10px;" />
         </c:if>
+
     </div>
+
+
 
     <!-- メインコンテンツ -->
     <div class="content">
