@@ -75,13 +75,17 @@ th, td {
 }
 
 .delete-btn {
+	width: 100%;
     background-color: #dc3545;
     color: white;
     border: none;
     padding: 5px 10px;
     cursor: pointer;
+    border-radius: 5px; /* 角を丸くする */
 }
 
 .delete-btn:hover {
+	width: 100%;
     background-color: #c82333;
+    border-radius: 5px; /* 角を丸くする */
 }
