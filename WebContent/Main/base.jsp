@@ -107,6 +107,21 @@
             window.location.href = selectedValue; // その他のページ
         }
     }
+
+    // サイドバーを表示・非表示に切り替える機能
+    document.getElementById('sidebarToggle').addEventListener('click', function () {
+        const sidebar = document.querySelector('.sidebar'); // サイドバーを取得
+        const content = document.querySelector('.content'); // メインコンテンツを取得
+
+        // サイドバーの表示/非表示を切り替える
+        if (sidebar.style.display === 'none' || sidebar.style.display === '') {
+            sidebar.style.display = 'block'; // サイドバーを表示
+            content.style.display = 'none'; // メインコンテンツを非表示
+        } else {
+            sidebar.style.display = 'none'; // サイドバーを非表示
+            content.style.display = 'block'; // メインコンテンツを表示
+        }
+    });
 </script>
 
 </body>

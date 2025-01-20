@@ -17,13 +17,17 @@ section {
 h1 {
     text-align: center;
     color: #4CAF50;
-    font-size: 2rem;
+    font-size: 36px;
 }
 
 label {
     display: block;
     margin-top: 10px;
     font-weight: bold;
+}
+
+#off-date {
+	box-sizing: border-box;
 }
 
 textarea {
@@ -34,9 +38,10 @@ textarea {
     border: 1px solid #ccc;
     border-radius: 5px;
     resize: vertical;
+	box-sizing: border-box;
 }
 
-button {
+#add-off-day,#submit-off-days {
     width: 100%;
     padding: 10px;
     background-color: #28a745;
@@ -47,7 +52,7 @@ button {
     font-size: 16px;
 }
 
-button:hover {
+#add-off-day,#submit-off-days:hover {
     background-color: #218838;
 }
 
@@ -75,13 +80,17 @@ th, td {
 }
 
 .delete-btn {
+	width: 100%;
     background-color: #dc3545;
     color: white;
     border: none;
     padding: 5px 10px;
     cursor: pointer;
+    border-radius: 5px; /* 角を丸くする */
 }
 
 .delete-btn:hover {
+	width: 100%;
     background-color: #c82333;
+    border-radius: 5px; /* 角を丸くする */
 }
