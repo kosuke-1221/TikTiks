@@ -21,7 +21,7 @@
 
 			<form action="Vacation_DesiredAction" method="post">
 			    <label for="off-date">休暇希望日を選択してください:</label>
-			    <input type="date" id="off-date" name="off-date">
+			    <input type="date" id="off-date" name="off-date" required>
 
 			    <label for="reason">理由を記載してください:</label>
 			    <textarea id="reason" name="reason" rows="3" placeholder="休暇の理由を記載してください"></textarea>
