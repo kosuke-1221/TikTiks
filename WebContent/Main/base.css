@@ -226,6 +226,14 @@ input {
         line-height: 1.5; /* 行間をやや狭く */
     }
 
+    .main-banner {
+    	font-size: 1.8em;
+    }
+
+	h1 {
+		font-size:1.8em;
+	}
+
     /* フッター */
     .footer {
         font-size: 0.8em; /* フッターの文字サイズ */

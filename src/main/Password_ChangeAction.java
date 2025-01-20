@@ -13,47 +13,47 @@ import dao.UserDao;
 public class Password_ChangeAction {
 
     public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        // ã‚»ãƒƒã‚·ãƒ§ãƒ³ã‹ã‚‰ãƒ¦ãƒ¼ã‚¶ãƒ¼æƒ…å ±ã‚’å–å¾—
+        // ƒZƒbƒVƒ‡ƒ“‚©‚çƒ†[ƒU[î•ñ‚ğæ“¾
         HttpSession session = request.getSession();
         User currentUser = (User) session.getAttribute("user");
 
         if (currentUser == null) {
-            response.sendRedirect("login.jsp"); // ãƒ­ã‚°ã‚¤ãƒ³ã—ã¦ã„ãªã„å ´åˆã¯ãƒ­ã‚°ã‚¤ãƒ³ãƒšãƒ¼ã‚¸ã¸ãƒªãƒ€ã‚¤ãƒ¬ã‚¯ãƒˆ
+            response.sendRedirect("login.jsp"); // ƒƒOƒCƒ“‚µ‚Ä‚¢‚È‚¢ê‡‚ÍƒƒOƒCƒ“ƒy[ƒW‚ÖƒŠƒ_ƒCƒŒƒNƒg
             return;
         }
 
-        // ãƒ•ã‚©ãƒ¼ãƒ ã‹ã‚‰ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—
+        // ƒtƒH[ƒ€‚©‚çƒf[ƒ^‚ğæ“¾
         String currentPassword = request.getParameter("currentPassword");
         String newPassword = request.getParameter("newPassword");
 
-        // ã‚¨ãƒ©ãƒ¼ãƒã‚§ãƒƒã‚¯
+        // ƒGƒ‰[ƒ`ƒFƒbƒN
         if (currentPassword == null || newPassword == null || currentPassword.isEmpty() || newPassword.isEmpty()) {
-            response.getWriter().write("ã™ã¹ã¦ã®æ¬„ã‚’å…¥åŠ›ã—ã¦ãã ã•ã„ã€‚");
+            response.getWriter().write("‚·‚×‚Ä‚Ì—“‚ğ“ü—Í‚µ‚Ä‚­‚¾‚³‚¢B");
             return;
         }
 
-        // ãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰å¤‰æ›´å‡¦ç†
+        // ƒpƒXƒ[ƒh•ÏXˆ—
         UserDao userDao = new UserDao();
 
         try {
-            // ç¾åœ¨ã®ãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰ãŒä¸€è‡´ã™ã‚‹ã‹ç¢ºèª
+            // Œ»İ‚ÌƒpƒXƒ[ƒh‚ªˆê’v‚·‚é‚©Šm”F
             User user = userDao.getUserByUserID(currentUser.getUserID());
             if (user != null && user.getPassword().equals(currentPassword)) {
-                // ãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰ã‚’æ›´æ–°
+                // ƒpƒXƒ[ƒh‚ğXV
                 user.setPassword(newPassword);
                 boolean success = userDao.update(user);
 
                 if (success) {
-                    response.getWriter().write("ãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰ãŒæ›´æ–°ã•ã‚Œã¾ã—ãŸï¼");
+                    response.getWriter().write("ƒpƒXƒ[ƒh‚ªXV‚³‚ê‚Ü‚µ‚½I");
                 } else {
-                    response.getWriter().write("ãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰ã®æ›´æ–°ã«å¤±æ•—ã—ã¾ã—ãŸã€‚");
+                    response.getWriter().write("ƒpƒXƒ[ƒh‚ÌXV‚É¸”s‚µ‚Ü‚µ‚½B");
                 }
             } else {
-                response.getWriter().write("ç¾åœ¨ã®ãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰ãŒé–“é•ã£ã¦ã„ã¾ã™ã€‚");
+                response.getWriter().write("Œ»İ‚ÌƒpƒXƒ[ƒh‚ªŠÔˆá‚Á‚Ä‚¢‚Ü‚·B");
             }
         } catch (SQLException e) {
             e.printStackTrace();
-            response.getWriter().write("ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¾ã—ãŸã€‚");
+            response.getWriter().write("ƒGƒ‰[‚ª”­¶‚µ‚Ü‚µ‚½B");
         }
     }
 }

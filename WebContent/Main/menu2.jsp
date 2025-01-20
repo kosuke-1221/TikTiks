@@ -15,7 +15,7 @@
     <c:param name="content">
         <section class="me-4">
 			<div class="main-banner">
-                😊シフト管理がもっと簡単に😊
+                😊にこにこシフトマジック管理者画面😊
             </div>
             <!-- メインコンテンツ -->
             <div class="container">
@@ -33,7 +33,7 @@
 
                 <!-- 新しいカード：お知らせ -->
                 <a href="News.action" class="card">
-                    <h3>お知らせ</h3>
+                    <h3>お知らせ登録</h3>
                     <p>急なシフト変更や重要な通知を確認できます。</p>
                 </a>
             </div>

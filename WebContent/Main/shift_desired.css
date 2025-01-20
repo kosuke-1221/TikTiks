@@ -144,7 +144,7 @@ textarea#free-text:focus {
 }
 
 /* 送信ボタン */
-button {
+#sou {
     display: block;
     width: 100%;
     padding: 12px;
@@ -157,7 +157,7 @@ button {
     margin-top: 20px;
 }
 
-button:hover {
+#sou:hover {
     background-color: #388e3c;
 }
 
