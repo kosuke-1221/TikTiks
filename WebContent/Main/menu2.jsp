@@ -15,7 +15,7 @@
     <c:param name="content">
         <section class="me-4">
 			<div class="main-banner">
-                😊にこにこシフトマジック管理者画面😊
+                😊管理者画面😊
             </div>
             <!-- メインコンテンツ -->
             <div class="container">
