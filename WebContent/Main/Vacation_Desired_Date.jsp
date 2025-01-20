@@ -20,33 +20,38 @@
             <h1>😊休暇希望日提出😊</h1>
 
             <label for="off-date">休暇希望日を選択してください:</label>
-<input type="date" id="off-date" required>
+            <input type="date" id="off-date" required>
 
             <label for="reason">理由を記載してください:</label>
-<textarea id="reason" rows="3" placeholder="休暇の理由を記載してください"></textarea>
+            <textarea id="reason" rows="3" placeholder="休暇の理由を記載してください"></textarea>
 
             <button id="add-off-day">休暇日を追加</button>
 
             <table id="off-day-table">
-<thead>
-<tr>
-<th>休暇希望日</th>
-<th>理由</th>
-<th>削除</th>
-</tr>
-</thead>
-<tbody id="off-day-list"></tbody>
-</table>
+                <thead>
+                    <tr>
+                        <th>休暇希望日</th>
+                        <th>理由</th>
+                        <th>削除</th>
+                    </tr>
+                </thead>
+                <tbody id="off-day-list"></tbody>
+            </table>
 
             <button id="submit-off-days">休暇希望を送信</button>
 
             <div id="result"></div>
-</div>
+        </div>
+
+        <!-- ユーザーIDをJavaScriptに渡す -->
+        <script>
+            const userId = "<%= session.getAttribute("userId") %>";
+        </script>
 
         <!-- JavaScriptファイルを読み込み -->
-<script src="Vacation_Desired_Date.js"></script>
-</section>
-</c:param>
-</c:import>
+        <script src="Vacation_Desired_Date.js"></script>
+    </section>
+    </c:param>
+    </c:import>
 </body>
 </html>
