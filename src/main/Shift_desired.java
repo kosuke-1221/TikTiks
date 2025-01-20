@@ -43,7 +43,6 @@ public class Shift_desired extends HttpServlet {
         if (request.getParameter("friday") != null) selectedDays.append("Friday,");
         if (request.getParameter("saturday") != null) selectedDays.append("Saturday,");
         if (request.getParameter("sunday") != null) selectedDays.append("Sunday,");
-        if (request.getParameter("holiday") != null) selectedDays.append("Holiday,");
 
         // 最後のカンマを削除
         if (selectedDays.length() > 0) {
@@ -100,12 +99,6 @@ public class Shift_desired extends HttpServlet {
             sundayEnd = null;
         }
 
-        String holidayStart = request.getParameter("holiday-start");
-        String holidayEnd = request.getParameter("holiday-end");
-        if (holidayStart == null || holidayEnd == null) {
-            holidayStart = null;
-            holidayEnd = null;
-        }
 
         // "いつでも可能" のチェックボックスを取得
         boolean alwaysAvailable = request.getParameter("always-available") != null;
@@ -125,8 +118,8 @@ public class Shift_desired extends HttpServlet {
                         + "tuesday_start_time, tuesday_end_time, wednesday_start_time, wednesday_end_time, "
                         + "thursday_start_time, thursday_end_time, friday_start_time, friday_end_time, "
                         + "saturday_start_time, saturday_end_time, sunday_start_time, sunday_end_time, "
-                        + "holiday_start_time, holiday_end_time, always_available, memo) "
-                        + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                        + "always_available, memo) "
+                        + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
                 try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
                     pstmt.setString(1, userId);
@@ -147,11 +140,8 @@ public class Shift_desired extends HttpServlet {
                     pstmt.setString(14, saturdayEnd);
                     pstmt.setString(15, sundayStart);
                     pstmt.setString(16, sundayEnd);
-                    pstmt.setString(17, holidayStart);
-                    pstmt.setString(18, holidayEnd);
-
-                    pstmt.setBoolean(19, alwaysAvailable);
-                    pstmt.setString(20, memo);
+                    pstmt.setBoolean(17, alwaysAvailable);
+                    pstmt.setString(18, memo);
 
                     pstmt.executeUpdate();
                 }

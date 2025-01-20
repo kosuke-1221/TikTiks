@@ -316,48 +316,6 @@
 	            </select>
 	        </div>
 
-	        <div class="Holiday">
-	            <span>祝日</span>
-	            <label for="holiday">
-	                <input type="checkbox" id="holiday" name="holiday" value="Holiday"
-	                    onchange="toggleSelect('holiday-start', 'holiday-end')">
-	            </label>
-	            <select class="shiftselect" id="holiday-start" name="holiday-start" disabled>
-	                <option value="">開始時間</option>
-	                <option value="9:00">9:00</option>
-	                <option value="10:00">10:00</option>
-	                <option value="11:00">11:00</option>
-	                <option value="12:00">12:00</option>
-	                <option value="13:00">13:00</option>
-	                <option value="14:00">14:00</option>
-	                <option value="15:00">15:00</option>
-	                <option value="16:00">16:00</option>
-	                <option value="17:00">17:00</option>
-	                <option value="18:00">18:00</option>
-	                <option value="19:00">19:00</option>
-	                <option value="20:00">20:00</option>
-	                <option value="21:00">21:00</option>
-	                <option value="22:00">22:00</option>
-	            </select>
-	            <select class="shiftselect" id="holiday-end" name="holiday-end" disabled>
-	                <option value="">終了時間</option>
-	                <option value="11:00">11:00</option>
-	                <option value="12:00">12:00</option>
-	                <option value="13:00">13:00</option>
-	                <option value="14:00">14:00</option>
-	                <option value="15:00">15:00</option>
-	                <option value="16:00">16:00</option>
-	                <option value="17:00">17:00</option>
-	                <option value="18:00">18:00</option>
-	                <option value="19:00">19:00</option>
-	                <option value="20:00">20:00</option>
-	                <option value="21:00">21:00</option>
-	                <option value="22:00">22:00</option>
-	                <option value="23:00">23:00</option>
-	                <option value="24:00">24:00</option>
-	            </select>
-	        </div>
-
 	        <div class="Anytime">
 	            <span>いつでも可</span>
 	            <label for="always-available">
