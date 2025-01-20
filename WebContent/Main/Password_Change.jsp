@@ -8,7 +8,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>パスワード更新</title>
-    <link href="Password_Change2.css" rel="stylesheet" />
+    <link href="Password_Change.css" rel="stylesheet" />
 </head>
 
 <body>
