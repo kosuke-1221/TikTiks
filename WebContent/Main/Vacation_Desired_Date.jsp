@@ -19,7 +19,7 @@
         <div class="container">
             <h1>😊休暇希望日提出😊</h1>
 
-			<form action="Vacation_DesiredAction" method="post">
+			<form action="/Main/Vacation_DesiredAction" method="post">
 			    <label for="off-date">休暇希望日を選択してください:</label>
 			    <input type="date" id="off-date" name="off-date">
 
