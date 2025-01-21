@@ -1,15 +1,15 @@
 package bean;
 
-public class VacationRequest2 {
+public class VacationRequest {
     private int id;
     private String userId;
     private String vacationDate;
     private String reason;
 
     // コンストラクタ
-    public VacationRequest2() {}
+    public VacationRequest() {}
 
-    public VacationRequest2(String userId, String vacationDate, String reason) {
+    public VacationRequest(String userId, String vacationDate, String reason) {
         this.userId = userId;
         this.vacationDate = vacationDate;
         this.reason = reason;

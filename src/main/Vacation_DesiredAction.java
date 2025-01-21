@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import bean.VacationRequest2;
+import bean.VacationRequest;
 import dao.VacationDAO2;
 
 @WebServlet("/Main/Vacation_DesiredAction")
@@ -36,7 +36,7 @@ public class Vacation_DesiredAction extends HttpServlet {
             // データベースに登録
             try {
                 for (int i = 0; i < vacationDates.length; i++) {
-                    VacationRequest2 vacationRequest = new VacationRequest2(userId, vacationDates[i], vacationReasons[i]);
+                    VacationRequest vacationRequest = new VacationRequest(userId, vacationDates[i], vacationReasons[i]);
                     vacationDAO.insertVacationRequest(vacationRequest);
                 }
                 session.setAttribute("successMessage", "休暇希望が送信されました。");

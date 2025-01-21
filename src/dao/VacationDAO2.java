@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-import bean.VacationRequest2;
+import bean.VacationRequest;
 
 public class VacationDAO2 {
     private static final String DB_URL = "jdbc:h2:tcp://localhost/~/NSM";
@@ -18,7 +18,7 @@ public class VacationDAO2 {
     }
 
     // 休暇希望日をDBに登録する
-    public void insertVacationRequest(VacationRequest2 request) throws SQLException {
+    public void insertVacationRequest(VacationRequest request) throws SQLException {
         String sql = "INSERT INTO vacation_requests (user_id, vacation_date, reason) VALUES (?, ?, ?)";
 
         try (Connection conn = getConnection();
