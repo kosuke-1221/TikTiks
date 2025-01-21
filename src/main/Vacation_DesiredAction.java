@@ -11,7 +11,7 @@ import javax.servlet.http.HttpSession;
 import bean.VacationRequest2;
 import dao.VacationDAO2;
 
-@WebServlet("/Vacation_DesiredAction")
+@WebServlet("/Main/Vacation_DesiredAction")
 public class Vacation_DesiredAction extends HttpServlet {
     private VacationDAO2 vacationDAO = new VacationDAO2();
 
