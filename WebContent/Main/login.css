@@ -76,3 +76,15 @@ button:hover {
 .register-link a:hover {
     text-decoration: underline;
 }
+
+/* スマホ用スタイル */
+@media (max-width: 768px) {
+    body {
+        padding-bottom: 50px; /* フッターの高さを考慮した余白 */
+    }
+
+    .container {
+    	margin-top: 10px; /* ヘッダーとの余白をさらに縮小 */
+        margin-bottom: 20px; /* フッターに重ならないように調整 */
+    }
+}

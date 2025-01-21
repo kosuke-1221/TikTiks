@@ -1,36 +1,31 @@
-/* 全体のスタイル */
+/* bodyに上下の余白を追加してヘッダー・フッターとの重なりを防止 */
 body {
     font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
     background-color: #f7f7f7;
     display: flex;
     justify-content: center;
     align-items: center;  /* 垂直方向に中央配置 */
-    height: 100vh; /* 画面全体の高さを使う */
-    overflow: auto; /* 縦スクロールを許可 */
+    overflow-y: auto; /* 縦スクロールを許可 */
     flex-direction: column;
 }
 
-/* フォームコンテナのスタイル */
 .form-container {
     background: #ffffff;
-    padding: 15px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
     width: 100%;
     min-width: 500px;  /* 最小幅を設定 */
     max-width: 1000px;  /* 最大幅を1000pxに設定 */
     box-sizing: border-box;
-    overflow-y: auto;  /* 必要に応じてスクロール */
-    min-height: 300px; /* 最小高さを設定 */
+    overflow-y: auto; /* 必要に応じてスクロールバーを表示 */
+    border: 1px solid #ddd;  /* 周りを囲むボーダー */
 }
 
 /* フォーム内のヘッダー */
 .form-container h2 {
     text-align: center;
     color: #4CAF50;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
     font-size: 26px;
 }
 
@@ -88,7 +83,7 @@ body {
 }
 
 /* レスポンシブデザイン */
-@media (max-height: 500px) {
+@media (max-width: 768px) {
     .form-container {
         max-height: 95%;
     }
