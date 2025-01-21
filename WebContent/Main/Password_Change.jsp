@@ -28,7 +28,7 @@
                     <c:if test="${not empty successMessage}">
                         <div class="success">${successMessage}</div>
                     </c:if>
-						<form id="passwordUpdateForm" action="/TikTiks/main/Update.action" method="POST">
+						<form id="passwordUpdateForm" action="/TikTiks/main/Password_ChangeAction" method="POST">
                         <div class="form-group">
                             <label for="currentPassword">現在のパスワード</label>
                             <input type="password" id="currentPassword" name="currentPassword" placeholder="現在のパスワード" required>

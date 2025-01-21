@@ -67,7 +67,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>Password_ChangeAction</servlet-name>
-        <url-pattern>/Password_Change.action</url-pattern>
+        <url-pattern>/Password_ChangeAction</url-pattern>
     </servlet-mapping>
 
 
