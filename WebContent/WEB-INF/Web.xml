@@ -15,6 +15,7 @@
         <url-pattern>/News.action</url-pattern>
     </servlet-mapping>
 
+
     <!-- Shift_desired サーブレット -->
     <servlet>
         <servlet-name>Shift_desired</servlet-name>
@@ -24,6 +25,7 @@
         <servlet-name>Shift_desired</servlet-name>
         <url-pattern>/Main/Shift_desiredServlet</url-pattern>
     </servlet-mapping>
+
 
     <!-- UserListServlet -->
     <servlet>
@@ -35,6 +37,7 @@
         <url-pattern>/UserListServlet</url-pattern>
     </servlet-mapping>
 
+
     <!-- ShiftRegisterServlet -->
     <servlet>
         <servlet-name>ShiftRegisterServlet</servlet-name>
@@ -45,15 +48,17 @@
         <url-pattern>/ShiftRegisterServlet</url-pattern>
     </servlet-mapping>
 
+
     <!-- Vacation_DesiredAction -->
     <servlet>
         <servlet-name>Vacation_DesiredAction</servlet-name>
         <servlet-class>main.Vacation_DesiredAction</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>ShiftRegisterServlet</servlet-name>
+        <servlet-name>Vacation_DesiredAction</servlet-name>
         <url-pattern>/Vacation_Desired.action</url-pattern>
     </servlet-mapping>
+
 
     <!-- Password_ChangeAction -->
     <servlet>
@@ -62,7 +67,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>Password_ChangeAction</servlet-name>
-        <url-pattern>/Vacation_Desired.action</url-pattern>
+        <url-pattern>/Password_Change.action</url-pattern>
     </servlet-mapping>
 
 

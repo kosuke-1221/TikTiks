@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import bean.VacationRequest;
 
 public class VacationDAO2 {
-    private static final String DB_URL = "jdbc:h2:tcp://localhost/~/NSM";
+    private static final String DB_URL = "jdbc:h2:~/NSM";
     private static final String DB_USER = "sa";
     private static final String DB_PASSWORD = "";
 

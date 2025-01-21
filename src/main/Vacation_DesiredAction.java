@@ -11,7 +11,7 @@ import javax.servlet.http.HttpSession;
 import bean.VacationRequest;
 import dao.VacationDAO2;
 
-@WebServlet("/Main/Vacation_DesiredAction")
+@WebServlet("Vacation_Desired.action")
 public class Vacation_DesiredAction extends HttpServlet {
     private VacationDAO2 vacationDAO = new VacationDAO2();
 
@@ -19,14 +19,14 @@ public class Vacation_DesiredAction extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // セッションから user_id を取得
         HttpSession session = request.getSession();
-        String userId = (String) session.getAttribute("user_id");
+        String userId = (String) session.getAttribute("userID");
 
+        // ユーザーIDがセッションに存在しない場合、エラーを表示
         if (userId == null) {
-            // セッションが切れている場合の処理
-            session.setAttribute("errorMessage", "セッションが切れています。再度ログインしてください。");
-            response.sendRedirect("login.jsp");
+            response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "ログインしていません。");
             return;
         }
+
 
         // hiddenフィールドから休暇希望日と理由を取得
         String[] vacationDates = request.getParameter("vacation-dates").split(",");
@@ -40,7 +40,7 @@ public class Vacation_DesiredAction extends HttpServlet {
                     vacationDAO.insertVacationRequest(vacationRequest);
                 }
                 session.setAttribute("successMessage", "休暇希望が送信されました。");
-                response.sendRedirect("confirmation.jsp");  // 確認ページにリダイレクト
+                response.sendRedirect("send_complete.jsp");  // 確認ページにリダイレクト
             } catch (Exception e) {
                 session.setAttribute("errorMessage", "休暇希望の送信に失敗しました。");
                 response.sendRedirect("error.jsp");  // エラーページにリダイレクト
