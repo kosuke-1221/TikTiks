@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import bean.User;
 
@@ -26,7 +28,7 @@ public class UserDao {
             statement.setString(4, user.getEmail());
             statement.setString(5, user.getPassword());
             statement.setString(6, user.getPhoneNumber());
-            statement.setBoolean(7, user.isAuthority()); // authorityをbooleanで設定
+            statement.setBoolean(7, user.isAuthority());
 
             int result = statement.executeUpdate();
             return result > 0;
@@ -41,22 +43,18 @@ public class UserDao {
      * ユーザーIDに基づいてユーザー情報を取得するメソッド
      * @param userID ユーザーID
      * @return ユーザー情報のUserオブジェクト
-     * @throws SQLException
+     * @throws SQLException データベースエラーが発生した場合
      */
     public User getUserByUserID(String userID) throws SQLException {
         User user = null;
-        String sql = "SELECT * FROM users WHERE user_id = ?"; // ユーザーIDで検索するSQL文
+        String sql = "SELECT * FROM users WHERE user_id = ?";
 
         try (Connection conn = Database.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
-            // パラメータをセット
             stmt.setString(1, userID);
-
-            // クエリを実行
             ResultSet rs = stmt.executeQuery();
 
-            // 結果を取得
             if (rs.next()) {
                 user = new User();
                 user.setUserID(rs.getString("user_id"));
@@ -72,7 +70,7 @@ public class UserDao {
             throw new SQLException("ユーザー情報の取得に失敗しました。", e);
         }
 
-        return user; // ユーザー情報を返す
+        return user;
     }
 
     /**
@@ -88,26 +86,78 @@ public class UserDao {
         try (Connection conn = Database.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
-            // パラメータをセット
             stmt.setString(1, userID);
             stmt.setString(2, email);
             stmt.setString(3, phoneNumber);
 
-            // クエリを実行
             ResultSet rs = stmt.executeQuery();
 
-            // 結果を取得
             if (rs.next()) {
-                return rs.getInt(1) > 0; // 1以上なら重複あり
+                return rs.getInt(1) > 0;
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        return false; // 重複なしh
+        return false;
+    }
 
+    /**
+     * ユーザーIDからユーザー名を取得するメソッド
+     * @param userId ユーザーID
+     * @return ユーザー名。見つからない場合はnull
+     */
+    public String getUserName(String userId) {
+        String userName = null;
+        String sql = "SELECT name FROM users WHERE user_id = ?";
 
+        try (Connection con = Database.getConnection();
+             PreparedStatement ps = con.prepareStatement(sql)) {
 
+            ps.setString(1, userId);
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    userName = rs.getString("name");
+                    System.out.println("Found user name: " + userName + " for ID: " + userId);
+                } else {
+                    System.out.println("No user found for ID: " + userId);
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println("Error fetching user name for ID: " + userId);
+            e.printStackTrace();
+        }
 
+        return userName;
+    }
+
+    /**
+     * すべてのユーザー情報を取得するメソッド
+     * @return 全ユーザーのリスト
+     */
+    public List<User> getAllUsers() {
+        List<User> users = new ArrayList<>();
+        String sql = "SELECT * FROM users";
+
+        try (Connection conn = Database.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql);
+             ResultSet rs = stmt.executeQuery()) {
+
+            while (rs.next()) {
+                User user = new User();
+                user.setUserID(rs.getString("user_id"));
+                user.setName(rs.getString("name"));
+                user.setFurigana(rs.getString("furigana"));
+                user.setEmail(rs.getString("email"));
+                user.setPassword(rs.getString("password"));
+                user.setPhoneNumber(rs.getString("phone_number"));
+                user.setAuthority(rs.getBoolean("authority"));
+                users.add(user);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return users;
     }
 }

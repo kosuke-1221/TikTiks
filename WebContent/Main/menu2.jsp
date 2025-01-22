@@ -20,7 +20,7 @@
             <!-- メインコンテンツ -->
             <div class="container">
                 <!-- カード1 -->
-                <a href="shift-entry.jsp" class="card">
+                <a href="ShiftRegistration" class="card">
                     <h3>シフト登録</h3>
                     <p>簡単にシフトを登録できます。</p>
                 </a>
