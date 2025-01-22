@@ -1,22 +1,23 @@
 package main;
+
 import java.io.IOException;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import bean.VacationRequest;
-import dao.VacationDAO2;
+import dao.VacationDao;
+import tool.Action;  // Actionクラスのインポート
 
-@WebServlet("Vacation_Desired.action")
-public class Vacation_DesiredAction extends HttpServlet {
-    private VacationDAO2 vacationDAO = new VacationDAO2();
+public class Vacation_DesiredAction extends Action { // Actionクラスを継承
+
+    private VacationDao vacationDAO = new VacationDao();
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public String execute(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
         // セッションから user_id を取得
         HttpSession session = request.getSession();
         String userId = (String) session.getAttribute("userID");
@@ -24,14 +25,18 @@ public class Vacation_DesiredAction extends HttpServlet {
         // ユーザーIDがセッションに存在しない場合、エラーを表示
         if (userId == null) {
             response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "ログインしていません。");
-            return;
+            return null; // 実際にエラーを返して終了
         }
-
 
         // hiddenフィールドから休暇希望日と理由を取得
         String[] vacationDates = request.getParameter("vacation-dates").split(",");
         String[] vacationReasons = request.getParameter("vacation-reasons").split(",");
 
+        // デバッグ用の出力
+        System.out.println("vacation-dates: " + request.getParameter("vacation-dates"));
+        System.out.println("vacation-reasons: " + request.getParameter("vacation-reasons"));
+
+        // 休暇希望日と理由が一致するかを確認
         if (vacationDates != null && vacationReasons != null && vacationDates.length == vacationReasons.length) {
             // データベースに登録
             try {
@@ -39,15 +44,17 @@ public class Vacation_DesiredAction extends HttpServlet {
                     VacationRequest vacationRequest = new VacationRequest(userId, vacationDates[i], vacationReasons[i]);
                     vacationDAO.insertVacationRequest(vacationRequest);
                 }
-                session.setAttribute("successMessage", "休暇希望が送信されました。");
-                response.sendRedirect("send_complete.jsp");  // 確認ページにリダイレクト
+                // 成功した場合はリダイレクト
+                response.sendRedirect("send_complete.jsp");
             } catch (Exception e) {
-                session.setAttribute("errorMessage", "休暇希望の送信に失敗しました。");
-                response.sendRedirect("error.jsp");  // エラーページにリダイレクト
+                e.printStackTrace();
+                // エラーが発生した場合は元のページにリダイレクト
+                response.sendRedirect("/Vacation_Desired_Date.jsp");
             }
         } else {
-            session.setAttribute("errorMessage", "休暇希望日と理由が一致しません。");
-            response.sendRedirect("error.jsp");
+            // 休暇希望日と理由が一致しない場合
+            response.sendRedirect("/Vacation_Desired_Date.jsp");
         }
+        return null;
     }
 }

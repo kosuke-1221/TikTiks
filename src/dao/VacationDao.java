@@ -10,7 +10,7 @@ import bean.VacationRequest;
 public class VacationDao {
 
     // データベース接続情報
-    private static final String JDBC_URL = "jdbc:h2:~/NSM"; // データベースのURLを設定
+    private static final String JDBC_URL = "jdbc:h2:tcp://localhost/~/NSM"; // データベースのURLを設定
     private static final String DB_USER = "sa"; // ユーザー名
     private static final String DB_PASSWORD = ""; // パスワード
 
@@ -23,19 +23,24 @@ public class VacationDao {
     public boolean insertVacationRequest(VacationRequest request) {
         String sql = "INSERT INTO vacation_requests (user_id, vacation_date, reason) VALUES (?, ?, ?)";
 
-        try (Connection conn = DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASSWORD);
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+        try {
+            // JDBCドライバのロード
+            Class.forName("org.h2.Driver");  // H2ドライバをロード
 
-            // パラメータを設定
-            pstmt.setString(1, request.getUserId());
-            pstmt.setString(2, request.getVacationDate());
-            pstmt.setString(3, request.getReason());
+            // データベース接続
+            try (Connection conn = DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASSWORD);
+                 PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
-            // 実行
-            int rowsInserted = pstmt.executeUpdate();
-            return rowsInserted > 0;
+                // パラメータを設定
+                pstmt.setString(1, request.getUserId());
+                pstmt.setString(2, request.getVacationDate());
+                pstmt.setString(3, request.getReason());
 
-        } catch (SQLException e) {
+                // 実行
+                int rowsInserted = pstmt.executeUpdate();
+                return rowsInserted > 0;
+            }
+        } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
             return false;
         }
