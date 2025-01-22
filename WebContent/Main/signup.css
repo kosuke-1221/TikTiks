@@ -3,10 +3,15 @@ body {
     font-family: Arial, sans-serif;
     background-color: #f7f7f7;
     display: flex;
-    justify-content: center;
-    align-items: center;  /* 垂直方向に中央配置 */
-    overflow-y: auto; /* 縦スクロールを許可 */
+    justify-content: flex-start;
+    /* 上部に配置 */
+    align-items: center;
+    /* 中央揃え */
+    overflow-y: auto;
+    /* 縦スクロールを許可 */
     flex-direction: column;
+    margin: 0;
+    padding: 0;
 }
 
 .form-container {
@@ -14,11 +19,18 @@ body {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
     width: 100%;
-    min-width: 500px;  /* 最小幅を設定 */
-    max-width: 1000px;  /* 最大幅を1000pxに設定 */
+    min-width: 500px;
     box-sizing: border-box;
-    overflow-y: auto; /* 必要に応じてスクロールバーを表示 */
-    border: 1px solid #ddd;  /* 周りを囲むボーダー */
+    border: 1px solid #ddd;
+    /* 周りを囲むボーダー */
+    margin-top: 100px;
+    /* 上部にスペースを追加 */
+    padding: 20px;
+    /* 内側の余白を追加 */
+    margin-left: auto;
+    /* 左右中央揃え */
+    margin-right: auto;
+    /* 左右中央揃え */
 }
 
 /* フォーム内のヘッダー */
@@ -38,20 +50,17 @@ body {
     display: block;
     font-size: 12px;
     color: #555;
-    margin-bottom: 3px;
 }
 
 .form-group input {
     width: 100%;
     padding: 6px;
     font-size: 14px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
 }
 
 /* エラーメッセージと成功メッセージ */
-.error-message, .success-message {
+.error-message,
+.success-message {
     font-size: 12px;
     color: #d9534f;
     margin-top: 5px;
