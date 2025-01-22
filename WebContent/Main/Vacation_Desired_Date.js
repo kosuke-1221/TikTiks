@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', function () {
         // リストが空の場合は送信しない
         if (offDayList.length === 0) {
             alert('休暇希望日が選択されていません。');
-            return false;  // 送信を止める
+            event.preventDefault(); // デフォルトの送信動作を防止
         }
 
         // リストの休暇日と理由をそれぞれhiddenフィールドにセット
