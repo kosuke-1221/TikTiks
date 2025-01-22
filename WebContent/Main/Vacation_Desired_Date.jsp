@@ -19,6 +19,12 @@
         <div class="container">
             <h1>😊休暇希望日提出😊</h1>
 
+            <!-- エラーメッセージがあれば表示 -->
+            <c:if test="${not empty sessionScope.errorMessage}">
+                <p style="color: red;">${sessionScope.errorMessage}</p>
+                <c:remove var="errorMessage" />  <!-- メッセージ表示後、セッションから削除 -->
+            </c:if>
+
 			<form action="Vacation_Desired.action" method="post">
 			    <label for="off-date">休暇希望日を選択してください:</label>
 			    <input type="date" id="off-date" name="off-date">
@@ -44,9 +50,6 @@
 
 			    <button type="submit" id="submit-off-days">休暇希望を送信</button>
 			</form>
-
-
-            <div id="result"></div>
         </div>
 
         <!-- JavaScriptファイルを読み込み -->

@@ -51,7 +51,7 @@
         <!-- 管理者専用 (AUTHORITYがtrueの場合に表示） -->
         <c:if test="${sessionScope.AUTHORITY}">
             <a href="menu2.jsp">メニュー</a>
-            <a href="shift-entry.jsp">シフト登録</a>
+            <a href="ShiftRegistration">シフト登録</a>
             <a href="shared_calender.jsp">カレンダー</a>
             <img src="MAGIC.png" alt="Logo" style="vertical-align: middle; margin-right: 10px;" />
         </c:if>
