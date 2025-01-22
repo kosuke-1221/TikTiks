@@ -16,6 +16,13 @@ try {
     return;
 }
 %>
+<%
+    HttpSession currentsession = request.getSession(false);
+    if (currentsession == null || currentsession.getAttribute("userID") == null) {
+        response.sendRedirect("login.jsp");
+        return;
+    }
+%>
 
 <!DOCTYPE html>
 <html>
@@ -128,7 +135,7 @@ try {
             ${errorMessage}
         </div>
     </c:if>
-    
+
     <div class="container">
         <div class="staff-list-container">
             <h3>出勤可能なスタッフ</h3>
@@ -138,7 +145,7 @@ try {
         <div class="calendar-container">
             <div id="calendar"></div>
         </div>
-        
+
         <div class="form-container">
             <h3>シフト登録フォーム</h3>
             <form action="ShiftRegistration" method="post" id="shiftForm">
@@ -205,17 +212,17 @@ try {
 
         function generateTimeOptions(startTime, endTime) {
             console.log('時間選択肢生成:', { startTime, endTime });
-            
+
             var options = ['<option value="">選択してください</option>'];
-            
+
             try {
                 var [startHour] = startTime.split(':').map(Number);
                 var [endHour] = endTime.split(':').map(Number);
-                
+
                 if (isNaN(startHour) || isNaN(endHour)) {
                     throw new Error('不正な時間形式');
                 }
-                
+
                 for (var hour = startHour; hour <= endHour; hour++) {
                     var paddedHour = (hour < 10 ? '0' : '') + hour;
                     var timeStr = paddedHour + ':00';
@@ -224,7 +231,7 @@ try {
             } catch (error) {
                 console.error('時間選択肢生成エラー:', error);
             }
-            
+
             return options.join('');
         }
 
@@ -232,24 +239,24 @@ try {
             if (!shift.selectedDays || typeof shift.selectedDays !== 'string') {
                 return false;
             }
-            
+
             var selectedDaysArray = shift.selectedDays
                 .toLowerCase()
                 .split(',')
                 .map(function(day) { return day.trim(); });
-            
+
             var normalizedDayName = dayName.toLowerCase();
-            
-            return shift.alwaysAvailable === true || 
+
+            return shift.alwaysAvailable === true ||
                    selectedDaysArray.includes(normalizedDayName);
         }
 
         function updateStaffList(dayName) {
             console.log('スタッフリスト更新:', dayName);
-            
+
             var staffList = document.getElementById('available-staff-list');
             staffList.innerHTML = '';
-            
+
             shiftsData.forEach(function(shift) {
                 if (isStaffAvailable(shift, dayName)) {
                     var li = createStaffListItem(shift, dayName);
@@ -261,37 +268,37 @@ try {
         function createStaffListItem(shift, dayName) {
             var li = document.createElement('li');
             li.textContent = shift.userName || shift.userId;
-            
+
             var startTimeKey = dayName.toLowerCase() + 'StartTime';
             var endTimeKey = dayName.toLowerCase() + 'EndTime';
-            
+
             if (shift[startTimeKey] && shift[endTimeKey]) {
                 li.title = shift[startTimeKey] + '-' + shift[endTimeKey];
             }
-            
+
             li.onclick = function() {
                 handleStaffSelection(this, shift, dayName);
             };
-            
+
             return li;
         }
 
         function handleStaffSelection(listItem, shift, dayName) {
             console.log('スタッフ選択:', { shift, dayName });
-            
+
             var startTimeKey = dayName.toLowerCase() + 'StartTime';
             var endTimeKey = dayName.toLowerCase() + 'EndTime';
-            
+
             document.querySelectorAll('#available-staff-list li').forEach(function(item) {
                 item.classList.remove('selected');
             });
             listItem.classList.add('selected');
-            
+
             document.getElementById('user_id').value = shift.userId;
-            
+
             var startTime = shift[startTimeKey];
             var endTime = shift[endTimeKey];
-            
+
             if (startTime && endTime) {
                 updateTimeSelections(startTime, endTime);
             } else {
@@ -301,13 +308,13 @@ try {
 
         function updateTimeSelections(startTime, endTime) {
             console.log('時間選択の更新:', { startTime, endTime });
-            
+
             var startSelect = document.getElementById('start_time');
             var endSelect = document.getElementById('end_time');
-            
+
             try {
                 startSelect.innerHTML = generateTimeOptions(startTime, endTime);
-                
+
                 startSelect.onchange = function() {
                     if (this.value) {
                         endSelect.innerHTML = generateTimeOptions(this.value, endTime);
@@ -315,7 +322,7 @@ try {
                         endSelect.innerHTML = '<option value="">選択してください</option>';
                     }
                 };
-                
+
                 endSelect.innerHTML = '<option value="">選択してください</option>';
             } catch (error) {
                 console.error('時間選択の更新エラー:', error);
@@ -327,7 +334,7 @@ try {
             document.getElementById('start_time').innerHTML = '<option value="">選択してください</option>';
             document.getElementById('end_time').innerHTML = '<option value="">選択してください</option>';
             document.getElementById('note').value = '';
-            
+
             document.querySelectorAll('#available-staff-list li').forEach(function(item) {
                 item.classList.remove('selected');
             });
@@ -346,42 +353,42 @@ try {
                     if (selectedDateEl) {
                         selectedDateEl.style.backgroundColor = '';
                     }
-                    
+
                     info.dayEl.style.backgroundColor = '#e7f5ff';
                     selectedDateEl = info.dayEl;
-                    
+
                     document.getElementById('shift_date').value = info.dateStr;
-                    
+
                     var clickedDate = new Date(info.dateStr);
                     var dayOfWeek = clickedDate.getDay();
                     var dayNames = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
                     var dayName = dayNames[dayOfWeek];
-                    
+
                     updateStaffList(dayName);
                     resetForm();
                 }
             });
-            
+
             calendar.render();
-            
+
             document.getElementById('shiftForm').onsubmit = function(e) {
                 var userId = document.getElementById('user_id').value;
                 var shiftDate = document.getElementById('shift_date').value;
                 var startTime = document.getElementById('start_time').value;
                 var endTime = document.getElementById('end_time').value;
-                
+
                 if (!userId || !shiftDate || !startTime || !endTime) {
                     alert('すべての必須項目を入力してください');
                     e.preventDefault();
                     return false;
                 }
-                
+
                 if (startTime >= endTime) {
                     alert('終了時間は開始時間より後にしてください');
                     e.preventDefault();
                     return false;
                 }
-                
+
                 return true;
             };
         });
