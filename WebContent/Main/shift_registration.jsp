@@ -174,6 +174,22 @@
                                                 text-align: center;
                                                 margin: 0;
                                             }
+
+                                            .fc-day-sat {
+                                                color: blue;
+                                            }
+
+                                            .fc-day-sun {
+                                                color: red;
+                                            }
+
+                                            .fc-daygrid-day.fc-day-today {
+                                                background-color: #e7f5ff;
+                                            }
+
+                                            .fc-daygrid-day.fc-day-selected {
+                                                background-color: #d4edda;
+                                            }
                                         </style>
                                     </head>
 
@@ -410,14 +426,14 @@
                                                                 headerToolbar: {
                                                                     left: 'prev,next today',
                                                                     center: 'title',
-                                                                    right: 'dayGridMonth,timeGridWeek'
+                                                                    right: 'dayGridMonth'
                                                                 },
                                                                 dateClick: function (info) {
                                                                     if (selectedDateEl) {
-                                                                        selectedDateEl.style.backgroundColor = '';
+                                                                        selectedDateEl.classList.remove('fc-day-selected');
                                                                     }
 
-                                                                    info.dayEl.style.backgroundColor = '#e7f5ff';
+                                                                    info.dayEl.classList.add('fc-day-selected');
                                                                     selectedDateEl = info.dayEl;
 
                                                                     document.getElementById('shift_date').value = info.dateStr;
