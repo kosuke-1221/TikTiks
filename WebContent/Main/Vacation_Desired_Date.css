@@ -72,6 +72,10 @@ th, td {
     text-align: center;
 }
 
+label {
+	color: #4CAF50;
+}
+
 #result {
     margin-top: 20px;
     font-size: 18px;
