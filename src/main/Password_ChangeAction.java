@@ -6,34 +6,32 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dao.Database;
+import tool.Action;  // Actionã‚¯ãƒ©ã‚¹ã‚’ã‚¤ãƒ³ãƒãƒ¼ãƒˆ
 
-
-
-public class Password_ChangeAction extends HttpServlet {
-
+public class Password_ChangeAction extends Action {
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+    public String execute(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        // ƒtƒH[ƒ€ƒf[ƒ^‚ğæ“¾
-        String userID = (String) request.getSession().getAttribute("userID"); // ƒƒOƒCƒ“ƒZƒbƒVƒ‡ƒ“‚©‚çæ“¾
+        // ãƒ•ã‚©ãƒ¼ãƒ ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—
+        String userID = (String) request.getSession().getAttribute("userID"); // ãƒ­ã‚°ã‚¤ãƒ³ã‚»ãƒƒã‚·ãƒ§ãƒ³ã‹ã‚‰å–å¾—
         String currentPassword = request.getParameter("currentPassword");
         String newPassword = request.getParameter("newPassword");
         String confirmPassword = request.getParameter("confirmPassword");
 
-        // ƒpƒXƒ[ƒhˆê’vƒ`ƒFƒbƒN
+        // ãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰ä¸€è‡´ãƒã‚§ãƒƒã‚¯
         if (!newPassword.equals(confirmPassword)) {
-            request.setAttribute("errorMessage", "V‚µ‚¢ƒpƒXƒ[ƒh‚ªˆê’v‚µ‚Ü‚¹‚ñB");
-            request.getRequestDispatcher("/Password_Change.jsp").forward(request, response);
-            return;
+            request.getSession().setAttribute("errorMessage", "æ–°ã—ã„ãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰ãŒä¸€è‡´ã—ã¾ã›ã‚“ã€‚");
+            System.out.println("Error: æ–°ã—ã„ãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰ãŒä¸€è‡´ã—ã¾ã›ã‚“ã€‚");
+            response.sendRedirect("Password_Change.jsp"); // ãƒªãƒ€ã‚¤ãƒ¬ã‚¯ãƒˆã—ã¦ãƒ•ã‚©ãƒ¼ãƒ ã‚’å†è¡¨ç¤º
+            return null;
         }
 
-        // ƒf[ƒ^ƒx[ƒXÚ‘±‚ÆXVˆ—
+        // ãƒ‡ãƒ¼ã‚¿ãƒ™ãƒ¼ã‚¹æ¥ç¶šã¨æ›´æ–°å‡¦ç†
         String selectSql = "SELECT password FROM users WHERE user_id = ?";
         String updateSql = "UPDATE users SET password = ? WHERE user_id = ?";
 
@@ -41,41 +39,49 @@ public class Password_ChangeAction extends HttpServlet {
              PreparedStatement selectStmt = connection.prepareStatement(selectSql);
              PreparedStatement updateStmt = connection.prepareStatement(updateSql)) {
 
-            // Œ»İ‚ÌƒpƒXƒ[ƒh‚ğŠm”F
+            // ç¾åœ¨ã®ãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰ã‚’ç¢ºèª
             selectStmt.setString(1, userID);
             ResultSet rs = selectStmt.executeQuery();
 
             if (rs.next()) {
                 String dbPassword = rs.getString("password");
 
+                // ãƒ—ãƒ¬ãƒ¼ãƒ³ãƒ†ã‚­ã‚¹ãƒˆã®ãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰ã‚’ç›´æ¥æ¯”è¼ƒ
                 if (!dbPassword.equals(currentPassword)) {
-                    request.setAttribute("errorMessage", "Œ»İ‚ÌƒpƒXƒ[ƒh‚ª³‚µ‚­‚ ‚è‚Ü‚¹‚ñB");
-                    request.getRequestDispatcher("/Password_Change.jsp").forward(request, response);
-                    return;
+                    request.getSession().setAttribute("errorMessage", "ç¾åœ¨ã®ãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰ãŒæ­£ã—ãã‚ã‚Šã¾ã›ã‚“ã€‚");
+                    System.out.println("Error: ç¾åœ¨ã®ãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰ãŒæ­£ã—ãã‚ã‚Šã¾ã›ã‚“");
+                    response.sendRedirect("Password_Change.jsp"); // ãƒªãƒ€ã‚¤ãƒ¬ã‚¯ãƒˆã—ã¦ãƒ•ã‚©ãƒ¼ãƒ ã‚’å†è¡¨ç¤º
+                    return null;
                 }
             } else {
-                request.setAttribute("errorMessage", "ƒ†[ƒU[î•ñ‚ªŒ©‚Â‚©‚è‚Ü‚¹‚ñB");
-                request.getRequestDispatcher("/Password_Change.jsp").forward(request, response);
-                return;
+                request.getSession().setAttribute("errorMessage", "ãƒ¦ãƒ¼ã‚¶ãƒ¼æƒ…å ±ãŒè¦‹ã¤ã‹ã‚Šã¾ã›ã‚“ã€‚");
+                System.out.println("Error: ãƒ¦ãƒ¼ã‚¶ãƒ¼æƒ…å ±ãŒè¦‹ã¤ã‹ã‚Šã¾ã›ã‚“");
+                response.sendRedirect("Password_Change.jsp"); // ãƒªãƒ€ã‚¤ãƒ¬ã‚¯ãƒˆã—ã¦ãƒ•ã‚©ãƒ¼ãƒ ã‚’å†è¡¨ç¤º
+                return null;
             }
 
-            // V‚µ‚¢ƒpƒXƒ[ƒh‚ÉXV
-            updateStmt.setString(1, newPassword);
+            // æ–°ã—ã„ãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰ã«æ›´æ–°
+            updateStmt.setString(1, newPassword);  // ãƒãƒƒã‚·ãƒ¥åŒ–ã›ãšã«ãã®ã¾ã¾ä¿å­˜
             updateStmt.setString(2, userID);
             int result = updateStmt.executeUpdate();
 
             if (result > 0) {
-                request.setAttribute("successMessage", "ƒpƒXƒ[ƒh‚ª³í‚ÉXV‚³‚ê‚Ü‚µ‚½B");
+                System.out.println("ãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰ãŒæ­£å¸¸ã«æ›´æ–°ã•ã‚Œã¾ã—ãŸã€‚");
+                response.sendRedirect("Password_Completion.jsp"); //å¤‰æ›´å®Œäº†ãƒšãƒ¼ã‚¸
             } else {
-                request.setAttribute("errorMessage", "ƒpƒXƒ[ƒhXV’†‚ÉƒGƒ‰[‚ª”­¶‚µ‚Ü‚µ‚½B");
+                request.getSession().setAttribute("errorMessage", "ãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰æ›´æ–°ä¸­ã«ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¾ã—ãŸã€‚");
+                System.out.println("Error: ãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰æ›´æ–°ä¸­ã«ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¾ã—ãŸ");
+                response.sendRedirect("Password_Change.jsp"); // ãƒªãƒ€ã‚¤ãƒ¬ã‚¯ãƒˆã—ã¦ãƒ•ã‚©ãƒ¼ãƒ ã‚’å†è¡¨ç¤º
+                return null;
             }
 
         } catch (Exception e) {
             e.printStackTrace();
-            request.setAttribute("errorMessage", "ƒT[ƒo[ƒGƒ‰[‚ª”­¶‚µ‚Ü‚µ‚½B");
+            request.getSession().setAttribute("errorMessage", "ã‚µãƒ¼ãƒãƒ¼ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¾ã—ãŸã€‚");
+            System.out.println("Error: ã‚µãƒ¼ãƒãƒ¼ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¾ã—ãŸ");
+            response.sendRedirect("Password_Change.jsp"); // ãƒªãƒ€ã‚¤ãƒ¬ã‚¯ãƒˆã—ã¦ãƒ•ã‚©ãƒ¼ãƒ ã‚’å†è¡¨ç¤º
+            return null;
         }
-
-        // Œ‹‰Ê‚ğ•Ô‚·
-        request.getRequestDispatcher("/Password_Change.jsp").forward(request, response);
+        return null;
     }
 }

@@ -15,47 +15,71 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>パスワード更新</title>
     <link href="Password_Change.css" rel="stylesheet" />
+    <script src="Password_Change.js"></script>
 </head>
 
 <body>
     <c:import url="base.jsp">
-        <c:param name="title"></c:param>
-        <c:param name="scripts"></c:param>
-        <c:param name="content">
-            <section class="me-4">
+    <c:param name="title"></c:param>
+    <c:param name="scripts"></c:param>
+    <c:param name="content">
+    <section class="me-4">
 
-                <div class="form-container">
-                    <h2>😊パスワード変更😊</h2>
+        <div class="form-container">
+            <h2>😊パスワード変更😊</h2>
 
-                    <!-- サーバー側のメッセージを表示 -->
-                    <c:if test="${not empty errorMessage}">
-                        <div class="error">${errorMessage}</div>
-                    </c:if>
-                    <c:if test="${not empty successMessage}">
-                        <div class="success">${successMessage}</div>
-                    </c:if>
-						<form id="passwordUpdateForm" action="/TikTiks/main/Password_ChangeAction" method="POST">
-                        <div class="form-group">
-                            <label for="currentPassword">現在のパスワード</label>
-                            <input type="password" id="currentPassword" name="currentPassword" placeholder="現在のパスワード" required>
-                        </div>
+		    <!-- エラーメッセージ表示 -->
+		    <c:if test="${not empty sessionScope.errorMessage}">
+		        <div class="error-message" style="color: red;">
+		            ${sessionScope.errorMessage}
+		        </div>
+		        <c:remove var="errorMessage" scope="session" />
+		    </c:if>
 
-                        <div class="form-group">
-                            <label for="newPassword">新しいパスワード</label>
-                            <input type="password" id="newPassword" name="newPassword" placeholder="新しいパスワード" required>
-                        </div>
+		    <!-- 変更フォーム -->
+            <form id="passwordUpdateForm" action="Password_Change.action" method="POST">
+                <!-- 現在のパスワード -->
+                <div class="form-group">
+                    <label for="currentPassword">現在のパスワード</label>
+                    <div class="password-container">
+                        <input type="password" id="currentPassword" name="currentPassword" placeholder="現在のパスワード" required>
+                        <button type="button" class="toggle-password" onclick="togglePasswordVisibility('currentPassword', this)">
+                                <span class="eye-icon"></span>
 
-                        <div class="form-group">
-                            <label for="confirmPassword">新しいパスワード（確認）</label>
-                            <input type="password" id="confirmPassword" name="confirmPassword" placeholder="新しいパスワードを再入力" required>
-                        </div>
-
-                        <button type="submit">更新</button>
-                    </form>
+                        </button>
+                    </div>
                 </div>
 
-            </section>
-        </c:param>
+                <!-- 新しいパスワード -->
+                <div class="form-group">
+                    <label for="newPassword">新しいパスワード</label>
+                    <div class="password-container">
+                        <input type="password" id="newPassword" name="newPassword" placeholder="パスワードは8文字以上で、大文字、小文字、数字を含めてください。" required>
+                        <button type="button" class="toggle-password" onclick="togglePasswordVisibility('newPassword', this)">
+                                <span class="eye-icon"></span>
+
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 確認用パスワード -->
+                <div class="form-group">
+                    <label for="confirmPassword">新しいパスワード（確認）</label>
+                    <div class="password-container">
+                        <input type="password" id="confirmPassword" name="confirmPassword" placeholder="新しいパスワードを再入力" required>
+                        <button type="button" class="toggle-password" onclick="togglePasswordVisibility('confirmPassword', this)">
+                                <span class="eye-icon"></span>
+
+                        </button>
+                    </div>
+                </div>
+
+                <button type="submit">変更</button>
+            </form>
+        </div>
+
+    </section>
+    </c:param>
     </c:import>
 </body>
 
