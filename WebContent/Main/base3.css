@@ -1,0 +1,315 @@
+/* ヘッダーのスタイル */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #4caf50;
+    /* 緑色 */
+    color: white;
+    padding: 15px 20px;
+    font-size: 1.5em;
+    font-weight: bold;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 20;
+    box-sizing: border-box;
+    gap: 20px;
+    /* ヘッダー内の要素間にスペースを追加 */
+}
+
+.header-title a {
+    color: white;
+    /* リンクの文字色を白に設定 */
+    text-decoration: none;
+    /* 下線を削除 */
+}
+
+/* ヘッダー内のユーザー名用スタイル */
+.header-user {
+    font-size: 1em;
+    /* ユーザー名のフォントサイズ */
+    font-weight: normal;
+    margin-right: 20px;
+    /* 他の要素との間隔を確保 */
+    white-space: nowrap;
+    /* テキストが折り返されないようにする */
+}
+
+
+.sidebar img {
+    display: block;
+    /* 画像をブロック要素にして中央揃えを可能に */
+    margin: 6px auto;
+    /* 上下20pxの余白と左右中央揃え */
+    width: 100%;
+    /* 画像の幅を80%に設定 */
+    max-width: 300px;
+    /* 幅の最大値を200pxに設定 */
+    height: auto;
+    /* 縦横比を維持する */
+    object-fit: contain;
+    /* 縦横比を保ちながらコンテナに収める */
+}
+
+
+/* サイドバーのスタイル */
+.sidebar {
+    width: 250px;
+    height: 100vh;
+    position: fixed;
+    top: 60px;
+    /* ヘッダーの高さ分だけずらす */
+    left: 0;
+    background-color: #e8f5e9;
+    /* 薄い緑色 */
+    color: #4caf50;
+    /* 緑色 */
+    padding-top: 20px;
+    font-size: 1.1em;
+    z-index: 10;
+    display: block;
+}
+
+/* メインコンテンツのスタイル */
+.content {
+    /* margin-left: 250px; */
+    /* サイドバーの幅を考慮 */
+    margin-top: 0px;
+    /* ヘッダーの高さを考慮 */
+    margin-bottom: 50px;
+    /* フッター分のスペース */
+    padding: 0px;
+    box-sizing: border-box;
+    min-height: calc(100vh - 110px);
+    /* ヘッダーとフッターを除いた高さを確保 */
+    width: 100%;
+}
+
+/* サイドバーリンクのスタイル */
+.sidebar a {
+    display: block;
+    color: #4caf50;
+    /* 緑色 */
+    padding: 10px;
+    text-decoration: none;
+    background-color: #e8f5e9;
+    /* 薄い緑色 */
+}
+
+.sidebar a:hover {
+    background-color: #c8e6c9;
+    /* ホバー時に少し濃い緑色 */
+}
+
+.headerselect {
+    padding: 10px;
+    margin-bottom: 10px;
+    width: 100%;
+    border-radius: 5px;
+    border: 1px solid #388e3c;
+    /* 深緑のボーダー */
+    background-color: #66bb6a;
+    /* ライトグリーン */
+    color: white;
+}
+
+.headerselect:hover {
+    background-color: #2e7d32;
+    /* やや暗い緑色 */
+}
+
+.footer {
+    position: relative;
+    /* z-indexを有効にするために追加 */
+    width: 100%;
+    z-index: 25;
+    /* サイドバーより高い値に設定 */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #4caf50;
+    /* 緑色 */
+    color: white;
+    padding: 15px 20px;
+    font-weight: bold;
+    box-sizing: border-box;
+    gap: 20px;
+    /* フッター内の要素間にスペースを追加 */
+}
+
+/* フッターの内容を中央揃え */
+.footer-content {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+/* その他のスタイル */
+.section-title {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    color: #4caf50;
+    /* 緑色 */
+}
+
+input {
+    padding: 10px;
+    margin-bottom: 10px;
+    width: 100%;
+    border-radius: 5px;
+    border: 1px solid #4caf50;
+    /* 緑色 */
+}
+
+.sidebar-toggle {
+    display: none;
+    /* デフォルトではボタンを非表示にする */
+}
+
+
+/* メディアクエリ（スマホ用） */
+/* メディアクエリ（スマホ用） */
+@media (max-width: 768px) {
+
+    /* 基本フォントサイズ */
+    html {
+        font-size: 14px;
+        /* スマホ用に基本フォントサイズを小さく */
+    }
+
+    /* ヘッダー */
+    header {
+        font-size: 0.5em;
+        /* ヘッダー全体のフォントサイズを調整 */
+        height: 50px;
+        /* スマホ用のヘッダー高さ */
+        flex-direction: column;
+        /* 子要素を縦並びに */
+        align-items: center;
+        /* 子要素を中央揃え */
+        padding: 10px 20px;
+        /* 内側の余白を調整 */
+    }
+
+    .header-title {
+        display: flex;
+        flex-direction: column;
+        /* タイトルとユーザー名を縦並びに */
+        height: 100px;
+    }
+
+    /* タイトルのリンク */
+    .header-title a {
+        font-size: 10px;
+        /* タイトルのフォントサイズを調整 */
+        color: white;
+        /* タイトルの文字色 */
+        text-decoration: none;
+        /* 下線を削除 */
+        height: 1px;
+    }
+
+    /* ユーザー名のスタイル */
+    .header-user {
+        font-size: 14px;
+        /* フォントサイズを小さめに */
+        color: white;
+        /* 文字色を白に */
+    }
+
+    /* セレクトボックス（右上に配置） */
+    .header-select {
+        position: absolute;
+        /* 位置を絶対指定 */
+        top: 5px;
+        /* ヘッダー内の上部に配置 */
+        right: 5px;
+        /* 右端に配置 */
+        font-size: 0.8em;
+        /* ユーザー名とセレクトボックスの文字サイズを小さく */
+        height: 25px;
+        /* セレクトボックスの高さを小さく */
+        width: 105px;
+    }
+
+    .sidebar-toggle {
+        display: block;
+        /* サイドバーを開くボタンを表示 */
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 50px;
+        height: 50px;
+        font-size: 20px;
+        /* ボタン内のアイコンサイズ */
+        text-align: center;
+        line-height: 50px;
+        background-color: #4caf50;
+        /* 元の緑色 */
+        color: white;
+        border: none;
+        /* ボーダーをなくす */
+        outline: none;
+        /* フォーカス時の黒枠を消す */
+        cursor: pointer;
+        /* クリック可能にする */
+        z-index: 1001;
+        /* 他の要素より前面に表示 */
+    }
+
+    /* サイドバー */
+    .sidebar {
+        display: none;
+        /* デフォルトでは非表示 */
+        padding-top: 50px;
+        /* ヘッダーと重ならないよう調整 */
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        /* 画面全体を覆う */
+        height: 100vh;
+        /* サイドバーの高さを画面全体に設定 */
+    }
+
+    .sidebar a {
+        font-size: 1em;
+        /* サイドバーのリンクの文字サイズ */
+        padding: 8px;
+        /* 上下余白を調整 */
+    }
+
+    .sidebar img {
+        display: block;
+        /* 画像をブロック要素にして中央揃えを可能に */
+        margin-left: 50px;
+
+    }
+
+    /* メインコンテンツ */
+    .content {
+        margin-top: 50px;
+        /* スマホ用ヘッダーの高さを考慮 */
+        margin-left: 0;
+        /* サイドバーを非表示にするため左マージンを削除 */
+        font-size: 0.95em;
+        /* コンテンツの文字サイズを小さく調整 */
+        line-height: 1.5;
+        /* 行間をやや狭く */
+    }
+
+    .main-banner {
+        font-size: 1.8em;
+    }
+
+    h1 {
+        font-size: 1.8em;
+    }
+
+    /* フッター */
+    .footer {
+        font-size: 0.8em;
+        /* フッターの文字サイズ */
+    }
+}
