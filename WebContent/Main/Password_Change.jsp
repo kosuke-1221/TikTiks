@@ -44,8 +44,7 @@
                     <div class="password-container">
                         <input type="password" id="currentPassword" name="currentPassword" placeholder="現在のパスワード" required>
                         <button type="button" class="toggle-password" onclick="togglePasswordVisibility('currentPassword', this)">
-                                <span class="eye-icon"></span>
-
+                        	<span class="eye-icon"></span>
                         </button>
                     </div>
                 </div>
@@ -56,8 +55,7 @@
                     <div class="password-container">
                         <input type="password" id="newPassword" name="newPassword" placeholder="パスワードは8文字以上で、大文字、小文字、数字を含めてください。" required>
                         <button type="button" class="toggle-password" onclick="togglePasswordVisibility('newPassword', this)">
-                                <span class="eye-icon"></span>
-
+                        	<span class="eye-icon"></span>
                         </button>
                     </div>
                 </div>
@@ -68,8 +66,7 @@
                     <div class="password-container">
                         <input type="password" id="confirmPassword" name="confirmPassword" placeholder="新しいパスワードを再入力" required>
                         <button type="button" class="toggle-password" onclick="togglePasswordVisibility('confirmPassword', this)">
-                                <span class="eye-icon"></span>
-
+                        	<span class="eye-icon"></span>
                         </button>
                     </div>
                 </div>

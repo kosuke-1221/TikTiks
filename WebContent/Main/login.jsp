@@ -31,8 +31,8 @@
             font-size: 1rem;
             color: #333;
             padding: 0;
-            height: 1.5rem;
-            width: 1.5rem;
+            height: 20px;
+            width: 20px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -64,7 +64,9 @@
                     <label for="password">パスワード</label>
                     <div class="password-container">
                         <input type="password" id="password" name="password" placeholder="パスワードを入力" required />
-                        <button type="button" class="toggle-password" onclick="togglePasswordVisibility()">👁</button>
+                        <button type="button" class="toggle-password" onclick="togglePasswordVisibility()">
+                        	<span class="eye-icon"></span>
+                        </button>
                     </div>
 
                     <!-- エラーメッセージ表示 -->
@@ -88,8 +90,11 @@
 <script>
     function togglePasswordVisibility() {
         const passwordInput = document.getElementById("password");
+        const button = document.querySelector(".toggle-password"); // ボタンの参照を取得
         const type = passwordInput.type === "password" ? "text" : "password";
         passwordInput.type = type;
+        // アイコンの切り替え
+        button.classList.toggle('active');
     }
 </script>
 </body>
