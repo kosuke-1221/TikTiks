@@ -25,7 +25,18 @@
 
     <div class="container">
         <h1>😊変更が完了しました😊</h1>
-        <button class="button" onclick="location.href='<%= request.getContextPath() %>/Main/menu.jsp'">メインメニューに戻る</button>
+			<%
+			    // ユーザーの役割をセッションから取得
+			    Boolean role = (Boolean) session.getAttribute("AUTHORITY"); // "AUTHORITY" は Boolean 型
+
+			    String targetPage = "menu2.jsp"; // デフォルトは管理者のページ
+
+			    // もし役割が "user"（管理者ではない）であれば、従業員用ページに変更
+			    if (role != null && !role) {
+			        targetPage = "menu.jsp";
+			    }
+			%>
+			<button class="button" onclick="location.href='<%= request.getContextPath() %>/Main/<%= targetPage %>'">メインメニューに戻る</button>
         <br>
     </div>
 
