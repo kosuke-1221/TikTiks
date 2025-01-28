@@ -25,7 +25,7 @@
             padding: 30px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             text-align: center;
-            width: 80%;
+            width: 130%;
             max-width: 400px;
             margin-top: 160px; /* 表示を少し下にずらす */
         }
