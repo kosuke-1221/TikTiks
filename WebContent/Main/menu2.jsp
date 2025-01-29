@@ -31,7 +31,10 @@
                     <h3>シフト登録</h3>
                     <p>簡単にシフトを登録できます。</p>
                 </a>
-
+                 <a href="VacationRequestList" class="card">
+                    <h3>休暇希望リスト</h3>
+                    <p>従業員の休暇日、理由を確認。</p>
+                  </a>
                 <!-- カード3 -->
                 <a href="shared_calender.jsp" class="card">
                     <h3>共有カレンダー</h3>

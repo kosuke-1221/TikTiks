@@ -52,6 +52,7 @@
         <c:if test="${sessionScope.AUTHORITY}">
             <a href="menu2.jsp">メニュー</a>
             <a href="ShiftRegistration">シフト登録</a>
+            <a href="VacationRequestList">休暇希望リスト</a>
             <a href="shared_calender.jsp">カレンダー</a>
             <img src="MAGIC.png" alt="Logo" style="vertical-align: middle; margin-right: 10px;" />
         </c:if>

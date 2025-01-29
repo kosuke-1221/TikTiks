@@ -5,6 +5,8 @@ public class VacationRequest {
     private String userId;
     private String vacationDate;
     private String reason;
+    private String userName; // 名前を追加
+    private String phoneNumber; // 電話番号を追加
 
     // コンストラクタ
     public VacationRequest() {}
@@ -46,5 +48,21 @@ public class VacationRequest {
 
     public void setReason(String reason) {
         this.reason = reason;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 }

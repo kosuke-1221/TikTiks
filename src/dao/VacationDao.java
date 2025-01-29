@@ -3,7 +3,10 @@ package dao;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import bean.VacationRequest;
 
@@ -30,8 +33,6 @@ public class VacationDao {
             // データベース接続
             try (Connection conn = DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASSWORD);
                  PreparedStatement pstmt = conn.prepareStatement(sql)) {
-
-                // パラメータを設定
                 pstmt.setString(1, request.getUserId());
                 pstmt.setString(2, request.getVacationDate());
                 pstmt.setString(3, request.getReason());
@@ -44,5 +45,37 @@ public class VacationDao {
             e.printStackTrace();
             return false;
         }
+    }
+
+    /**
+     * 休暇申請を全て取得するメソッド
+     *
+     * @return 休暇申請のリスト
+     */
+    public List<VacationRequest> getAllVacationRequests() {
+        List<VacationRequest> vacationRequests = new ArrayList<>();
+        String sql = "SELECT vr.vacation_date, u.name, vr.reason, u.phone_number FROM vacation_requests vr JOIN users u ON vr.user_id = u.user_id";
+
+        try {
+            // JDBCドライバのロード
+            Class.forName("org.h2.Driver");  // H2ドライバをロード
+
+            // データベース接続
+            try (Connection conn = DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASSWORD);
+                 PreparedStatement ps = conn.prepareStatement(sql);
+                 ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    VacationRequest request = new VacationRequest();
+                    request.setVacationDate(rs.getString("vacation_date"));
+                    request.setUserName(rs.getString("name"));
+                    request.setReason(rs.getString("reason"));
+                    request.setPhoneNumber(rs.getString("phone_number"));
+                    vacationRequests.add(request);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return vacationRequests;
     }
 }
