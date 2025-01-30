@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 // フォーム送信時にバリデーション
-document.getElementById('shiftForm').addEventListener('submit', function(event) {
+document.getElementById('shiftForm').addEventListener('submit', function (event) {
     const errorContainer = document.getElementById('error-messages');
     if (errorContainer) {
         errorContainer.style.display = 'none'; // エラーメッセージをクリア
@@ -156,3 +156,4 @@ function displayErrorMessages(messages) {
         console.error('エラーメッセージのコンテナが見つかりません');
     }
 }
+
