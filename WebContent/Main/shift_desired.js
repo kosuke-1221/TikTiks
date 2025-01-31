@@ -157,3 +157,48 @@ function displayErrorMessages(messages) {
     }
 }
 
+// ...existing code...
+
+// エラーメッセージをページ上に表示
+function displayErrorMessages(messages) {
+    const errorContainer = document.getElementById('error-messages');
+    if (errorContainer) {
+        errorContainer.innerHTML = messages.replace(/\n/g, '<br>'); // 改行を <br> に変換して表示
+        errorContainer.style.display = 'block'; // エラーメッセージを表示
+    } else {
+        console.error('エラーメッセージのコンテナが見つかりません');
+    }
+}
+
+// 送信ボタンを無効化する関数
+function disableSubmitButton() {
+    const submitButton = document.querySelector('button[type="submit"]');
+    if (submitButton) {
+        submitButton.disabled = true;
+        localStorage.setItem('submitButtonDisabled', 'true'); // 無効化状態をローカルストレージに保存
+    } else {
+        console.error('送信ボタンが見つかりません');
+    }
+}
+
+// 送信ボタンの無効化状態を復元する関数
+function restoreSubmitButtonState() {
+    const submitButton = document.querySelector('button[type="submit"]');
+    if (submitButton && localStorage.getItem('submitButtonDisabled') === 'true') {
+        submitButton.disabled = true;
+    }
+}
+
+// ページ読み込み時に送信ボタンの無効化状態を復元
+document.addEventListener('DOMContentLoaded', function () {
+    restoreSubmitButtonState();
+
+    // フォームの送信イベントにリスナーを追加
+    const form = document.querySelector('form');
+    if (form) {
+        form.addEventListener('submit', function (event) {
+            disableSubmitButton(); // 送信ボタンを無効化
+        });
+    }
+    // ...existing code...
+});
