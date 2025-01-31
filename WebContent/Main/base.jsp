@@ -45,6 +45,7 @@
             <a href="shift_desired.jsp">出勤可能日時</a>
             <a href="Vacation_Desired_Date.jsp">休暇希望日</a>
             <a href="shared_calender.jsp">カレンダー</a>
+                        <a href="News.action">お知らせ</a>
             <img src="MAGIC.png" alt="Logo" style="vertical-align: middle; margin-right: 10px;" />
         </c:if>
 
@@ -54,6 +55,7 @@
             <a href="ShiftRegistration">シフト登録</a>
             <a href="VacationRequestList">休暇希望リスト</a>
             <a href="shared_calender.jsp">カレンダー</a>
+                          <a href="News.action">お知らせ</a>
             <img src="MAGIC.png" alt="Logo" style="vertical-align: middle; margin-right: 10px;" />
         </c:if>
 

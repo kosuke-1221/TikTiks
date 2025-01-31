@@ -5,14 +5,21 @@ public class Notification {
     private byte[] p256dh;
     private byte[] auth;
     private byte[] payload; // 例：プッシュ通知のペイロード（必要な場合）
+    private String title; // 通知のタイトル
+    private String message; // 通知のメッセージ
 
     // 引数を持つコンストラクタ
-    public Notification(String endpoint, byte[] p256dh, byte[] auth, byte[] payload) {
+    public Notification(String endpoint, byte[] p256dh, byte[] auth, byte[] payload, String title, String message) {
         this.endpoint = endpoint;
         this.p256dh = p256dh;
         this.auth = auth;
         this.payload = payload;
+        this.title = title;
+        this.message = message;
     }
+
+    // 引数なしのコンストラクタ（必要に応じて）
+    public Notification() {}
 
     // ゲッターとセッター
     public String getEndpoint() {
@@ -45,5 +52,21 @@ public class Notification {
 
     public void setPayload(byte[] payload) {
         this.payload = payload;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
     }
 }
