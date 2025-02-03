@@ -74,22 +74,57 @@ function addComment(button) {
     }
 }
 
+
 if ('serviceWorker' in navigator && 'PushManager' in window) {
     navigator.serviceWorker.register('service-worker.js')
         .then(swReg => {
             console.log('Service Worker Registered', swReg);
-            return swReg.pushManager.subscribe({
-                userVisibleOnly: true,
-                applicationServerKey: 'YOUR_PUBLIC_VAPID_KEY'
-            });
+
+            // サーバーから公開鍵を取得して、base64url形式に変換
+            fetch('/get-public-key')  // サーバー側で公開鍵を取得するエンドポイントを作成
+                .then(response => response.text())
+                .then(publicKey => {
+                    // Base64形式の公開鍵をBase64URL形式に変換
+                    const applicationServerKey = base64UrlEncode(publicKey);
+
+                    // PushManagerで購読を開始
+                    return swReg.pushManager.subscribe({
+                        userVisibleOnly: true,
+                        applicationServerKey: base64UrlToUint8Array(applicationServerKey)
+                    });
+                })
+                .then(subscription => {
+                    return fetch('/subscribe', {
+                        method: 'POST',
+                        body: JSON.stringify(subscription),
+                        headers: { 'Content-Type': 'application/json' }
+                    });
+                })
+                .catch(error => console.error('Push Subscription Error', error));
         })
-        .then(subscription => {
-            return fetch('/subscribe', {
-                method: 'POST',
-                body: JSON.stringify(subscription),
-                headers: { 'Content-Type': 'application/json' }
-            });
-        })
-        .catch(error => console.error('Push Subscription Error', error));
+        .catch(error => console.error('Service Worker Registration Error', error));
 }
 
+// Base64URL形式に変換する関数
+function base64UrlEncode(input) {
+    // Base64 -> Base64URL (パディング、+、/を変換)
+    return input.replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');  // パディング（=）を削除
+}
+
+function base64UrlToUint8Array(base64Url) {
+    let base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');  // constをletに変更
+
+    // Base64文字列の長さが4の倍数になるようにパディング（'='）を追加
+    const padding = base64.length % 4;
+    if (padding) {
+        base64 += '='.repeat(4 - padding);
+    }
+
+    // Base64文字列をデコードしてUint8Arrayに変換
+    const binary = atob(base64);
+    const uint8Array = new Uint8Array(binary.length);
+    for (let i = 0; i < binary.length; i++) {
+        uint8Array[i] = binary.charCodeAt(i);
+    }
+    return uint8Array;
+}

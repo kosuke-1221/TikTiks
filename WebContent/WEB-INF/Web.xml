@@ -71,4 +71,13 @@
     </servlet-mapping>
 
 
+	<servlet>
+	    <servlet-name>PublicKeyServlet</servlet-name>
+	    <servlet-class>com.example.PublicKeyServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+	    <servlet-name>PublicKeyServlet</servlet-name>
+	    <url-pattern>/get-public-key</url-pattern>
+	</servlet-mapping>
+
 </web-app>
