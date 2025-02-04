@@ -186,9 +186,11 @@ input {
         flex-direction: column;
         /* 子要素を縦並びに */
         align-items: center;
-        /* 子要素を中央揃え */
-        padding: 10px 20px;
-        /* 内側の余白を調整 */
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 1002;
+        /* サイドバーより前面に表示 */
     }
 
     .header-title {
@@ -211,7 +213,7 @@ input {
 
     /* ユーザー名のスタイル */
     .header-user {
-        font-size: 14px;
+        font-size: 11px;
         /* フォントサイズを小さめに */
         color: white;
         /* 文字色を白に */
@@ -259,18 +261,16 @@ input {
 
     /* サイドバー */
     .sidebar {
-        display: none;
-        /* デフォルトでは非表示 */
-        padding-top: 50px;
-        /* ヘッダーと重ならないよう調整 */
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        /* 画面全体を覆う */
-        height: 100vh;
-        /* サイドバーの高さを画面全体に設定 */
-    }
+    display: none;
+    position: fixed;
+    top: 50px;  /* ヘッダーと重ならないように調整 */
+    left: 0;
+    width: 100%;
+    height: calc(100vh - 50px); /* ヘッダーの高さを引く */
+    background-color: #e8f5e9;
+    padding-top: 10px;
+    z-index: 1001; /* 他の要素より前面に表示 */
+}
 
     .sidebar a {
         font-size: 1em;
@@ -307,8 +307,11 @@ input {
     }
 
     /* フッター */
-    .footer {
-        font-size: 0.8em;
-        /* フッターの文字サイズ */
+    footer {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        z-index: 1002;
+        /* サイドバーより前面に表示 */
     }
 }
