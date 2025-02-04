@@ -604,25 +604,6 @@
 
                             document.getElementById('shift_date').value = info.dateStr;
 
-                            var clickedDate = info.dateStr;
-                            var details = "";
-                            // 日付比較をDateオブジェクト経由で行う
-                            registeredShifts.forEach(function (shift) {
-                                var shiftDateISO = new Date(shift.shiftDate).toISOString().substring(0, 10);
-                                if (shiftDateISO === clickedDate) {
-                                    details += (shift.userName || shift.userId) + ": " + shift.startTime + " - " + shift.endTime;
-                                    if (shift.note && shift.note.trim() !== "") {
-                                        details += " (メモ:" + shift.note + ")";
-                                    }
-                                    details += "\n";
-                                }
-                            });
-                            if (details === "") {
-                                details = "登録されたスタッフはありません";
-                            }
-                            document.getElementById('modalContent').textContent = details;
-                            document.getElementById('staffDetailsModal').style.display = "block";
-
                             var clickedDateObj = new Date(info.dateStr);
                             var dayOfWeek = clickedDateObj.getDay();
                             var dayNames = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
@@ -632,7 +613,6 @@
                         eventClick: function (info) {
                             var clickedDate = info.event.start;
                             var details = "";
-                            // 日付比較をDateオブジェクト経由で行う
                             registeredShifts.forEach(function (shift) {
                                 var shiftDate = new Date(shift.shiftDate);
                                 if (shiftDate.toDateString() === clickedDate.toDateString()) {
