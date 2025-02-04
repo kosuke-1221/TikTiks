@@ -232,6 +232,67 @@
             color: black;
             cursor: pointer;
         }
+        
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+                gap: 10px;
+            }
+         
+            .staff-list-container,
+            .calendar-container,
+            .form-container {
+                width: 100%;
+                max-width: 100%;
+                min-width: auto;
+                padding: 10px;
+            }
+         
+            .return-button {
+                font-size: 16px;
+                padding: 10px 20px;
+                position: absolute;
+                left: 20px;
+                bottom: 10px;  /* ここでボタンを下に配置 */
+                background-color: transparent;
+                border: 1px solid #8BC34A;
+                color: #558B2F;
+                text-decoration: none;
+                border-radius: 4px;
+                transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+            }
+         
+            input[type="submit"] {
+                font-size: 16px;
+                padding: 12px;
+            }
+         
+            label {
+                font-size: 14px;
+            }
+         
+            select,
+            input[type="text"],
+            input[type="date"] {
+                font-size: 14px;
+                padding: 10px;
+            }
+         
+            .header-container {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin-top: 90px;
+                position: relative;
+            }
+         
+            .return-button:hover {
+                background-color: #DCEDC8;
+                border-color: #689F38;
+                color: #33691E;
+                text-decoration: none;
+            }
+        }
     </style>
 </head>
 
