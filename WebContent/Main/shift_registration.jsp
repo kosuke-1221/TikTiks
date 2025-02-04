@@ -3,27 +3,34 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ page import="dao.UserDao, dao.ShiftDao" %>
-<%@ page import="bean.ShiftCount, bean.ShiftRequest, bean.User" %>
+<%@ page import="bean.ShiftCount, bean.ShiftRequest, bean.User, bean.ShiftDetail" %>
 <%@ page import="java.util.List" %>
 
 <%
     try {
         UserDao userDao = new UserDao();
+        ShiftDao shiftDao = new ShiftDao();
+
+        // シフト情報を取得
+        List<ShiftDetail> shiftDetails = shiftDao.getAllShiftDetails();
+        request.setAttribute("shiftDetails", shiftDetails);
+
         request.setAttribute("userDao", userDao);
+
+        // シフト日付ごとの登録人数を取得してrequestにセット
+        List<ShiftCount> shiftCounts = shiftDao.getShiftCounts();
+        request.setAttribute("shiftCounts", shiftCounts);
     } catch (Exception e) {
         e.printStackTrace();
         response.sendError(500, "データベースエラー: " + e.getMessage());
         return;
     }
+
     HttpSession currentsession = request.getSession(false);
     if (currentsession == null || currentsession.getAttribute("userID") == null) {
          response.sendRedirect("login.jsp");
          return;
     }
-    // シフト日付ごとの登録人数を取得してrequestにセット
-    ShiftDao shiftDao = new ShiftDao();
-    List<ShiftCount> shiftCounts = shiftDao.getShiftCounts();
-    request.setAttribute("shiftCounts", shiftCounts);
 %>
 
 <!DOCTYPE html>
@@ -232,13 +239,13 @@
             color: black;
             cursor: pointer;
         }
-        
+
         @media (max-width: 768px) {
             .container {
                 flex-direction: column;
                 gap: 10px;
             }
-         
+
             .staff-list-container,
             .calendar-container,
             .form-container {
@@ -247,7 +254,7 @@
                 min-width: auto;
                 padding: 10px;
             }
-         
+
             .return-button {
                 font-size: 16px;
                 padding: 10px 20px;
@@ -261,23 +268,23 @@
                 border-radius: 4px;
                 transition: background-color 0.3s, color 0.3s, border-color 0.3s;
             }
-         
+
             input[type="submit"] {
                 font-size: 16px;
                 padding: 12px;
             }
-         
+
             label {
                 font-size: 14px;
             }
-         
+
             select,
             input[type="text"],
             input[type="date"] {
                 font-size: 14px;
                 padding: 10px;
             }
-         
+
             .header-container {
                 display: flex;
                 align-items: center;
@@ -285,7 +292,7 @@
                 margin-top: 90px;
                 position: relative;
             }
-         
+
             .return-button:hover {
                 background-color: #DCEDC8;
                 border-color: #689F38;
@@ -623,16 +630,17 @@
                             resetForm();
                         },
                         eventClick: function (info) {
-                            var clickedDate = new Date(info.event.start);
-                            var dayOfWeek = clickedDate.getDay();
-                            var dayNames = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
-                            var dayName = dayNames[dayOfWeek];
+                            var clickedDate = info.event.start;
                             var details = "";
-                            shiftsData.forEach(function (shift) {
-                                if (isStaffAvailable(shift, dayName)) {
-                                    var startTimeKey = dayName.toLowerCase() + 'StartTime';
-                                    var endTimeKey = dayName.toLowerCase() + 'EndTime';
-                                    details += (shift.userName || shift.userId) + ": " + shift[startTimeKey] + " - " + shift[endTimeKey] + "\n";
+                            // 日付比較をDateオブジェクト経由で行う
+                            registeredShifts.forEach(function (shift) {
+                                var shiftDate = new Date(shift.shiftDate);
+                                if (shiftDate.toDateString() === clickedDate.toDateString()) {
+                                    details += (shift.userName || shift.userId) + ": " + shift.startTime + " - " + shift.endTime;
+                                    if (shift.note && shift.note.trim() !== "") {
+                                        details += " (メモ:" + shift.note + ")";
+                                    }
+                                    details += "\n";
                                 }
                             });
                             if (details === "") {
