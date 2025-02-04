@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.RequestDispatcher;
 import dao.ShiftRequestDao;
+import dao.ShiftDao;
 
 @WebServlet("/Main/ShiftRegistration")
 public class ShiftRegistrationAction extends HttpServlet {
@@ -19,6 +20,9 @@ public class ShiftRegistrationAction extends HttpServlet {
         try {
             ShiftRequestDao dao = new ShiftRequestDao();
             request.setAttribute("availableShifts", dao.getAvailableShifts());
+            // 追加：shiftsテーブルから全シフト詳細を取得
+            ShiftDao shiftDao = new ShiftDao();
+            request.setAttribute("shiftDetails", shiftDao.getAllShiftDetails());
 
             RequestDispatcher dispatcher = request.getRequestDispatcher("shift_registration.jsp");
             dispatcher.forward(request, response);
