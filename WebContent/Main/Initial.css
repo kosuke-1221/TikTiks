@@ -70,7 +70,7 @@ body {
 /* スマホ画面用スタイル */
 @media (max-width: 768px) {
     .section h2 {
-        font-size: 1.3rem; /* スマホ画面でのフォントサイズ */
+        font-size: 1.3rem;
     }
 
     .box {
@@ -81,12 +81,19 @@ body {
 
     .section {
         width: 100%;
+        position: relative;
     }
 
-    .section p {
-    font-size: 0.9rem;
-    margin-bottom: 20px;
-    line-height: 1.0; /* 行間を少し広げる */
+    /* セクションの間に線を追加 */
+    .section:not(:last-child)::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80%;
+        height: 2px;
+        background-color: #4caf50;
+    }
 }
 
-}

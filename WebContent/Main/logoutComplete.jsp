@@ -46,6 +46,26 @@
             color: #007bff;
             font-weight: bold;
         }
+
+@media (max-width: 600px) {
+    .message-container {
+        padding: 20px;
+        margin-top: 200px;
+        max-width: 300px;
+    }
+
+    .message-container h1 {
+        font-size: 18px;
+    }
+
+    .message-container p {
+        font-size: 14px;
+    }
+
+    .message-container .redirect-message {
+        font-size: 12px;
+    }
+}
     </style>
 </head>
 
