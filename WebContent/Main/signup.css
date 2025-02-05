@@ -92,23 +92,53 @@ body {
     background-color: #0056b3;
 }
 
-/* レスポンシブデザイン */
+/* レスポンシブ対応 */
 @media (max-width: 768px) {
     .form-container {
-        max-height: 95%;
+        min-width: 100%;
+        margin-top: 50px; /* 上部の余白を少し小さくする */
+        padding: 15px;
     }
 
     .form-container h2 {
-        font-size: 16px;
+        font-size: 22px; /* 見出しのフォントサイズを小さくする */
+    }
+
+    .form-group label {
+        font-size: 14px; /* ラベルのフォントサイズを小さくする */
     }
 
     .form-group input {
-        padding: 5px;
-        font-size: 12px;
+        font-size: 12px; /* 入力フィールドのフォントサイズを小さくする */
     }
 
     .submit-btn {
-        padding: 6px 10px;
-        font-size: 12px;
+        padding: 6px 10px; /* ボタンのパディングを調整 */
+        font-size: 12px; /* ボタンのフォントサイズを小さくする */
+    }
+}
+
+@media (max-width: 480px) {
+    .form-container {
+    	margin-top: 60px;
+        min-width: 100%;
+        padding: 10px;
+    }
+
+    .form-container h2 {
+        font-size: 20px; /* 見出しのフォントサイズをさらに小さくする */
+    }
+
+    .form-group label {
+        font-size: 12px; /* ラベルのフォントサイズをさらに小さくする */
+    }
+
+    .form-group input {
+        font-size: 10px; /* 入力フィールドのフォントサイズをさらに小さくする */
+    }
+
+    .submit-btn {
+        padding: 5px 8px; /* ボタンのパディングをさらに調整 */
+        font-size: 10px; /* ボタンのフォントサイズをさらに小さくする */
     }
 }
