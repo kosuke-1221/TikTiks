@@ -189,6 +189,7 @@
         }
 
         .header-title {
+            color: #4caf50; /* 基本文字色 */
             text-align: center;
             margin: 0;
         }
@@ -328,7 +329,7 @@
 
             <div class="header-container">
                 <a href="http://localhost:8080/TikTiks/Main/menu2.jsp" class="return-button">トップページに戻る</a>
-                <h1 class="header-title">シフト登録</h1>
+                <h1 class="header-title">😊シフト登録😊</h1>
             </div>
 
             <c:if test="${not empty errorMessage}">
