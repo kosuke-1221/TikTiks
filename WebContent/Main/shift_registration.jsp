@@ -2,8 +2,8 @@
     <%@ page trimDirectiveWhitespaces="true" %>
         <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
             <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-                <%@ page import="dao.UserDao, dao.ShiftDao" %>
-                    <%@ page import="bean.ShiftCount, bean.ShiftRequest, bean.User, bean.ShiftDetail" %>
+                <%@ page import="dao.UserDao, dao.ShiftDao, dao.VacationDao" %>
+                    <%@ page import="bean.ShiftCount, bean.ShiftRequest, bean.User, bean.ShiftDetail, bean.VacationRequest" %>
                         <%@ page import="java.util.List" %>
 
                             <% try { UserDao userDao=new UserDao(); ShiftDao shiftDao=new ShiftDao(); // シフト情報を取得
@@ -15,6 +15,11 @@
                                 // シフト日付ごとの登録人数を取得してrequestにセット
                                 List<ShiftCount> shiftCounts = shiftDao.getShiftCounts();
                                     request.setAttribute("shiftCounts", shiftCounts);
+
+                                    // 休暇希望日を取得してrequestにセット
+                                    VacationDao vacationDao = new VacationDao();
+                                    List<VacationRequest> vacationRequests = vacationDao.getAllVacationRequests();
+                                    request.setAttribute("vacationRequests", vacationRequests);
                                     } catch (Exception e) {
                                     e.printStackTrace();
                                     response.sendError(500, "データベースエラー: " + e.getMessage());
@@ -452,6 +457,13 @@
                                                                 </c:forEach>
                                                             ];
 
+                                                            // 休暇希望日のJS配列（YYYY-MM-DD形式）
+                                                            var vacationDates = [
+                                                                <c:forEach var="vac" items="${vacationRequests}" varStatus="status">
+                                                                    "${vac.vacationDate}"<c:if test="${!status.last}">,</c:if>
+                                                                </c:forEach>
+                                                            ];
+
                                                             function generateTimeOptions(startTime, endTime) {
                                                                 console.log('時間選択肢生成:', { startTime, endTime });
 
@@ -658,6 +670,13 @@
 
                                                                     if (startTime >= endTime) {
                                                                         alert('終了時間は開始時間より後にしてください');
+                                                                        e.preventDefault();
+                                                                        return false;
+                                                                    }
+
+                                                                    // 休暇希望日と重複していないかチェック
+                                                                    if (vacationDates.indexOf(shiftDate) !== -1) {
+                                                                        alert("選択された日付は既に休暇希望日として登録されています。");
                                                                         e.preventDefault();
                                                                         return false;
                                                                     }
