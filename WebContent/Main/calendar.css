@@ -1,0 +1,118 @@
+body.calendar-page {
+    background-color: #f8f9fa;
+    font-family: 'Arial', sans-serif;
+}
+
+.calendar-page h2 {
+	font-size: 35px;
+    text-align: center;
+    color: #4caf50;
+    font-weight: bold;
+}
+
+.calendar-page .calendar-table {
+    width: 100%;
+    margin-bottom: 2rem;
+    background-color: #fff;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-collapse: collapse;
+}
+
+.calendar-page .calendar-table th {
+    background-color: #4caf50;
+    color: white;
+    text-align: center;
+    padding: 1rem;
+    font-size: 1.2rem;
+}
+
+.calendar-page .calendar-table td {
+    width: 14.28%;
+    height: 8rem; /* 縦の幅を大きく */
+    text-align: left; /* 数字を上に配置 */
+    vertical-align: top;
+    font-size: 1.2rem;
+    border: 1px solid #dee2e6;
+    padding: 0.5rem; /* 余白を追加 */
+    transition: background-color 0.3s ease;
+}
+
+.calendar-page .calendar-table td:hover {
+    background-color: #f1f1f1;
+    cursor: pointer;
+}
+
+.calendar-page .fc-day-today {
+    background-color: #ffeb3b !important;
+    /* 今日の日付の背景色を変更 */
+}
+
+.calendar-page .calendar-table th:nth-child(1) {
+    color: #c0392b;
+}
+
+.calendar-page .calendar-table th:nth-child(7) {
+    color: #2980b9;
+}
+
+.calendar-page .fc-day-sun, .calendar-page .calendar-table td:nth-child(1) {
+    background-color: #ffe6e6 !important;
+    /* 日曜日の背景色を薄い赤色に変更 */
+    color: #c0392b;
+}
+
+.calendar-page .fc-day-sat, .calendar-page .calendar-table td:nth-child(7) {
+    background-color: #e6f0ff !important;
+    /* 土曜日の背景色を薄い青色に変更 */
+    color: #2980b9;
+}
+
+.calendar-page .calendar-table td:nth-child(1):hover {
+    background-color: #ffcccc !important;
+}
+
+.calendar-page .calendar-table td:nth-child(7):hover {
+    background-color: #ccd9ff !important;
+}
+
+button#prevMonthButton,
+button#nextMonthButton {
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+    margin: 0 1rem;
+    border-radius: 0.25rem;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+}
+
+.calendar-page #currentMonth {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #343a40;
+}
+
+.calendar-page select {
+    font-size: 1rem;
+    padding: 0.5rem;
+    margin: 0;
+    border-radius: 0.25rem;
+    width: auto;
+    display: inline-block;
+}
+
+.holiday {
+    background-color: #ffcccb !important; /* 祝日の背景色を赤系に */
+    color: #d32f2f; /* 文字色を濃い赤に */
+    font-weight: bold;
+}
+
+.holiday-label {
+    display: block;
+    font-size: 0.8rem;
+    color: #d32f2f;
+    margin-top: 0.2rem;
+}
+

@@ -39,7 +39,7 @@
                 </a>
 
                 <!-- カード3 -->
-                <a href="shared_calender.jsp" class="card">
+                <a href="calendar.jsp" class="card">
                     <h3>共有カレンダー</h3>
                     <p>全員のシフトを視覚的にチェック。</p>
                 </a>
