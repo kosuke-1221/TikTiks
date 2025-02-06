@@ -404,6 +404,42 @@
                                                             </div>
                                                         </div>
 
+                                                        <!-- 登録済みシフト一覧追加 -->
+                                                        <c:if test="${not empty shiftDetails}">
+                                                            <h3>登録済みシフト一覧</h3>
+                                                            <table border="1">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th>ユーザーID</th>
+                                                                        <th>シフト日付</th>
+                                                                        <th>開始時間</th>
+                                                                        <th>終了時間</th>
+                                                                        <th>メモ</th>
+                                                                        <th>操作</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <c:forEach var="shift" items="${shiftDetails}">
+                                                                        <tr>
+                                                                            <td>${shift.userId}</td>
+                                                                            <td>${shift.shiftDate}</td>
+                                                                            <td>${shift.startTime}</td>
+                                                                            <td>${shift.endTime}</td>
+                                                                            <td>${shift.note}</td>
+                                                                            <td>
+                                                                                <form action="ShiftDeletion" method="post" onsubmit="return confirm('このシフトを削除してもよろしいですか？');">
+                                                                                    <input type="hidden" name="user_id" value="${shift.userId}" />
+                                                                                    <input type="hidden" name="shift_date" value="${shift.shiftDate}" />
+                                                                                    <input type="hidden" name="start_time" value="${shift.startTime}" />
+                                                                                    <input type="submit" value="削除" />
+                                                                                </form>
+                                                                            </td>
+                                                                        </tr>
+                                                                    </c:forEach>
+                                                                </tbody>
+                                                            </table>
+                                                        </c:if>
+
                                                         <!--
             <c:forEach var="sc" items="${shiftCounts}">
                 <p>

@@ -36,6 +36,31 @@ public class ShiftRequestDao {
         }
     }
 
+    public void deleteShift(String userId, String shiftDate, String startTime) throws ClassNotFoundException {
+        Connection con = null;
+        PreparedStatement ps = null;
+        String sql = "DELETE FROM shifts WHERE user_id = ? AND shift_date = ? AND start_time = ?";
+        try {
+            con = Database.getConnection();
+            ps = con.prepareStatement(sql);
+            ps.setString(1, userId);
+            ps.setDate(2, java.sql.Date.valueOf(shiftDate));
+            // startTime が "HH:mm" の場合は秒を追加し、"HH:mm:ss" ならそのまま利用
+            String formattedStartTime = (startTime != null && startTime.trim().length() == 5) ? startTime + ":00" : startTime;
+            ps.setTime(3, java.sql.Time.valueOf(formattedStartTime));
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (ps != null) ps.close();
+                if (con != null) con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
     public List<ShiftRequest> getAvailableShifts() throws ClassNotFoundException {
         List<ShiftRequest> shifts = new ArrayList<>();
         Connection con = null;
