@@ -6,6 +6,24 @@
         response.sendRedirect("login.jsp");
         return;
     }
+    String userID = (String) currentsession.getAttribute("userID");
+    boolean alreadySubmitted = false;
+    try {
+        Class.forName("org.h2.Driver");
+        java.sql.Connection conn = java.sql.DriverManager.getConnection("jdbc:h2:tcp://localhost/~/NSM", "sa", "");
+        java.sql.PreparedStatement ps = conn.prepareStatement("SELECT COUNT(*) FROM SHIFT_REQUESTS WHERE user_id = ?");
+        ps.setString(1, userID);
+        java.sql.ResultSet rs = ps.executeQuery();
+        if (rs.next()) {
+            alreadySubmitted = rs.getInt(1) > 0;
+        }
+        rs.close();
+        ps.close();
+        conn.close();
+    } catch(Exception e) {
+        e.printStackTrace();
+    }
+    request.setAttribute("alreadySubmitted", alreadySubmitted);
 %>
 <!DOCTYPE html>
 <html lang="ja">
@@ -24,8 +42,21 @@
 	<c:param name="content">
 	<section class="me-4">
 		<h1>😊シフト希望日提出😊</h1>
-	    <h2>出勤可能な曜日を選んでください</h2>
-
+		<!-- 出勤可能な曜日の案内は未提出時のみ表示 -->
+		<c:if test="${!alreadySubmitted}">
+		    <h2>出勤可能な曜日を選んでください</h2>
+		</c:if>
+		<c:choose>
+            <c:when test="${alreadySubmitted}">
+                <!-- 自然に溶け込むスタイルに変更 -->
+                <div class="message-container" style="text-align: center; padding: 30px 40px; border: 1px solid #ddd; border-radius: 12px; background: #f8f8f8;">
+                    <h2 style="color: #333; margin-bottom: 15px; font-family: 'Arial', sans-serif;">シフト希望情報は既に提出されています</h2>
+                    <p style="color: #666; font-size: 18px; margin-bottom: 20px; font-family: 'Arial', sans-serif;">リセットしたい場合は管理者に連絡してください。</p>
+                    <button onclick="location.href='menu.jsp'" style="padding: 12px 24px; font-size: 18px; background-color: #3c8dbc; border: none; border-radius: 6px; color: #fff; cursor: pointer; transition: background-color 0.3s;">メニューへ戻る</button>
+                </div>
+            </c:when>
+            <c:otherwise>
+                <!-- まだ提出していない場合はフォームを表示 -->
 	<form action="Shift_desiredServlet" method="post" id="shiftForm" onsubmit="return validateForm() && checkTimeConflicts();">
 	        <div class="Monday">
 	            <span>月曜日</span>
@@ -341,8 +372,10 @@
 	    </form>
 
 	    <script src="shift_desired.js"></script>
-
+		</c:otherwise>
+        </c:choose>
 	</section>
 	</c:param>
 	</c:import>
 </body>
+</html>

@@ -6,6 +6,8 @@
         response.sendRedirect("login.jsp");
         return;
     }
+    // 現在のパスワードのみ保持
+    String prevCurrent = (String) session.getAttribute("prevCurrentPassword");
 %>
 <!DOCTYPE html>
 <html lang="ja">
@@ -20,63 +22,70 @@
 
 <body>
     <c:import url="base.jsp">
-    <c:param name="title"></c:param>
-    <c:param name="scripts"></c:param>
-    <c:param name="content">
-    <section class="me-4">
+        <c:param name="title"></c:param>
+        <c:param name="scripts"></c:param>
+        <c:param name="content">
+            <section class="me-4">
 
-        <div class="form-container">
-            <h2>😊パスワード変更😊</h2>
+                <div class="form-container">
+                    <h2>😊パスワード変更😊</h2>
 
-		    <!-- エラーメッセージ表示 -->
-		    <c:if test="${not empty sessionScope.errorMessage}">
-		        <div class="error-message" style="color: red;">
-		            ${sessionScope.errorMessage}
-		        </div>
-		        <c:remove var="errorMessage" scope="session" />
-		    </c:if>
+                    <!-- エラーメッセージ表示 -->
+                    <c:if test="${not empty sessionScope.errorMessage}">
+                        <div class="error-message" style="color: red;">
+                            ${sessionScope.errorMessage}
+                        </div>
+                        <c:remove var="errorMessage" scope="session" />
+                    </c:if>
 
-		    <!-- 変更フォーム -->
-            <form id="passwordUpdateForm" action="Password_Change.action" method="POST">
-                <!-- 現在のパスワード -->
-                <div class="form-group">
-                    <label for="currentPassword">現在のパスワード</label>
-                    <div class="password-container">
-                        <input type="password" id="currentPassword" name="currentPassword" placeholder="現在のパスワード" required>
-                        <button type="button" class="toggle-password" onclick="togglePasswordVisibility('currentPassword', this)">
-                        	<span class="eye-icon"></span>
-                        </button>
-                    </div>
+                    <!-- 変更フォーム -->
+                    <form id="passwordUpdateForm" action="Password_Change.action" method="POST">
+                        <!-- 現在のパスワード -->
+                        <div class="form-group">
+                            <label for="currentPassword">現在のパスワード</label>
+                            <div class="password-container">
+                                <input type="password" id="currentPassword" name="currentPassword"
+                                    placeholder="現在のパスワード"
+                                    value="<%= prevCurrent != null ? prevCurrent : "" %>" required>
+                                <button type="button" class="toggle-password"
+                                    onclick="togglePasswordVisibility('currentPassword', this)">
+                                    <span class="eye-icon"></span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- 新しいパスワード -->
+                        <div class="form-group">
+                            <label for="newPassword">新しいパスワード</label>
+                            <div class="password-container">
+                                <input type="password" id="newPassword" name="newPassword"
+                                    placeholder="パスワードは8文字以上で、大文字、小文字、数字を含めてください。" required>
+                                <button type="button" class="toggle-password"
+                                    onclick="togglePasswordVisibility('newPassword', this)">
+                                    <span class="eye-icon"></span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- 確認用パスワード -->
+                        <div class="form-group">
+                            <label for="confirmPassword">新しいパスワード（確認）</label>
+                            <div class="password-container">
+                                <input type="password" id="confirmPassword" name="confirmPassword"
+                                    placeholder="新しいパスワードを再入力" required>
+                                <button type="button" class="toggle-password"
+                                    onclick="togglePasswordVisibility('confirmPassword', this)">
+                                    <span class="eye-icon"></span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <button type="submit">変更</button>
+                    </form>
                 </div>
 
-                <!-- 新しいパスワード -->
-                <div class="form-group">
-                    <label for="newPassword">新しいパスワード</label>
-                    <div class="password-container">
-                        <input type="password" id="newPassword" name="newPassword" placeholder="パスワードは8文字以上で、大文字、小文字、数字を含めてください。" required>
-                        <button type="button" class="toggle-password" onclick="togglePasswordVisibility('newPassword', this)">
-                        	<span class="eye-icon"></span>
-                        </button>
-                    </div>
-                </div>
-
-                <!-- 確認用パスワード -->
-                <div class="form-group">
-                    <label for="confirmPassword">新しいパスワード（確認）</label>
-                    <div class="password-container">
-                        <input type="password" id="confirmPassword" name="confirmPassword" placeholder="新しいパスワードを再入力" required>
-                        <button type="button" class="toggle-password" onclick="togglePasswordVisibility('confirmPassword', this)">
-                        	<span class="eye-icon"></span>
-                        </button>
-                    </div>
-                </div>
-
-                <button type="submit">変更</button>
-            </form>
-        </div>
-
-    </section>
-    </c:param>
+            </section>
+        </c:param>
     </c:import>
 </body>
 

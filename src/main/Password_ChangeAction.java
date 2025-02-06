@@ -13,6 +13,12 @@ import dao.Database;
 import tool.Action;  // Actionクラスをインポート
 
 public class Password_ChangeAction extends Action {
+
+    // 修正: 現在のパスワードのみをセッションに保存するヘルパーメソッド
+    private void storeCurrentPassword(HttpServletRequest request, String currentPassword) {
+        request.getSession().setAttribute("prevCurrentPassword", currentPassword);
+    }
+    
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -25,9 +31,28 @@ public class Password_ChangeAction extends Action {
 
         // パスワード一致チェック
         if (!newPassword.equals(confirmPassword)) {
+            storeCurrentPassword(request, currentPassword);
             request.getSession().setAttribute("errorMessage", "新しいパスワードが一致しません。");
             System.out.println("Error: 新しいパスワードが一致しません。");
             response.sendRedirect("Password_Change.jsp"); // リダイレクトしてフォームを再表示
+            return null;
+        }
+        
+        // 追加検証: 新しいパスワードが現在のパスワードと同じでないか
+        if(newPassword.equals(currentPassword)) {
+            storeCurrentPassword(request, currentPassword);
+            request.getSession().setAttribute("errorMessage", "新しいパスワードは現在のパスワードと同じです。");
+            System.out.println("Error: 新しいパスワードは現在のパスワードと同じです。");
+            response.sendRedirect("Password_Change.jsp");
+            return null;
+        }
+        
+        // 追加検証: 新しいパスワードに大文字が含まれているか
+        if(!newPassword.matches(".*[A-Z].*")) {
+            storeCurrentPassword(request, currentPassword);
+            request.getSession().setAttribute("errorMessage", "パスワードには少なくとも1つの大文字が必要です。");
+            System.out.println("Error: パスワードには大文字が必要です。");
+            response.sendRedirect("Password_Change.jsp");
             return null;
         }
 
@@ -48,12 +73,14 @@ public class Password_ChangeAction extends Action {
 
                 // プレーンテキストのパスワードを直接比較
                 if (!dbPassword.equals(currentPassword)) {
+                    storeCurrentPassword(request, currentPassword);
                     request.getSession().setAttribute("errorMessage", "現在のパスワードが正しくありません。");
                     System.out.println("Error: 現在のパスワードが正しくありません");
                     response.sendRedirect("Password_Change.jsp"); // リダイレクトしてフォームを再表示
                     return null;
                 }
             } else {
+                storeCurrentPassword(request, currentPassword);
                 request.getSession().setAttribute("errorMessage", "ユーザー情報が見つかりません。");
                 System.out.println("Error: ユーザー情報が見つかりません");
                 response.sendRedirect("Password_Change.jsp"); // リダイレクトしてフォームを再表示
@@ -69,6 +96,7 @@ public class Password_ChangeAction extends Action {
                 System.out.println("パスワードが正常に更新されました。");
                 response.sendRedirect("Password_Completion.jsp"); //変更完了ページ
             } else {
+                storeCurrentPassword(request, currentPassword);
                 request.getSession().setAttribute("errorMessage", "パスワード更新中にエラーが発生しました。");
                 System.out.println("Error: パスワード更新中にエラーが発生しました");
                 response.sendRedirect("Password_Change.jsp"); // リダイレクトしてフォームを再表示
@@ -77,6 +105,7 @@ public class Password_ChangeAction extends Action {
 
         } catch (Exception e) {
             e.printStackTrace();
+            storeCurrentPassword(request, currentPassword);
             request.getSession().setAttribute("errorMessage", "サーバーエラーが発生しました。");
             System.out.println("Error: サーバーエラーが発生しました");
             response.sendRedirect("Password_Change.jsp"); // リダイレクトしてフォームを再表示

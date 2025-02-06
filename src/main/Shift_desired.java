@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import javax.servlet.ServletException;
@@ -31,6 +32,23 @@ public class Shift_desired extends HttpServlet {
         if (userId == null) {
             response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "ログインしていません。");
             return;
+        }
+
+        // 追加: すでにシフト希望が提出済みか確認し、提出済みならリダイレクト
+        try {
+            Class.forName("org.h2.Driver");
+            try (Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);
+                 PreparedStatement ps = conn.prepareStatement("SELECT COUNT(*) FROM SHIFT_REQUESTS WHERE user_id = ?")) {
+                ps.setString(1, userId);
+                try (ResultSet rs = ps.executeQuery()) {
+                    if (rs.next() && rs.getInt(1) > 0) {
+                        response.sendRedirect("shift_alreadySubmitted.jsp");
+                        return;
+                    }
+                }
+            }
+        } catch(Exception e) {
+            e.printStackTrace();
         }
 
         // 曜日ごとの選択状態を取得し、選択された曜日をカンマ区切りでまとめる
