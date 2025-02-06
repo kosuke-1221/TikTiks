@@ -54,6 +54,8 @@
             <a href="ShiftRegistration">シフト登録</a>
             <a href="VacationRequestList">休暇希望リスト</a>
             <a href="shared_calender.jsp">カレンダー</a>
+            <!-- 新規追加：リセット機能へのリンク -->
+            <a href="${pageContext.request.contextPath}/Main/Reset.jsp">リセット機能</a>
             <img src="MAGIC.png" alt="Logo" style="vertical-align: middle; margin-right: 10px;" />
         </c:if>
 
