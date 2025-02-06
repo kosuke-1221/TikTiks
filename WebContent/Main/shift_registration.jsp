@@ -466,7 +466,7 @@
                                                             // 休暇希望日のJS配列（{ userId:"", vacationDate:"YYYY-MM-DD" }形式）
                                                             var vacationRequests = [
                                                                 <c:forEach var="vac" items="${vacationRequests}" varStatus="status">
-                                                                    { userId: "${vac.userId}", vacationDate: "${vac.vacationDate}" }<c:if test="${!status.last}">,</c:if>
+                                                                    { userId: "${vac.userId}", vacationDate: "${vac.vacationDate}", reason: "${vac.reason}" }<c:if test="${!status.last}">,</c:if>
                                                                 </c:forEach>
                                                             ];
 
@@ -518,6 +518,25 @@
                                                                 });
                                                             }
 
+                                                            function displayVacationReason(userId, selectedDate) {
+                                                                var vac = vacationRequests.find(function(vac) {
+                                                                    return vac.userId === userId && vac.vacationDate === selectedDate;
+                                                                });
+                                                                if (vac) {
+                                                                    var modal = document.getElementById('staffDetailsModal');
+                                                                    var modalContent = document.getElementById('modalContent');
+                                                                    modalContent.textContent = "休みたい理由: " + vac.reason;
+                                                                    modal.style.display = "block";
+                                                                } else {
+                                                                    alert("休暇情報が見つかりません。");
+                                                                }
+                                                            }
+
+                                                            // モーダルクローズ用のイベントを設定
+                                                            document.getElementById('closeModal').onclick = function() {
+                                                                document.getElementById('staffDetailsModal').style.display = "none";
+                                                            };
+
                                                             function updateStaffList(dayName) {
                                                                 console.log('スタッフリスト更新:', dayName);
 
@@ -547,6 +566,9 @@
                                                                 // 休暇希望の場合は色変更とクリック無効化
                                                                 if (selectedDate && isOnVacation(shift.userId, selectedDate)) {
                                                                     li.classList.add('vacation');
+                                                                    li.onclick = function() {
+                                                                        displayVacationReason(shift.userId, selectedDate);
+                                                                    };
                                                                 } else {
                                                                     li.onclick = function () {
                                                                         handleStaffSelection(this, shift, dayName);
