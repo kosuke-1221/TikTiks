@@ -54,7 +54,8 @@ public class VacationDao {
      */
     public List<VacationRequest> getAllVacationRequests() {
         List<VacationRequest> vacationRequests = new ArrayList<>();
-        String sql = "SELECT vr.vacation_date, u.name, vr.reason, u.phone_number FROM vacation_requests vr JOIN users u ON vr.user_id = u.user_id";
+        // SQLにuser_idを追加
+        String sql = "SELECT vr.user_id, vr.vacation_date, u.name, vr.reason, u.phone_number FROM vacation_requests vr JOIN users u ON vr.user_id = u.user_id";
 
         try {
             // JDBCドライバのロード
@@ -66,6 +67,7 @@ public class VacationDao {
                  ResultSet rs = ps.executeQuery()) {
                 while (rs.next()) {
                     VacationRequest request = new VacationRequest();
+                    request.setUserId(rs.getString("user_id")); // 追加
                     request.setVacationDate(rs.getString("vacation_date"));
                     request.setUserName(rs.getString("name"));
                     request.setReason(rs.getString("reason"));

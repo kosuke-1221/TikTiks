@@ -308,6 +308,12 @@
                                                     text-decoration: none;
                                                 }
                                             }
+
+                                            .vacation {
+                                                background-color: #ccc; /* グレー色 */
+                                                color: red; /* スタッフ名称の色を赤に変更 */
+                                                cursor: not-allowed;
+                                            }
                                         </style>
                                     </head>
 
@@ -457,10 +463,10 @@
                                                                 </c:forEach>
                                                             ];
 
-                                                            // 休暇希望日のJS配列（YYYY-MM-DD形式）
-                                                            var vacationDates = [
+                                                            // 休暇希望日のJS配列（{ userId:"", vacationDate:"YYYY-MM-DD" }形式）
+                                                            var vacationRequests = [
                                                                 <c:forEach var="vac" items="${vacationRequests}" varStatus="status">
-                                                                    "${vac.vacationDate}"<c:if test="${!status.last}">,</c:if>
+                                                                    { userId: "${vac.userId}", vacationDate: "${vac.vacationDate}" }<c:if test="${!status.last}">,</c:if>
                                                                 </c:forEach>
                                                             ];
 
@@ -505,6 +511,13 @@
                                                                     selectedDaysArray.includes(normalizedDayName);
                                                             }
 
+                                                            // 関数：指定のスタッフが選択日で休暇希望かチェック
+                                                            function isOnVacation(userId, selectedDate) {
+                                                                return vacationRequests.some(function(vac) {
+                                                                    return vac.userId === userId && vac.vacationDate === selectedDate;
+                                                                });
+                                                            }
+
                                                             function updateStaffList(dayName) {
                                                                 console.log('スタッフリスト更新:', dayName);
 
@@ -530,10 +543,15 @@
                                                                     li.title = shift[startTimeKey] + '-' + shift[endTimeKey];
                                                                 }
 
-                                                                li.onclick = function () {
-                                                                    handleStaffSelection(this, shift, dayName);
-                                                                };
-
+                                                                var selectedDate = document.getElementById('shift_date').value;
+                                                                // 休暇希望の場合は色変更とクリック無効化
+                                                                if (selectedDate && isOnVacation(shift.userId, selectedDate)) {
+                                                                    li.classList.add('vacation');
+                                                                } else {
+                                                                    li.onclick = function () {
+                                                                        handleStaffSelection(this, shift, dayName);
+                                                                    };
+                                                                }
                                                                 return li;
                                                             }
 
@@ -675,7 +693,7 @@
                                                                     }
 
                                                                     // 休暇希望日と重複していないかチェック
-                                                                    if (vacationDates.indexOf(shiftDate) !== -1) {
+                                                                    if (vacationRequests.some(function(vac) { return vac.vacationDate === shiftDate; })) {
                                                                         alert("選択された日付は既に休暇希望日として登録されています。");
                                                                         e.preventDefault();
                                                                         return false;
