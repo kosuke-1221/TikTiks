@@ -440,6 +440,18 @@
                                                             </table>
                                                         </c:if>
 
+                                                        <!-- シフト登録人数表示追加 -->
+                                                        <c:if test="${not empty shiftCounts}">
+                                                            <h3>シフト登録人数</h3>
+                                                            <ul id="shift-count-list">
+                                                                <c:forEach var="sc" items="${shiftCounts}">
+                                                                    <li data-date="${sc.date}" style="cursor:pointer;">
+                                                                        日付: ${sc.date} - 人数: <span class="shift-count">${sc.count}</span>
+                                                                    </li>
+                                                                </c:forEach>
+                                                            </ul>
+                                                        </c:if>
+
                                                         <!--
             <c:forEach var="sc" items="${shiftCounts}">
                 <p>
@@ -670,6 +682,20 @@
                                                                 });
                                                             }
 
+                                                            // 登録済みシフトをFullCalendar用イベントに変換
+                                                            var calendarEvents = registeredShifts.map(function(shift) {
+                                                                return {
+                                                                    title: shift.userName,
+                                                                    start: shift.shiftDate, // 必要に応じて開始日時に変換
+                                                                    extendedProps: {
+                                                                        userId: shift.userId,
+                                                                        startTime: shift.startTime,
+                                                                        endTime: shift.endTime,
+                                                                        note: shift.note
+                                                                    }
+                                                                };
+                                                            });
+
                                                             document.addEventListener('DOMContentLoaded', function () {
                                                                 var calendar = new FullCalendar.Calendar(document.getElementById('calendar'), {
                                                                     initialView: 'dayGridMonth',
@@ -688,7 +714,7 @@
                                                                             start: '${shiftCount.date}'
                                 }<c:if test="${!status.last}">,</c:if>
                                                                         </c:forEach>
-                                                                    ],
+                                                                    ].concat(calendarEvents),
                                                                     eventContent: function (arg) {
                                                                         return { html: '<div style="font-size:14px; text-align:center;">' + arg.event.title + '</div>' };
                                                                     },
@@ -709,23 +735,52 @@
                                                                         resetForm();
                                                                     },
                                                                     eventClick: function (info) {
-                                                                        var clickedDate = info.event.start;
-                                                                        var details = "";
-                                                                        registeredShifts.forEach(function (shift) {
-                                                                            var shiftDate = new Date(shift.shiftDate);
-                                                                            if (shiftDate.toDateString() === clickedDate.toDateString()) {
-                                                                                details += (shift.userName || shift.userId) + ": " + shift.startTime + " - " + shift.endTime;
-                                                                                if (shift.note && shift.note.trim() !== "") {
-                                                                                    details += " (メモ:" + shift.note + ")";
-                                                                                }
-                                                                                details += "\n";
+                                                                        // モーダル内にシフト詳細と削除ボタンを表示
+                                                                        var details = "ユーザーID: " + info.event.extendedProps.userId + "\n" +
+                                                                                      "名前: " + info.event.title + "\n" +
+                                                                                      "シフト日付: " + info.event.startStr + "\n" +
+                                                                                      "開始時間: " + info.event.extendedProps.startTime + "\n" +
+                                                                                      "終了時間: " + info.event.extendedProps.endTime + "\n" +
+                                                                                      "メモ: " + info.event.extendedProps.note;
+                                                                        var modal = document.getElementById('staffDetailsModal');
+                                                                        var modalContent = document.getElementById('modalContent');
+                                                                        // 詳細表示用に内容を更新
+                                                                        modalContent.innerHTML = "<pre>" + details + "</pre>";
+                                                                        
+                                                                        // 削除ボタンの作成
+                                                                        var deleteButton = document.createElement("button");
+                                                                        deleteButton.textContent = "このシフトを削除";
+                                                                        deleteButton.style.marginTop = "10px";
+                                                                        deleteButton.addEventListener('click', function() {
+                                                                            if (confirm("このシフトを削除してもよろしいですか？")) {
+                                                                                var form = document.createElement('form');
+                                                                                form.method = 'post';
+                                                                                form.action = 'ShiftDeletion';
+
+                                                                                var inputUserId = document.createElement('input');
+                                                                                inputUserId.type = 'hidden';
+                                                                                inputUserId.name = 'user_id';
+                                                                                inputUserId.value = info.event.extendedProps.userId;
+                                                                                form.appendChild(inputUserId);
+
+                                                                                var inputShiftDate = document.createElement('input');
+                                                                                inputShiftDate.type = 'hidden';
+                                                                                inputShiftDate.name = 'shift_date';
+                                                                                inputShiftDate.value = info.event.startStr;
+                                                                                form.appendChild(inputShiftDate);
+
+                                                                                var inputStartTime = document.createElement('input');
+                                                                                inputStartTime.type = 'hidden';
+                                                                                inputStartTime.name = 'start_time';
+                                                                                inputStartTime.value = info.event.extendedProps.startTime;
+                                                                                form.appendChild(inputStartTime);
+
+                                                                                document.body.appendChild(form);
+                                                                                form.submit();
                                                                             }
                                                                         });
-                                                                        if (details === "") {
-                                                                            details = "登録されたスタッフはありません";
-                                                                        }
-                                                                        document.getElementById('modalContent').textContent = details;
-                                                                        document.getElementById('staffDetailsModal').style.display = "block";
+                                                                        modalContent.appendChild(deleteButton);
+                                                                        modal.style.display = "block";
                                                                     }
                                                                 });
 
@@ -770,6 +825,24 @@
                                                                         document.getElementById('staffDetailsModal').style.display = "none";
                                                                     }
                                                                 };
+
+                                                                // シフト人数リストのクリックイベント付与
+                                                                document.querySelectorAll('#shift-count-list li').forEach(function(item) {
+                                                                    item.addEventListener('click', function() {
+                                                                        var targetDate = this.getAttribute('data-date');
+                                                                        var detailsHTML = "<h4>" + targetDate + " のシフト登録スタッフ</h4><ul>";
+                                                                        detailsHTML += registeredShifts.filter(function(shift) {
+                                                                            return shift.shiftDate === targetDate;
+                                                                        }).map(function(shift) {
+                                                                            return "<li>" + shift.userName + " (" + shift.userId + ") " + shift.startTime + "～" + shift.endTime + "</li>";
+                                                                        }).join("");
+                                                                        detailsHTML += "</ul>";
+                                                                        var modal = document.getElementById('staffDetailsModal');
+                                                                        var modalContent = document.getElementById('modalContent');
+                                                                        modalContent.innerHTML = detailsHTML;
+                                                                        modal.style.display = "block";
+                                                                    });
+                                                                });
                                                             });
                                                         </script>
 
