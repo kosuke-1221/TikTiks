@@ -104,9 +104,13 @@ button#nextMonthButton {
 }
 
 .holiday {
-    background-color: #ffcccb !important; /* 祝日の背景色を赤系に */
+    background-color: #ffe6e6 !important; /* 祝日の背景色を赤系に */
     color: #d32f2f; /* 文字色を濃い赤に */
     font-weight: bold;
+}
+
+.holiday:hover{
+	background-color: #ffcccc !important;
 }
 
 .holiday-label {
@@ -116,3 +120,29 @@ button#nextMonthButton {
     margin-top: 0.2rem;
 }
 
+
+/* シフト情報全体のスタイル */
+.shift-info {
+  display: flex;
+  flex-direction: column;
+  gap: 5px; /* 各ボックス間の隙間 */
+  margin-top: 5px;
+}
+
+/* 開始時間、終了時間のボックス：オレンジ背景、白文字 */
+.shift-info div {
+  background-color: orange;
+  color: white;
+  padding: 6px 8px;
+  border-radius: 4px;
+  font-size: 14px;
+    font-weight: bold;  /* 文字を太くする */
+
+}
+
+/* メモ欄だけを薄紫に変更 */
+.shift-info div.memo-info {
+  background-color: #8080ff; /* 薄紫色 */
+  color: white;  font-weight: bold;  /* 文字を太くする */
+
+}

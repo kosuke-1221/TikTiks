@@ -44,13 +44,14 @@
             </section>
         </c:param>
     </c:import>
+<script>
+    // サーバーから取得した shiftList を JavaScript のオブジェクトに変換
+    const shiftList = ${shiftList != null ? shiftList : '[]'};
 
-<script type="text/javascript">
-    var shiftListJson = '<%= request.getAttribute("shiftListJson") %>';
+    // shiftList のデータ構造を確認（デバッグ用）
+    console.log("取得したシフトリスト:", shiftList);
 </script>
-
     <script src="calendar.js"></script>
-
 </body>
 
 </html>

@@ -14,7 +14,7 @@
     <c:param name="scripts"></c:param>
     <c:param name="content">
         <div class="container">
-            <h1>休暇希望リスト</h1>
+            <h1>😊休暇希望リスト😊</h1>
             <c:if test="${not empty errorMessage}">
                 <div class="error">${errorMessage}</div>
             </c:if>

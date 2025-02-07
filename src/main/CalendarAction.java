@@ -9,8 +9,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.google.gson.Gson;
-
 import bean.Calendar;
 import dao.CalendarDao;
 
@@ -28,12 +26,8 @@ public class CalendarAction extends HttpServlet {
         CalendarDao dao = new CalendarDao();
         List<Calendar> shiftList = dao.getShiftsByUser(userId);
 
-        // Gsonを使ってshiftListをJSONに変換
-        Gson gson = new Gson();
-        String shiftListJson = gson.toJson(shiftList);
-
-        // JSONデータをJSPに渡す
-        request.setAttribute("shiftListJson", shiftListJson);
+        // shiftListをrequestオブジェクトにセット
+        request.setAttribute("shiftList", shiftList);
 
         // calendar.jspに転送
         request.getRequestDispatcher("calendar.jsp").forward(request, response);

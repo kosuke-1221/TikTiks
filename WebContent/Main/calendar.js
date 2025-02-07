@@ -102,6 +102,18 @@ document.addEventListener("DOMContentLoaded", function () {
                         cell.appendChild(holidayLabel);
                     }
 
+                    // シフト情報の表示
+                    const shiftInfo = shiftList.find(shift => shift.shiftDate === dateStr);
+                    if (shiftInfo) {
+                        const shiftDetails = document.createElement("div");
+                        shiftDetails.className = "shift-info";
+                        shiftDetails.innerHTML = `
+                            <div>${shiftInfo.startTime} - ${shiftInfo.endTime}</div>
+                            <div class="shift-memo">${shiftInfo.memo || ''}</div>
+                        `;
+                        cell.appendChild(shiftDetails);
+                    }
+
                     date++;
                 }
 

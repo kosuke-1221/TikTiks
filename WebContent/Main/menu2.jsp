@@ -37,11 +37,6 @@
                                     <h3>休暇希望リスト</h3>
                                     <p>従業員の休暇日、理由を確認。</p>
                                 </a>
-                                <!-- カード3 -->
-                                <a href="shared_calender.jsp" class="card">
-                                    <h3>共有カレンダー</h3>
-                                    <p>全員のシフトを視覚的にチェック。</p>
-                                </a>
                             </div>
                         </section>
                     </c:param>
