@@ -624,19 +624,8 @@
                                                                 });
                                                             }
 
-                                                            // 登録済みシフトをFullCalendar用イベントに変換
-                                                            var calendarEvents = registeredShifts.map(function(shift) {
-                                                                return {
-                                                                    title: shift.userName,
-                                                                    start: shift.shiftDate, // 必要に応じて開始日時に変換
-                                                                    extendedProps: {
-                                                                        userId: shift.userId,
-                                                                        startTime: shift.startTime,
-                                                                        endTime: shift.endTime,
-                                                                        note: shift.note
-                                                                    }
-                                                                };
-                                                            });
+                                                            // 登録済みシフトをFullCalendar用イベントに変換（※削除：詳細シフトはカレンダーに表示しない）
+                                                            var calendarEvents = []; // 詳細イベントは含めず、シフト日ごとの登録人数のみ表示
 
                                                             document.addEventListener('DOMContentLoaded', function () {
                                                                 var calendar = new FullCalendar.Calendar(document.getElementById('calendar'), {
@@ -649,6 +638,7 @@
                                                                         center: 'title',
                                                                         right: 'dayGridMonth'
                                                                     },
+                                                                    // カレンダーイベントはシフト登録人数のみ
                                                                     events: [
                                                                         <c:forEach var="shiftCount" items="${shiftCounts}" varStatus="status">
                                                                             {
@@ -656,73 +646,78 @@
                                                                             start: '${shiftCount.date}'
                                 }<c:if test="${!status.last}">,</c:if>
                                                                         </c:forEach>
-                                                                    ].concat(calendarEvents),
+                                                                    ],
                                                                     eventContent: function (arg) {
                                                                         return { html: '<div style="font-size:14px; text-align:center;">' + arg.event.title + '</div>' };
+                                                                    },
+                                                                    eventClick: function (info) {
+                                                                        var modal = document.getElementById('staffDetailsModal');
+                                                                        var modalContent = document.getElementById('modalContent');
+                                                                        var targetDate = info.event.startStr;
+                                                                        var staffList = registeredShifts.filter(function(shift) {
+                                                                            return shift.shiftDate === targetDate;
+                                                                        });
+                                                                        var detailsHTML = "<h4>" + targetDate + " のシフト登録スタッフ</h4><ul>";
+                                                                        if (staffList.length > 0) {
+                                                                            staffList.forEach(function(shift) {
+                                                                                detailsHTML += "<li>" + shift.userName + " (" + shift.userId + ") " +
+                                                                                               shift.startTime + "～" + shift.endTime +
+                                                                                               " <button class='delete-btn' data-userid='" + shift.userId +
+                                                                                               "' data-shiftdate='" + shift.shiftDate +
+                                                                                               "' data-starttime='" + shift.startTime + "'>削除</button></li>";
+                                                                            });
+                                                                        } else {
+                                                                            detailsHTML += "<li>登録されたスタッフはいません</li>";
+                                                                        }
+                                                                        detailsHTML += "</ul>";
+                                                                        modalContent.innerHTML = detailsHTML;
+                                                                        modal.style.display = "block";
+
+                                                                        // 削除ボタンのイベントを設定
+                                                                        document.querySelectorAll('.delete-btn').forEach(function(button) {
+                                                                            button.addEventListener('click', function(e) {
+                                                                                e.stopPropagation();
+                                                                                if (confirm("このシフトを削除してもよろしいですか？")) {
+                                                                                    var form = document.createElement('form');
+                                                                                    form.method = 'post';
+                                                                                    form.action = 'ShiftDeletion';
+                                                                                    
+                                                                                    var inputUserId = document.createElement('input');
+                                                                                    inputUserId.type = 'hidden';
+                                                                                    inputUserId.name = 'user_id';
+                                                                                    inputUserId.value = this.getAttribute('data-userid');
+                                                                                    form.appendChild(inputUserId);
+                                                                                    
+                                                                                    var inputShiftDate = document.createElement('input');
+                                                                                    inputShiftDate.type = 'hidden';
+                                                                                    inputShiftDate.name = 'shift_date';
+                                                                                    inputShiftDate.value = this.getAttribute('data-shiftdate');
+                                                                                    form.appendChild(inputShiftDate);
+                                                                                    
+                                                                                    var inputStartTime = document.createElement('input');
+                                                                                    inputStartTime.type = 'hidden';
+                                                                                    inputStartTime.name = 'start_time';
+                                                                                    inputStartTime.value = this.getAttribute('data-starttime');
+                                                                                    form.appendChild(inputStartTime);
+                                                                                    
+                                                                                    document.body.appendChild(form);
+                                                                                    form.submit();
+                                                                                }
+                                                                            });
+                                                                        });
                                                                     },
                                                                     dateClick: function (info) {
                                                                         if (selectedDateEl) {
                                                                             selectedDateEl.classList.remove('fc-day-selected');
                                                                         }
-
                                                                         info.dayEl.classList.add('fc-day-selected');
                                                                         selectedDateEl = info.dayEl;
-
                                                                         document.getElementById('shift_date').value = info.dateStr;
-
                                                                         var clickedDateObj = new Date(info.dateStr);
                                                                         var dayOfWeek = clickedDateObj.getDay();
                                                                         var dayNames = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
                                                                         updateStaffList(dayNames[dayOfWeek]);
                                                                         resetForm();
-                                                                    },
-                                                                    eventClick: function (info) {
-                                                                        // モーダル内にシフト詳細と削除ボタンを表示
-                                                                        var details = "ユーザーID: " + info.event.extendedProps.userId + "\n" +
-                                                                                      "名前: " + info.event.title + "\n" +
-                                                                                      "シフト日付: " + info.event.startStr + "\n" +
-                                                                                      "開始時間: " + info.event.extendedProps.startTime + "\n" +
-                                                                                      "終了時間: " + info.event.extendedProps.endTime + "\n" +
-                                                                                      "メモ: " + info.event.extendedProps.note;
-                                                                        var modal = document.getElementById('staffDetailsModal');
-                                                                        var modalContent = document.getElementById('modalContent');
-                                                                        // 詳細表示用に内容を更新
-                                                                        modalContent.innerHTML = "<pre>" + details + "</pre>";
-                                                                        
-                                                                        // 削除ボタンの作成
-                                                                        var deleteButton = document.createElement("button");
-                                                                        deleteButton.textContent = "このシフトを削除";
-                                                                        deleteButton.style.marginTop = "10px";
-                                                                        deleteButton.addEventListener('click', function() {
-                                                                            if (confirm("このシフトを削除してもよろしいですか？")) {
-                                                                                var form = document.createElement('form');
-                                                                                form.method = 'post';
-                                                                                form.action = 'ShiftDeletion';
-
-                                                                                var inputUserId = document.createElement('input');
-                                                                                inputUserId.type = 'hidden';
-                                                                                inputUserId.name = 'user_id';
-                                                                                inputUserId.value = info.event.extendedProps.userId;
-                                                                                form.appendChild(inputUserId);
-
-                                                                                var inputShiftDate = document.createElement('input');
-                                                                                inputShiftDate.type = 'hidden';
-                                                                                inputShiftDate.name = 'shift_date';
-                                                                                inputShiftDate.value = info.event.startStr;
-                                                                                form.appendChild(inputShiftDate);
-
-                                                                                var inputStartTime = document.createElement('input');
-                                                                                inputStartTime.type = 'hidden';
-                                                                                inputStartTime.name = 'start_time';
-                                                                                inputStartTime.value = info.event.extendedProps.startTime;
-                                                                                form.appendChild(inputStartTime);
-
-                                                                                document.body.appendChild(form);
-                                                                                form.submit();
-                                                                            }
-                                                                        });
-                                                                        modalContent.appendChild(deleteButton);
-                                                                        modal.style.display = "block";
                                                                     }
                                                                 });
 
@@ -768,7 +763,7 @@
                                                                     }
                                                                 };
 
-                                                                // シフト人数リストのクリックイベント付与
+                                                                // シフト人数リストのクリックイベント付与（必要に応じて）
                                                                 document.querySelectorAll('#shift-count-list li').forEach(function(item) {
                                                                     item.addEventListener('click', function() {
                                                                         var targetDate = this.getAttribute('data-date');
