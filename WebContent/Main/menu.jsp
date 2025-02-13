@@ -39,7 +39,7 @@
                 </a>
 
                 <!-- カード3 -->
-                <a href="calendar.jsp" class="card">
+                <a href="CalendarAction" class="card">
                     <h3>シフトカレンダー</h3>
                     <p>全員のシフトを視覚的にチェック。</p>
                 </a>
