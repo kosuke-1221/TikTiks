@@ -31,9 +31,9 @@
             <section class="me-4">
                 <div class="container mt-4">
                     <h2 class="mb-4">😊シフトカレンダー😊</h2>
-                    <label for="yearSelect" class="form-label">表示する年を選択:</label>
+                    <label for="yearSelect" class="form-label">表示する年:</label>
                     <select id="yearSelect" class="form-select w-auto mb-3">
-                        <c:forEach var="year" begin="2020" end="3000">
+                        <c:forEach var="year" begin="2020" end="2300">
                             <option value="${year}" <c:if test="${year == selectedYear}">selected</c:if>>${year}</option>
                         </c:forEach>
                     </select>
