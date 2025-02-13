@@ -50,7 +50,7 @@
 
 	<script>
 	    // サーバーから取得した shiftList を JavaScript のオブジェクトに変換
-	    const shiftList = ${shiftList != null ? shiftList : '[]'};
+    const shiftList = JSON.parse('${shiftListJson}');
 
 	    // shiftList のデータ構造を確認（デバッグ用）
 	    console.log("取得したシフトリスト:", shiftList);

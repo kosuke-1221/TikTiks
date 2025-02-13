@@ -141,7 +141,7 @@ button#nextMonthButton {
 }
 
 /* メモ欄だけを薄紫に変更 */
-.shift-info div.memo-info {
+.shift-info div.note-info {
   background-color: #8080ff; /* 薄紫色 */
   color: white;  font-weight: bold;  /* 文字を太くする */
 

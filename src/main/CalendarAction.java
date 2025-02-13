@@ -10,31 +10,37 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.google.gson.Gson;
+
 import bean.Calendar;
 import dao.CalendarDao;
 
 @WebServlet("/Main/CalendarAction")
 public class CalendarAction extends HttpServlet {
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-	        throws ServletException, IOException {
-        // セッションから user_id を取得
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        // セッションから userID を取得
         HttpSession session = request.getSession();
         String userId = (String) session.getAttribute("userID");
 
-        // ユーザーIDがセッションに存在しない場合、エラーを表示
         if (userId == null) {
             response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "ログインしていません。");
-            return; // 実際にエラーを返して終了
+            return;
         }
 
-	    System.out.println("取得した user_id: " + userId); // ユーザーIDの確認
+        System.out.println("取得した user_id: " + userId);
 
-	    CalendarDao dao = new CalendarDao();
-	    List<Calendar> shiftList = dao.getShiftsByUser(userId);
+        // DBからシフト情報を取得
+        CalendarDao dao = new CalendarDao();
+        List<Calendar> shiftList = dao.getShiftsByUser(userId);
+        System.out.println("取得したシフトリスト: " + shiftList);
 
-	    System.out.println("取得したシフトリスト: " + shiftList); // シフトリストの確認
+        // シフト情報を JSON に変換してリクエスト属性にセット
+        Gson gson = new Gson();
+        String shiftListJson = gson.toJson(shiftList);
+        request.setAttribute("shiftListJson", shiftListJson);
 
-	    request.setAttribute("shiftList", shiftList);
-	    request.getRequestDispatcher("calendar.jsp").forward(request, response);
-	}
+        // calendar.jsp にフォワードする（JSONを直接返さない）
+        request.getRequestDispatcher("calendar.jsp").forward(request, response);
+    }
 }

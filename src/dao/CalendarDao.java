@@ -5,7 +5,6 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,6 +14,15 @@ public class CalendarDao {
     private static final String URL = "jdbc:h2:tcp://localhost/~/NSM";
     private static final String USER = "sa";
     private static final String PASSWORD = "";
+
+    static {
+        try {
+            // H2ドライバのロード
+            Class.forName("org.h2.Driver");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
 
     public List<Calendar> getShiftsByUser(String userId) {
         List<Calendar> shiftList = new ArrayList<>();
@@ -33,18 +41,20 @@ public class CalendarDao {
                 shift.setUserId(userId);
                 shift.setShiftDate(rs.getString("shift_date"));
 
-                // start_time, end_time の処理を確認
+                // start_time, end_time の処理を確認（文字列で扱う）
                 String startTimeStr = rs.getString("start_time");
                 String endTimeStr = rs.getString("end_time");
                 if (startTimeStr != null) {
                     System.out.println("start_time: " + startTimeStr);
-                    shift.setStartTime(LocalTime.parse(startTimeStr));
+                    shift.setStartTime(startTimeStr);  // 文字列としてセット
                 }
                 if (endTimeStr != null) {
                     System.out.println("end_time: " + endTimeStr);
-                    shift.setEndTime(LocalTime.parse(endTimeStr));
+                    shift.setEndTime(endTimeStr);  // 文字列としてセット
                 }
 
+                String note = rs.getString("note");
+                System.out.println("取得したメモ: " + note);  // note のデバッグ出力
                 shift.setNote(rs.getString("note"));
                 shiftList.add(shift);
             }
@@ -55,5 +65,4 @@ public class CalendarDao {
         System.out.println("取得したシフトデータ: " + shiftList);
         return shiftList;
     }
-
 }

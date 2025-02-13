@@ -12,8 +12,6 @@ document.addEventListener("DOMContentLoaded", function () {
     let currentYear = currentDate.getFullYear();
     let currentMonth = currentDate.getMonth();
 
-    let shiftList = []; // シフト情報を格納する変数
-
     // 過去3年〜未来3年までの選択肢を追加
     for (let i = currentYear - 3; i <= currentYear + 3; i++) {
         let option = document.createElement("option");
@@ -21,18 +19,18 @@ document.addEventListener("DOMContentLoaded", function () {
         option.textContent = i + "年";
         yearSelect.appendChild(option);
     }
-
-    // 初回のカレンダー生成
-    generateCalendar(currentYear, currentMonth);
     yearSelect.value = currentYear;
 
-    // 年を変更したときにカレンダーを更新
+    // 初回のカレンダー生成：シフト情報を取得してから生成
+    generateCalendar(currentYear, currentMonth, shiftList);
+
+    // 年変更イベント
     yearSelect.addEventListener("change", function () {
         currentYear = parseInt(this.value, 10);
-        generateCalendar(currentYear, currentMonth);
+        generateCalendar(currentYear, currentMonth, shiftList);
     });
 
-    // 次の月へボタンと前の月へボタンのイベントリスナーを追加
+    // 次の月へボタンのイベント
     nextMonthButton.addEventListener("click", function () {
         currentMonth++;
         if (currentMonth > 11) {
@@ -40,9 +38,10 @@ document.addEventListener("DOMContentLoaded", function () {
             currentYear++;
             yearSelect.value = currentYear;
         }
-        generateCalendar(currentYear, currentMonth);
+        generateCalendar(currentYear, currentMonth, shiftList);
     });
 
+    // 前の月へボタンのイベント
     prevMonthButton.addEventListener("click", function () {
         currentMonth--;
         if (currentMonth < 0) {
@@ -50,10 +49,10 @@ document.addEventListener("DOMContentLoaded", function () {
             currentYear--;
             yearSelect.value = currentYear;
         }
-        generateCalendar(currentYear, currentMonth);
+        generateCalendar(currentYear, currentMonth, shiftList);
     });
 
-    function generateCalendar(year, month) {
+    function generateCalendar(year, month, shiftList) {
         calendarContainer.innerHTML = ""; // 既存のカレンダーをクリア
 
         const table = document.createElement("table");
@@ -64,7 +63,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const thead = document.createElement("thead");
         const headerRow = document.createElement("tr");
         const daysOfWeek = ["日", "月", "火", "水", "木", "金", "土"];
-        daysOfWeek.forEach(day => {
+        daysOfWeek.forEach(function (day) {
             const th = document.createElement("th");
             th.textContent = day;
             headerRow.appendChild(th);
@@ -95,8 +94,8 @@ document.addEventListener("DOMContentLoaded", function () {
                     cell.appendChild(dateNumber);
 
                     const dateStr = `${year}-${String(month + 1).padStart(2, '0')}-${String(date).padStart(2, '0')}`;
+
                     if (holidays[dateStr]) {
-                        // 祝日の背景色と名前を追加
                         cell.classList.add("holiday");
                         const holidayLabel = document.createElement("span");
                         holidayLabel.className = "holiday-label";
@@ -104,31 +103,43 @@ document.addEventListener("DOMContentLoaded", function () {
                         cell.appendChild(holidayLabel);
                     }
 
-                    // シフト情報の表示
-                    const shiftInfo = shiftList.find(shift => shift.shiftDate === dateStr);
+                    // DBから取得したシフト情報を表示する処理
+                    const shiftInfo = shiftList.find(function (shift) {
+                        return shift.shiftDate === dateStr;
+                    });
+
                     if (shiftInfo) {
                         const shiftDetails = document.createElement("div");
                         shiftDetails.className = "shift-info";
+
+                        const startTime = shiftInfo.startTime;
+                        const endTime = shiftInfo.endTime;
+
+                        // note が null でない、かつ空でない場合のみ表示
+                        let noteContent = "";
+                        if (shiftInfo.note && shiftInfo.note.trim() !== "") {
+                            noteContent = `<div class="note-info">メモ<br>${shiftInfo.note}</div>`;
+                        }
+
                         shiftDetails.innerHTML = `
-                            <div>${shiftInfo.startTime} - ${shiftInfo.endTime}</div>
-                            <div class="shift-memo">${shiftInfo.memo || ''}</div>
+                            <div>開始 ${startTime}</div>
+                            <div>終了 ${endTime}</div>
+                            ${noteContent} <!-- note が null でない場合のみ表示 -->
                         `;
                         cell.appendChild(shiftDetails);
                     }
 
+
+
                     date++;
                 }
-
                 row.appendChild(cell);
             }
-
             tbody.appendChild(row);
         }
-
         table.appendChild(tbody);
         calendarContainer.appendChild(table);
 
-        // 現在の月を表示
         const monthNames = ["1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "9月", "10月", "11月", "12月"];
         currentMonthSpan.textContent = `${year}年 ${monthNames[month]}`;
     }

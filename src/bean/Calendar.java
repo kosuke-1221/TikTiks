@@ -1,12 +1,10 @@
 package bean;
 
-import java.time.LocalTime;
-
 public class Calendar {
     private String userId;
     private String shiftDate;
-    private LocalTime startTime;
-    private LocalTime endTime;
+    private String startTime;  // String 型に変更
+    private String endTime;    // String 型に変更
     private String note;
 
     public String getUserId() { return userId; }
@@ -15,11 +13,11 @@ public class Calendar {
     public String getShiftDate() { return shiftDate; }
     public void setShiftDate(String shiftDate) { this.shiftDate = shiftDate; }
 
-    public LocalTime getStartTime() { return startTime; }
-    public void setStartTime(LocalTime startTime) { this.startTime = startTime; }
+    public String getStartTime() { return startTime; }
+    public void setStartTime(String startTime) { this.startTime = startTime; }
 
-    public LocalTime getEndTime() { return endTime; }
-    public void setEndTime(LocalTime endTime) { this.endTime = endTime; }
+    public String getEndTime() { return endTime; }
+    public void setEndTime(String endTime) { this.endTime = endTime; }
 
     public String getNote() { return note; }
     public void setNote(String note) { this.note = note; }
