@@ -71,13 +71,14 @@
     </servlet-mapping>
 
 
+	<!-- CalendarAction -->
 	<servlet>
-	    <servlet-name>PublicKeyServlet</servlet-name>
-	    <servlet-class>main.PublicKeyServlet</servlet-class>
+	    <servlet-name>CalendarAction</servlet-name>
+	    <servlet-class>main.CalendarAction</servlet-class>
 	</servlet>
 	<servlet-mapping>
-	    <servlet-name>PublicKeyServlet</servlet-name>
-	    <url-pattern>/get-public-key</url-pattern>
+	    <servlet-name>CalendarAction</servlet-name>
+	    <url-pattern>/CalendarAction</url-pattern>
 	</servlet-mapping>
 
 </web-app>

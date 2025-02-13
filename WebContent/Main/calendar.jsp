@@ -1,6 +1,9 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ page import="dao.CalendarDao" %>
+<%@ page import="bean.Calendar" %>
+<%@ page import="java.util.List" %>
 <%
     HttpSession currentsession = request.getSession(false);
     if (currentsession == null || currentsession.getAttribute("userID") == null) {
@@ -44,14 +47,17 @@
             </section>
         </c:param>
     </c:import>
-<script>
-    // サーバーから取得した shiftList を JavaScript のオブジェクトに変換
-    const shiftList = ${shiftList != null ? shiftList : '[]'};
 
-    // shiftList のデータ構造を確認（デバッグ用）
-    console.log("取得したシフトリスト:", shiftList);
-</script>
+	<script>
+	    // サーバーから取得した shiftList を JavaScript のオブジェクトに変換
+	    const shiftList = ${shiftList != null ? shiftList : '[]'};
+
+	    // shiftList のデータ構造を確認（デバッグ用）
+	    console.log("取得したシフトリスト:", shiftList);
+	</script>
+
     <script src="calendar.js"></script>
+
 </body>
 
 </html>

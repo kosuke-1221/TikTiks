@@ -12,7 +12,7 @@ import java.util.List;
 import bean.Calendar;
 
 public class CalendarDao {
-    private static final String URL = "jdbc:h2:~/NSM";
+    private static final String URL = "jdbc:h2:tcp://localhost/~/NSM";
     private static final String USER = "sa";
     private static final String PASSWORD = "";
 
@@ -22,7 +22,10 @@ public class CalendarDao {
 
         try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
              PreparedStatement stmt = conn.prepareStatement(sql)) {
+
             stmt.setString(1, userId);
+            System.out.println("SQL 実行: " + stmt); // SQL ログ出力
+
             ResultSet rs = stmt.executeQuery();
 
             while (rs.next()) {
@@ -30,13 +33,15 @@ public class CalendarDao {
                 shift.setUserId(userId);
                 shift.setShiftDate(rs.getString("shift_date"));
 
-                // start_time と end_time を LocalTime に変換
+                // start_time, end_time の処理を確認
                 String startTimeStr = rs.getString("start_time");
                 String endTimeStr = rs.getString("end_time");
                 if (startTimeStr != null) {
+                    System.out.println("start_time: " + startTimeStr);
                     shift.setStartTime(LocalTime.parse(startTimeStr));
                 }
                 if (endTimeStr != null) {
+                    System.out.println("end_time: " + endTimeStr);
                     shift.setEndTime(LocalTime.parse(endTimeStr));
                 }
 
@@ -46,6 +51,9 @@ public class CalendarDao {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
+        System.out.println("取得したシフトデータ: " + shiftList);
         return shiftList;
     }
+
 }

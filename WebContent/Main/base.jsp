@@ -44,7 +44,7 @@
             <a href="menu.jsp">メニュー</a>
             <a href="shift_desired.jsp">出勤可能日時</a>
             <a href="Vacation_Desired_Date.jsp">休暇希望日</a>
-            <a href="calendar.jsp">カレンダー</a>
+            <a href="CalendarAction">カレンダー</a>
             <img src="MAGIC.png" alt="Logo" style="vertical-align: middle; margin-right: 10px;" />
         </c:if>
 

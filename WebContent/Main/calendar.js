@@ -12,6 +12,8 @@ document.addEventListener("DOMContentLoaded", function () {
     let currentYear = currentDate.getFullYear();
     let currentMonth = currentDate.getMonth();
 
+    let shiftList = []; // シフト情報を格納する変数
+
     // 過去3年〜未来3年までの選択肢を追加
     for (let i = currentYear - 3; i <= currentYear + 3; i++) {
         let option = document.createElement("option");
