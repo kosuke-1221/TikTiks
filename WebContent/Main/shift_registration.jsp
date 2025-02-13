@@ -662,7 +662,8 @@
                                                                             staffList.forEach(function(shift) {
                                                                                 detailsHTML += "<li>" + shift.userName + " (" + shift.userId + ") " +
                                                                                                shift.startTime + "～" + shift.endTime +
-                                                                                               " <button class='delete-btn' data-userid='" + shift.userId +
+                                                                                               " メモ: " + shift.note + " " +
+                                                                                               "<button class='delete-btn' data-userid='" + shift.userId +
                                                                                                "' data-shiftdate='" + shift.shiftDate +
                                                                                                "' data-starttime='" + shift.startTime + "'>削除</button></li>";
                                                                             });
@@ -771,7 +772,9 @@
                                                                         detailsHTML += registeredShifts.filter(function(shift) {
                                                                             return shift.shiftDate === targetDate;
                                                                         }).map(function(shift) {
-                                                                            return "<li>" + shift.userName + " (" + shift.userId + ") " + shift.startTime + "～" + shift.endTime + "</li>";
+                                                                            return "<li>" + shift.userName + " (" + shift.userId + ") " +
+                                                                                   shift.startTime + "～" + shift.endTime +
+                                                                                   " メモ: " + shift.note + "</li>";
                                                                         }).join("");
                                                                         detailsHTML += "</ul>";
                                                                         var modal = document.getElementById('staffDetailsModal');
