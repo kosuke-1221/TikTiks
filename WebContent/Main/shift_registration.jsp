@@ -485,20 +485,19 @@
                                                                 return options.join('');
                                                             }
 
+                                                            // 修正: alwaysAvailableがtrueの場合は常に利用可能とする
                                                             function isStaffAvailable(shift, dayName) {
+                                                                if (shift.alwaysAvailable === true) {
+                                                                    return true;
+                                                                }
                                                                 if (!shift.selectedDays || typeof shift.selectedDays !== 'string') {
                                                                     return false;
                                                                 }
-
-                                                                var selectedDaysArray = shift.selectedDays
-                                                                    .toLowerCase()
-                                                                    .split(',')
-                                                                    .map(function (day) { return day.trim(); });
-
+                                                                var selectedDaysArray = shift.selectedDays.toLowerCase().split(',').map(function (day) {
+                                                                    return day.trim();
+                                                                });
                                                                 var normalizedDayName = dayName.toLowerCase();
-
-                                                                return shift.alwaysAvailable === true ||
-                                                                    selectedDaysArray.includes(normalizedDayName);
+                                                                return selectedDaysArray.includes(normalizedDayName);
                                                             }
 
                                                             // 関数：指定のスタッフが選択日で休暇希望かチェック
