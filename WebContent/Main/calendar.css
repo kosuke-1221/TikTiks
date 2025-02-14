@@ -153,3 +153,43 @@ button#nextMonthButton:hover {
   color: white;  font-weight: bold;  /* 文字を太くする */
 
 }
+
+/* セレクトボックスのスタイル */
+#yearSelect {
+    padding: 0.375rem 0.75rem;
+    border-radius: 0.375rem;
+    border: 1px solid #ced4da; /* 初期の枠線の色 */
+    background-color: #fff;
+    font-size: 1rem;
+    color: #495057;
+    transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    width: auto;
+}
+
+/* フォーカス時のスタイル（枠線を #4caf50 に変更） */
+#yearSelect:focus {
+    border-color: #4caf50; /* フォーカス時の枠線を緑に変更 */
+    outline: none;
+    box-shadow: 0 0 0 0.2rem rgba(76, 175, 80, 0.25); /* 緑色の影 */
+}
+
+/* オプションのホバー時 */
+#yearSelect option:hover {
+    background-color: #f1f1f1;
+}
+
+/* セレクトボックスのアイコン（矢印） */
+#yearSelect::-ms-expand {
+    display: none;
+}
+
+/* セレクトボックスのラベル（マテリアルデザイン風） */
+#yearSelect {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M14 7l-4 4-4-4" stroke="#495057" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>');
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    padding-right: 2.5rem;
+}
