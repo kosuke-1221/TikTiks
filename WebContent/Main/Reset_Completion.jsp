@@ -1,49 +1,51 @@
-<%@ page contentType="text/html; charset=UTF-8" %>
-<%@ include file="base.jsp" %>
+<%@page contentType="text/html; charset=UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <html lang="ja">
 
 <head>
-    <meta http-equiv="refresh" content="2; URL=Reset.jsp">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="refresh" content="2; URL=Reset.jsp">
     <title>リセット完了</title>
     <style>
+	    body {
+			    font-family: Arial, sans-serif;
+			    margin: 0;
+			    padding: 0;
+			    background-color: #f5f5f5;
+			}
+
         /* メインコンテンツエリアを調整 */
-        .content {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            min-height: calc(100vh - 50px); /* フッターの高さを考慮して調整 */
-            text-align: center;
-            padding-bottom: 60px; /* フッターの上に配置するための余白 */
-        }
+		.container {
+			max-width: 450px;
+		    margin: 50px auto;
+		    background-color: #fff;
+		    padding: 40px 20px;
+		    border-radius: 10px;
+		    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+		    text-align: center;
+		}
 
-        /* メッセージのスタイル */
-        .message-container {
-            text-align: center;
-        }
-
-        h2 {
+        .h2name {
             color: #28a745;
-        }
-
-        /* フッターの固定 */
-        .footer {
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-            height: 50px; /* フッターの高さを設定（調整可能） */
-            background: #f8f9fa; /* 背景色（base.cssと統一する） */
         }
     </style>
 </head>
 
 <body>
+<c:import url="base.jsp">
+<c:param name="title"></c:param>
+<c:param name="scripts"></c:param>
+<c:param name="content">
+<section class="me-4">
     <div class="content">
-        <div class="message-container">
-            <h2>😊 リセットが完了しました 😊</h2>
-        </div>
+            <h2 class="h2name">😊 リセットが完了しました 😊</h2>
     </div>
+
+</section>
+</c:param>
+</c:import>
 </body>
 
 </html>
