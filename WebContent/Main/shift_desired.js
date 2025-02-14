@@ -170,25 +170,6 @@ function displayErrorMessages(messages) {
     }
 }
 
-// 送信ボタンを無効化する関数
-function disableSubmitButton() {
-    const submitButton = document.querySelector('button[type="submit"]');
-    if (submitButton) {
-        submitButton.disabled = true;
-        localStorage.setItem('submitButtonDisabled', 'true'); // 無効化状態をローカルストレージに保存
-    } else {
-        console.error('送信ボタンが見つかりません');
-    }
-}
-
-// 送信ボタンの無効化状態を復元する関数
-function restoreSubmitButtonState() {
-    const submitButton = document.querySelector('button[type="submit"]');
-    if (submitButton && localStorage.getItem('submitButtonDisabled') === 'true') {
-        submitButton.disabled = true;
-    }
-}
-
 // ページ読み込み時に送信ボタンの無効化状態を復元
 document.addEventListener('DOMContentLoaded', function () {
     restoreSubmitButtonState();
@@ -197,7 +178,6 @@ document.addEventListener('DOMContentLoaded', function () {
     const form = document.querySelector('form');
     if (form) {
         form.addEventListener('submit', function (event) {
-            disableSubmitButton(); // 送信ボタンを無効化
         });
     }
     // ...existing code...
