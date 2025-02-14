@@ -682,25 +682,25 @@
                                                                                     var form = document.createElement('form');
                                                                                     form.method = 'post';
                                                                                     form.action = 'ShiftDeletion';
-                                                                                    
+
                                                                                     var inputUserId = document.createElement('input');
                                                                                     inputUserId.type = 'hidden';
                                                                                     inputUserId.name = 'user_id';
                                                                                     inputUserId.value = this.getAttribute('data-userid');
                                                                                     form.appendChild(inputUserId);
-                                                                                    
+
                                                                                     var inputShiftDate = document.createElement('input');
                                                                                     inputShiftDate.type = 'hidden';
                                                                                     inputShiftDate.name = 'shift_date';
                                                                                     inputShiftDate.value = this.getAttribute('data-shiftdate');
                                                                                     form.appendChild(inputShiftDate);
-                                                                                    
+
                                                                                     var inputStartTime = document.createElement('input');
                                                                                     inputStartTime.type = 'hidden';
                                                                                     inputStartTime.name = 'start_time';
                                                                                     inputStartTime.value = this.getAttribute('data-starttime');
                                                                                     form.appendChild(inputStartTime);
-                                                                                    
+
                                                                                     document.body.appendChild(form);
                                                                                     form.submit();
                                                                                 }
@@ -743,9 +743,11 @@
                                                                         return false;
                                                                     }
 
-                                                                    // 休暇希望日と重複していないかチェック
-                                                                    if (vacationRequests.some(function(vac) { return vac.vacationDate === shiftDate; })) {
-                                                                        alert("選択された日付は既に休暇希望日として登録されています。");
+                                                                    // 休暇希望を出しているスタッフかチェックするように修正
+                                                                    if (vacationRequests.some(function(vac) {
+                                                                        return vac.userId === userId && vac.vacationDate === shiftDate;
+                                                                    })) {
+                                                                        alert("選択されたスタッフは休暇希望を出しているため、登録できません。");
                                                                         e.preventDefault();
                                                                         return false;
                                                                     }
