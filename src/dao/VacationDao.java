@@ -55,7 +55,7 @@ public class VacationDao {
     public List<VacationRequest> getAllVacationRequests() {
         List<VacationRequest> vacationRequests = new ArrayList<>();
         // SQLにuser_idを追加
-        String sql = "SELECT vr.user_id, vr.vacation_date, u.name, vr.reason, u.phone_number FROM vacation_requests vr JOIN users u ON vr.user_id = u.user_id";
+        String sql = "SELECT vr.user_id, vr.vacation_date, u.name, vr.reason, u.phone_number FROM vacation_requests vr JOIN users u ON vr.user_id = u.user_id ORDER BY vr.vacation_date ASC";
 
         try {
             // JDBCドライバのロード
