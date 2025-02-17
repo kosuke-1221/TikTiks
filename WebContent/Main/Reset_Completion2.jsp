@@ -6,7 +6,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta http-equiv="refresh" content="3;url=<%=request.getContextPath()%>/Main/ResetShiftSubmission.jsp" />
+	<meta http-equiv="refresh" content="3;url=<%=request.getContextPath()%>/Main/EmployeeList.jsp" />
     <title>リセット完了</title>
     <style>
 	    body {
@@ -45,8 +45,8 @@
 <c:param name="content">
 <section class="me-4">
     <div class="container">
-            <h2 class="h2name">😊提出状態がリセットされました😊</h2>
-            <p>3秒後に提出状態リセット画面へ戻ります。</p>
+            <h2 class="h2name">😊パスワードがリセットされました😊</h2>
+            <p>3秒後にリセット画面へ戻ります。</p>
     </div>
 
 </section>

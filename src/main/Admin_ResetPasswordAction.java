@@ -1,12 +1,15 @@
 package main;
 
 import java.io.IOException;
+import java.net.URLEncoder;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.*;
-import java.net.URLEncoder;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import dao.Database;
 
@@ -39,6 +42,6 @@ public class Admin_ResetPasswordAction extends HttpServlet {
         }
         // 完了画面へリダイレクト（"back" パラメータで元の画面指定：ここでは EmployeeList.jsp）
         String backUrl = URLEncoder.encode("EmployeeList.jsp", "UTF-8");
-        response.sendRedirect(request.getContextPath() + "/Main/Reset_Completion.jsp?back=" + backUrl);
+        response.sendRedirect(request.getContextPath() + "/Main/Reset_Completion2.jsp?back=" + backUrl);
     }
 }
