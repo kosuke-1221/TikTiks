@@ -1,10 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@page contentType="text/html; charset=UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!DOCTYPE html>
 <html lang="ja">
 
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta http-equiv="refresh" content="3;url=<%=request.getContextPath()%>/Main/ResetShiftSubmission.jsp" />
     <title>リセット完了</title>
     <style>
 	    body {
@@ -12,7 +13,6 @@
 			    margin: 0;
 			    padding: 0;
 			    background-color: #f5f5f5;
-			    text-align: center;
 			    padding-top: 50px;
 			}
 
@@ -39,7 +39,7 @@
 <c:param name="scripts"></c:param>
 <c:param name="content">
 <section class="me-4">
-    <div class="content">
+    <div class="container">
             <h2 class="h2name">😊提出状態がリセットされました😊</h2>
             <p>3秒後に提出状態リセット画面へ戻ります。</p>
     </div>

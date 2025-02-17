@@ -1,5 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%
+    HttpSession currentsession = request.getSession(false);
+    if (currentsession == null || currentsession.getAttribute("userID") == null) {
+        response.sendRedirect("login.jsp");
+        return;
+    }
+%>
 <c:import url="base.jsp">
     <c:param name="title" value="管理者リセット機能" />
     <c:param name="scripts" value="" />

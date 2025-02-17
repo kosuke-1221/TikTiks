@@ -28,6 +28,13 @@
     }
     request.setAttribute("submittedList", submittedList);
 %>
+<%
+    HttpSession currentsession = request.getSession(false);
+    if (currentsession == null || currentsession.getAttribute("userID") == null) {
+        response.sendRedirect("login.jsp");
+        return;
+    }
+%>
 <c:import url="base.jsp">
     <c:param name="title" value="シフト提出リセット" />
     <c:param name="scripts" value="" />
