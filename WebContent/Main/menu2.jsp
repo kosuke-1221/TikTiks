@@ -28,14 +28,15 @@
                                     <h3>シフト登録</h3>
                                     <p>簡単にシフトを登録できます。</p>
                                 </a>
-                                <!-- 新規追加：リセット機能カード -->
-                                <a href="${pageContext.request.contextPath}/Main/Reset.jsp" class="card">
-                                    <h3>リセット機能</h3>
-                                    <p>シフト・パスワードのリセット機能へアクセス</p>
-                                </a>
+                                <!-- 休暇希望リストカード -->
                                 <a href="VacationRequestList" class="card">
                                     <h3>休暇希望リスト</h3>
                                     <p>従業員の休暇日、理由を確認。</p>
+                                </a>
+                                <!-- リセット機能カード -->
+                                <a href="${pageContext.request.contextPath}/Main/Reset.jsp" class="card">
+                                    <h3>リセット機能</h3>
+                                    <p>シフト・パスワードのリセット機能へアクセス</p>
                                 </a>
                             </div>
                         </section>
