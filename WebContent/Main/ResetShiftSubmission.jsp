@@ -95,8 +95,8 @@
         </table>
         <div class="button-group">
             <!-- 全体リセットボタンはこの画面にのみ表示 -->
-            <form action="${pageContext.request.contextPath}/AdminDatabaseReset" method="post" style="display:inline;">
-                <button type="submit">データベース全体リセット</button>
+            <form action="${pageContext.request.contextPath}/AdminResetAllShiftSubmission" method="post" style="display:inline;">
+                <button type="submit">提出状態全体リセット</button>
             </form>
             <button class="back-button" onclick="location.href='Reset.jsp'">前の画面に戻る</button>
         </div>
