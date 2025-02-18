@@ -55,8 +55,10 @@
                 text-align: center;
                 margin: 20px;
             }
-            button {
+            /* 共通のボタンスタイル */
+            .button-common {
                 padding: 12px 24px;
+                margin: 10px;
                 border: none;
                 border-radius: 4px;
                 background-color: #dc3545; /* 操作ボタンは赤 */
@@ -64,7 +66,9 @@
                 cursor: pointer;
                 transition: background-color 0.3s ease;
             }
-            button:hover { background-color: #c82333; }
+            .button-common:hover {
+                background-color: #c82333;
+            }
             /* 戻るボタン専用は緑に統一 */
             .back-button {
                 background-color: #28a745;
@@ -92,7 +96,7 @@
                     <td>${map.name}</td>
                     <td>
                         <!-- パスワードリセット確認画面へ遷移 -->
-                        <button type="button" onclick="location.href='ConfirmReset.jsp?confirmTitle=従業員パスワードリセット確認&amp;confirmMessage=従業員のパスワードをリセットしますか？&amp;actionUrl=${pageContext.request.contextPath}/AdminResetPassword?userID=${map.userID}&amp;returnUrl=${pageContext.request.contextPath}/WebContent/Main/EmployeeList.jsp'">
+                        <button class="button-common" type="button" onclick="location.href='ConfirmReset.jsp?confirmTitle=従業員パスワードリセット確認&amp;confirmMessage=従業員のパスワードをリセットしますか？&amp;actionUrl=${pageContext.request.contextPath}/AdminResetPassword?userID=${map.userID}&amp;returnUrl=${pageContext.request.contextPath}/WebContent/Main/EmployeeList.jsp'">
                             パスワードリセット
                         </button>
                     </td>
@@ -100,7 +104,7 @@
             </c:forEach>
         </table>
         <div class="button-group">
-            <button class="back-button" onclick="location.href='Reset.jsp'">前の画面に戻る</button>
+            <button class="button-common back-button" onclick="location.href='Reset.jsp'">前の画面に戻る</button>
         </div>
     </c:param>
 </c:import>

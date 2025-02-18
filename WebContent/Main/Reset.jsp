@@ -28,58 +28,43 @@
                 border-radius: 8px;
                 text-align: center;
             }
-            button {
-                padding: 12px 24px;
-                margin: 10px;
-                border: none;
-                border-radius: 4px;
-                background-color: #007acc;
-                color: #fff;
-                cursor: pointer;
-                transition: background-color 0.3s ease;
-            }
-            button:hover { background-color: #005fa3; }
-            /* 前に戻るボタン専用スタイル */
-            .back-button {
-                background-color: #28a745;
-            }
-            .back-button:hover {
-                background-color: #1e7e34;
-            }
+            /* 共通のボタンスタイル */
+.button-common {
+    padding: 12px 24px;
+    margin: 10px;
+    border: none;
+    border-radius: 4px;
+    background-color: #007acc;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.button-common:hover {
+    background-color: #005fa3;
+}
+
+/* 前に戻るボタン専用スタイル */
+.back-button {
+    background-color: #28a745;
+}
+
+.back-button:hover {
+    background-color: #1e7e34;
+}
             /* h2共通スタイル */
             h2 {
                 text-align: center;
                 color: #28a745;
                 margin-top: 40px;
             }
-                        /* レスポンシブ対応 */
-            @media (max-width: 768px) {
-                .menu {
-                    max-width: 100%;
-                    padding: 15px;
-                }
-                button {
-                    width: 100%;
-                    padding: 15px;
-                }
-            }
-
-            @media (max-width: 480px) {
-                h2 {
-                    font-size: 1.5em;
-                }
-                button {
-                    padding: 12px;
-                    font-size: 1em;
-                }
-            }
         </style>
         <h2>😊 管理者リセット機能 😊</h2>
         <div class="menu">
-            <button onclick="location.href='ResetShiftSubmission.jsp'">出勤可能日時（シフト提出）リセット</button>
-            <button onclick="location.href='EmployeeList.jsp'">従業員パスワードリセット</button>
-            <br>
-            <button class="back-button" onclick="location.href='menu2.jsp'">前の画面に戻る</button>
+            <button class="button-common" onclick="location.href='ResetShiftSubmission.jsp'">出勤可能日時（シフト提出）リセット</button>
+			<button class="button-common" onclick="location.href='EmployeeList.jsp'">従業員パスワードリセット</button>
+			<br>
+			<button class="button-common back-button" onclick="location.href='menu2.jsp'">前の画面に戻る</button>
         </div>
     </c:param>
 </c:import>
