@@ -24,7 +24,7 @@ public class CalendarAction extends HttpServlet {
         String userId = (String) session.getAttribute("userID");
 
         if (userId == null) {
-            response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "ログインしていません。");
+            response.sendRedirect("login.jsp"); //ログインセッションが切れた場合
             return;
         }
 
