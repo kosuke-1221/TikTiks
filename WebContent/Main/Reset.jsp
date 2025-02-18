@@ -29,34 +29,66 @@
                 text-align: center;
             }
             /* 共通のボタンスタイル */
-.button-common {
-    padding: 12px 24px;
-    margin: 10px;
-    border: none;
-    border-radius: 4px;
-    background-color: #007acc;
-    color: #fff;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
+			.button-common {
+			    padding: 12px 24px;
+			    margin: 10px;
+			    border: none;
+			    border-radius: 4px;
+			    background-color: #007acc;
+			    color: #fff;
+			    cursor: pointer;
+			    transition: background-color 0.3s ease;
+			}
 
-.button-common:hover {
-    background-color: #005fa3;
-}
+			.button-common:hover {
+			    background-color: #005fa3;
+			}
 
-/* 前に戻るボタン専用スタイル */
-.back-button {
-    background-color: #28a745;
-}
+			/* 前に戻るボタン専用スタイル */
+			.back-button {
+			    background-color: #28a745;
+			}
 
-.back-button:hover {
-    background-color: #1e7e34;
-}
+			.back-button:hover {
+			    background-color: #1e7e34;
+			}
             /* h2共通スタイル */
             h2 {
                 text-align: center;
                 color: #28a745;
                 margin-top: 40px;
+            }
+			/* レスポンシブ対応 */
+             @media (max-width: 768px) {
+                .menu {
+                    width: 90%;
+                    padding: 15px;
+                }
+
+                .button-common {
+                    width: 100%;
+                    padding: 12px;
+                }
+
+                h2 {
+                    font-size: 24px;
+                }
+            }
+
+            @media (max-width: 480px) {
+                .menu {
+                    width: 90%;
+                    padding: 10px;
+                }
+
+                .button-common {
+                    width: 100%;
+                    padding: 10px;
+                }
+
+                h2 {
+                    font-size: 20px;
+                }
             }
         </style>
         <h2>😊 管理者リセット機能 😊</h2>

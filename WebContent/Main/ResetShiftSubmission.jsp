@@ -63,7 +63,7 @@
                 text-align: center;
                 margin: 20px;
             }
-            button {
+            .button-common {
                 padding: 12px 24px;
                 border: none;
                 border-radius: 4px;
@@ -72,13 +72,39 @@
                 cursor: pointer;
                 transition: background-color 0.3s ease;
             }
-            button:hover { background-color: #1e7e34; }
+            .button-common:hover { background-color: #1e7e34; }
             /* h2共通スタイル */
             h2 {
                 text-align: center;
                 color: #28a745;
                 margin-top: 40px;
             }
+            /* レスポンシブ対応 */
+		    @media (max-width: 768px) {
+		        table {
+		            width: 100%;
+		            margin: 10px 0;
+		        }
+		        th, td {
+		            padding: 8px;
+		        }
+		        .button-common {
+		            padding: 10px 20px;
+		        }
+		        h2 {
+		            font-size: 1.5rem;
+		        }
+		    }
+
+		    @media (max-width: 480px) {
+		        .button-common {
+		            width: 100%;
+		            padding: 10px;
+		        }
+		        .button-group .button-common {
+		            margin-bottom: 15px; /* 下のボタンとの間に隙間を追加 */
+		        }
+		    }
         </style>
         <h2>😊 シフト提出リセット 😊</h2>
         <table>
@@ -93,7 +119,7 @@
                     <td>${map.name}</td>
                     <td>
                         <!-- シフト提出リセット確認画面へ遷移 -->
-                        <button type="button" onclick="location.href='ConfirmReset.jsp?confirmTitle=提出状態リセット確認&amp;confirmMessage=シフト提出状態をリセットしますか？&amp;actionUrl=${pageContext.request.contextPath}/AdminResetShiftSubmission?userID=${map.userID}&amp;returnUrl=${pageContext.request.contextPath}/WebContent/Main/ResetShiftSubmission.jsp'">
+                        <button class="button-common" type="button" onclick="location.href='ConfirmReset.jsp?confirmTitle=提出状態リセット確認&amp;confirmMessage=シフト提出状態をリセットしますか？&amp;actionUrl=${pageContext.request.contextPath}/AdminResetShiftSubmission?userID=${map.userID}&amp;returnUrl=${pageContext.request.contextPath}/WebContent/Main/ResetShiftSubmission.jsp'">
                             提出状態リセット
                         </button>
                     </td>
@@ -102,10 +128,10 @@
         </table>
         <div class="button-group">
             <!-- 全体リセット確認画面へ遷移 -->
-            <button type="button" class="back-button" onclick="location.href='ConfirmReset.jsp?confirmTitle=提出状態全体リセット確認&amp;confirmMessage=全てのシフト提出状態をリセットしますか？&amp;actionUrl=${pageContext.request.contextPath}/AdminResetAllShiftSubmission&amp;returnUrl=${pageContext.request.contextPath}/WebContent/Main/ResetShiftSubmission.jsp'">
+            <button type="button" class="button-common" onclick="location.href='ConfirmReset.jsp?confirmTitle=提出状態全体リセット確認&amp;confirmMessage=全てのシフト提出状態をリセットしますか？&amp;actionUrl=${pageContext.request.contextPath}/AdminResetAllShiftSubmission&amp;returnUrl=${pageContext.request.contextPath}/WebContent/Main/ResetShiftSubmission.jsp'">
                 提出状態全体リセット
             </button>
-            <button class="back-button" onclick="location.href='Reset.jsp'">前の画面に戻る</button>
+            <button class="button-common" onclick="location.href='Reset.jsp'">前の画面に戻る</button>
         </div>
     </c:param>
 </c:import>

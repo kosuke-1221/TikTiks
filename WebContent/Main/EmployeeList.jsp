@@ -82,6 +82,30 @@
                 color: #28a745;
                 margin-top: 40px;
             }
+            /* レスポンシブ対応 */
+    @media (max-width: 768px) {
+        table {
+            width: 100%; /* スマホなど小さい画面で幅を100%にする */
+        }
+        th, td {
+            padding: 8px; /* スマホでの見やすさのためにパディングを調整 */
+        }
+        .button-common {
+            padding: 10px 20px; /* ボタンのサイズを小さくしてタッチ操作をしやすく */
+        }
+        .button-group {
+            margin: 10px; /* ボタン間のスペースを調整 */
+        }
+    }
+
+    @media (max-width: 480px) {
+        h2 {
+            font-size: 18px; /* タイトル文字サイズを小さくして画面に収まるように */
+        }
+        .button-common {
+            width: 90%; /* ボタンを横幅いっぱいに広げる */
+        }
+    }
         </style>
         <h2>😊 従業員パスワードリセット 😊</h2>
         <table>

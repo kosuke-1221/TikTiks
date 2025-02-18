@@ -36,7 +36,7 @@
                             <button type="submit" class="button1">はい</button>
                         </form>
                         <!-- いいえは元の画面に戻る -->
-                        <button class="button2" onclick="location.href='<%= returnUrlParam %>'">いいえ</button>
+                        <button class="button2" onclick="location.href='<%= request.getHeader("referer") %>'">いいえ</button>
                     </div>
                 </div>
             </section>
