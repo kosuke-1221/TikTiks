@@ -582,10 +582,15 @@
                                                                 var startTime = shift[startTimeKey];
                                                                 var endTime = shift[endTimeKey];
 
-                                                                if (startTime && endTime) {
-                                                                    updateTimeSelections(startTime, endTime);
+                                                                // いつでも可の場合は固定の開始～終了時刻で、ユーザーが自分で選択できるようにする
+                                                                if (shift.alwaysAvailable === true) {
+                                                                    updateTimeSelections("09:00", "24:00");
                                                                 } else {
-                                                                    console.error('時間データが利用できません:', dayName);
+                                                                    if (startTime && endTime) {
+                                                                        updateTimeSelections(startTime, endTime);
+                                                                    } else {
+                                                                        console.error('時間データが利用できません:', dayName);
+                                                                    }
                                                                 }
                                                             }
 
