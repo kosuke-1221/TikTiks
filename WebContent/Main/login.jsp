@@ -19,7 +19,6 @@
             padding-right: 3rem; /* ボタン分の余白を確保 */
             box-sizing: border-box; /* フィールド全体の幅を調整 */
         }
-
         .toggle-password {
             position: absolute;
             right: 0.5rem; /* フィールドの右端から適切な余白 */
