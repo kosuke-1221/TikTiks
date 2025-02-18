@@ -92,19 +92,19 @@
                     <td>${map.userID}</td>
                     <td>${map.name}</td>
                     <td>
-                        <form action="${pageContext.request.contextPath}/AdminResetShiftSubmission" method="post">
-                            <input type="hidden" name="userID" value="${map.userID}" />
-                            <button type="submit">提出状態リセット</button>
-                        </form>
+                        <!-- シフト提出リセット確認画面へ遷移 -->
+                        <button type="button" onclick="location.href='ConfirmReset.jsp?confirmTitle=提出状態リセット確認&amp;confirmMessage=シフト提出状態をリセットしますか？&amp;actionUrl=${pageContext.request.contextPath}/AdminResetShiftSubmission?userID=${map.userID}&amp;returnUrl=${pageContext.request.contextPath}/WebContent/Main/ResetShiftSubmission.jsp'">
+                            提出状態リセット
+                        </button>
                     </td>
                 </tr>
             </c:forEach>
         </table>
         <div class="button-group">
-            <!-- 全体リセットボタンはこの画面にのみ表示 -->
-            <form action="${pageContext.request.contextPath}/AdminResetAllShiftSubmission" method="post" style="display:inline;">
-                <button type="submit">提出状態全体リセット</button>
-            </form>
+            <!-- 全体リセット確認画面へ遷移 -->
+            <button type="button" class="back-button" onclick="location.href='ConfirmReset.jsp?confirmTitle=提出状態全体リセット確認&amp;confirmMessage=全てのシフト提出状態をリセットしますか？&amp;actionUrl=${pageContext.request.contextPath}/AdminResetAllShiftSubmission&amp;returnUrl=${pageContext.request.contextPath}/WebContent/Main/ResetShiftSubmission.jsp'">
+                提出状態全体リセット
+            </button>
             <button class="back-button" onclick="location.href='Reset.jsp'">前の画面に戻る</button>
         </div>
     </c:param>

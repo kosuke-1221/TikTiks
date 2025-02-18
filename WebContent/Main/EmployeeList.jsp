@@ -91,10 +91,10 @@
                     <td>${map.userID}</td>
                     <td>${map.name}</td>
                     <td>
-                        <form action="${pageContext.request.contextPath}/AdminResetPassword" method="post">
-                            <input type="hidden" name="userID" value="${map.userID}" />
-                            <button type="submit">パスワードリセット</button>
-                        </form>
+                        <!-- パスワードリセット確認画面へ遷移 -->
+                        <button type="button" onclick="location.href='ConfirmReset.jsp?confirmTitle=従業員パスワードリセット確認&amp;confirmMessage=従業員のパスワードをリセットしますか？&amp;actionUrl=${pageContext.request.contextPath}/AdminResetPassword?userID=${map.userID}&amp;returnUrl=${pageContext.request.contextPath}/WebContent/Main/EmployeeList.jsp'">
+                            パスワードリセット
+                        </button>
                     </td>
                 </tr>
             </c:forEach>

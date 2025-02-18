@@ -70,7 +70,7 @@
     <!-- フッター -->
     <footer class="footer">
         <div class="footer-content">
-            <p>&copy; 2024 TikTiks. All rights reserved.</p>
+            <p>&copy; 2025 TikTiks. All rights reserved.</p>
         </div>
     </footer>
 
