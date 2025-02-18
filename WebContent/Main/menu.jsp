@@ -29,19 +29,19 @@
                 <!-- カード1 -->
                 <a href="shift_desired.jsp" class="card">
                     <h3>シフト希望を提出</h3>
-                    <p>簡単にシフトの希望を出せます。</p>
+                    <p>簡単にシフトの希望を申請できます</p>
                 </a>
 
                 <!-- カード2 -->
                 <a href="Vacation_Desired_Date.jsp" class="card">
                     <h3>休暇希望日を申請</h3>
-                    <p>休暇の予定を素早く申請。</p>
+                    <p>休暇の予定を素早く申請できます</p>
                 </a>
 
                 <!-- カード3 -->
                 <a href="CalendarAction" class="card">
                     <h3>シフトカレンダー</h3>
-                    <p>全員のシフトを視覚的にチェック。</p>
+                    <p>自分のシフトを視覚的にチェックできます</p>
                 </a>
             </div>
         </section>

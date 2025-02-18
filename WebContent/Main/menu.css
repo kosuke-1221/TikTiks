@@ -60,7 +60,11 @@ body {
 }
 
 .card p {
-    font-size: 14px;
-    margin: 0;
-    color: #99d29c; /* 少し控えめな文字色 */
+    font-size: 14px;         /* 文字サイズを14pxに設定 */
+    margin: 0;               /* マージンをリセット */
+    color: #99d29c;          /* 少し控えめな文字色 */
+    padding: 10px;           /* 内側余白を増強 */
+    border-radius: 5px;      /* 角を丸く */
+    -webkit-text-stroke: 1px #99d29c; /* 各文字を白く囲む */
+    font-family: "Impact", "Arial Black", sans-serif; /* 角ばったフォントに変更 */
 }
