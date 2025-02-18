@@ -52,6 +52,27 @@
                 color: #28a745;
                 margin-top: 40px;
             }
+                        /* レスポンシブ対応 */
+            @media (max-width: 768px) {
+                .menu {
+                    max-width: 100%;
+                    padding: 15px;
+                }
+                button {
+                    width: 100%;
+                    padding: 15px;
+                }
+            }
+
+            @media (max-width: 480px) {
+                h2 {
+                    font-size: 1.5em;
+                }
+                button {
+                    padding: 12px;
+                    font-size: 1em;
+                }
+            }
         </style>
         <h2>😊 管理者リセット機能 😊</h2>
         <div class="menu">
